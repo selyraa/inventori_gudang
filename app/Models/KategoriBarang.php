@@ -11,4 +11,8 @@ class KategoriBarang extends Model
     protected $table = 'kategori_barangs';
     protected $primaryKey = 'idKategori';
     protected $keyType = 'string';
+    protected $fillable = [
+        'idKategori',
+        'namaKategori',
+    ];
 }

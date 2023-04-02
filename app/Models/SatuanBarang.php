@@ -11,4 +11,8 @@ class SatuanBarang extends Model
     protected $table = 'satuan_barangs';
     protected $primaryKey = 'idSatuan';
     protected $keyType = 'string';
+    protected $fillable = [
+        'idSatuan',
+        'namaSatuan',
+    ];
 }

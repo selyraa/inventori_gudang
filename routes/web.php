@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KategoriBarangController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\SatuanBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dash', function () {   
-    return view('app');
-});
+// Route::get('/dash', function () {   
+//     return view('app');
+// });
 
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/beranda', [AdminController::class, 'index'])->name('admin.beranda');
+    Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('admin.pengguna');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -34,5 +38,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home.user');
-
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome');
+// Route::resource('/kategori', [KategoriBarangController::class]);
+Route::get('/petugas', [HomeController::class, 'pengguna'])->name('petugas.pengguna');
+Route::resource('petugas', PetugasController::class);
+Route::resource('kategori', KategoriBarangController::class);
+Route::resource('satuan', SatuanBarangController::class);
+

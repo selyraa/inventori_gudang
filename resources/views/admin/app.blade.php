@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>Inventori Gudang</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +19,7 @@
   <!-- ./navbar -->
 
   <!-- Main Sidebar Container -->
-    @include('sidebar')
+    @include('admin.sidebar')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     @yield('content')
@@ -28,7 +28,7 @@
     
    
   <!-- jQuery -->
-  <script src="{{asset('assets/plugins/jQuery/jQuery-2.1.3.min.js')}}"></script>
+  <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- AdminLTE App -->
