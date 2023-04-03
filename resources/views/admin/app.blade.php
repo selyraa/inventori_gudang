@@ -28,7 +28,7 @@
     
    
   <!-- jQuery -->
-  <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('assets/plugins/jQuery/jQuery-2.1.3.min.js')}}"></script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- AdminLTE App -->
