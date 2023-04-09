@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBarangController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SatuanBarangController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\SatuanBarangController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing_page');
 });
 
 // Route::get('/dash', function () {   
@@ -29,8 +30,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
-    Route::get('/beranda', [AdminController::class, 'index'])->name('admin.beranda');
-    Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('admin.pengguna');
+    Route::get('/beranda', [AdminController::class, 'beranda'])->name('admin.beranda');
+    Route::resource('admin', AdminController::class);
+    Route::get('/kategori', [KategoriBarangController::class, 'adminKategori'])->name('kategori');
+    Route::get('/satuan', [SatuanBarangController::class, 'adminSatuan'])->name('satuan');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -44,4 +47,6 @@ Route::get('/petugas', [HomeController::class, 'pengguna'])->name('petugas.pengg
 Route::resource('petugas', PetugasController::class);
 Route::resource('kategori', KategoriBarangController::class);
 Route::resource('satuan', SatuanBarangController::class);
+Route::resource('supplier', SupplierController::class);
+
 

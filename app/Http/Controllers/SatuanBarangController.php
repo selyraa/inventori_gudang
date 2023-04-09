@@ -50,5 +50,11 @@ class SatuanBarangController extends Controller
         return view('petugas.satuan_barang.edit', compact('satuan'));
     }
 
+    public function adminSatuan()
+    {
+        $adminSatuan = SatuanBarang::all();
+        return view('admin.satuan_barang.index')->with('satuan_barangs', $adminSatuan);
+    }
+
 
 }

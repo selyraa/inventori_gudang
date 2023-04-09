@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.pengguna') }}" class="nav-link">
+            <a href="{{ route('admin.index') }}" class="nav-link">
               <i class="nav-icon fas fa-solid fa-user"></i>
               <p>
                 Data Pengguna
@@ -67,19 +67,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('kategori') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kategori Barang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="{{ route('satuan') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Satuan Barang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="{{ route('supplier.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Supplier</p>
                 </a>
@@ -90,7 +90,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Transaksi
+                Laporan
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -98,13 +98,36 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Barang Masuk</p>
+                  <p>Laporan Barang Masuk</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../../index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Barang Keluar</p>
+                  <p>Laporan Barang Keluar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../index2.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Data Supplier</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Retur Barang
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detail Retur</p>
                 </a>
               </li>
             </ul>

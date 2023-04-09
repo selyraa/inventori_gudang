@@ -11,4 +11,11 @@ class Supplier extends Model
     protected $table = 'suppliers';
     protected $primaryKey = 'idSupplier';
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'idSupplier',
+        'nama',
+        'alamat',
+        'noTelp',
+    ];
 }

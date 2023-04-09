@@ -38,7 +38,6 @@ class PetugasController extends Controller
             'username' => 'required',
             'password' => 'required',
             'noTelp' => 'required',
-            'role' => 'required',
             ]);
             //fungsi eloquent untuk menambah data
             User::create($request->all());
@@ -80,7 +79,6 @@ class PetugasController extends Controller
             'username' => 'required',
             'password' => 'required',
             'noTelp' => 'required',
-            'role' => 'required',
             ]);
         //fungsi eloquent untuk mengupdate data inputan kita
             User::find($idUser)->update($request->all());

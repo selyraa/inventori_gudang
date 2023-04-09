@@ -47,10 +47,6 @@
             <label for=" noTelp">No Telepon</label> 
             <input type="text" name="noTelp" class="form-control" id="noTelp" aria-describedby="noTelp" > 
          </div>
-         <div class="form-group">
-            <label for=" role">Role</label> 
-            <input type="text" name="role" class="form-control" id="role" aria-describedby="role" > 
-         </div>
          <button type="submit" class="btn btn-primary">Submit</button>
       </form>
    </div>

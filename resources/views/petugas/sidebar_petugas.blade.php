@@ -47,7 +47,7 @@
             <a href="{{ route('petugas.index') }}" class="nav-link">
               <i class="nav-icon fas fa-solid fa-user"></i>
               <p>
-                Data Pengguna
+                Data Petugas
               </p>
             </a>
           </li>
@@ -68,6 +68,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detail Barang</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('kategori.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kategori Barang</p>
@@ -77,12 +83,6 @@
                 <a href="{{ route('satuan.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Satuan Barang</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Supplier</p>
                 </a>
               </li>
             </ul>
@@ -106,6 +106,18 @@
                 <a href="../../index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Barang Keluar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detail Barang Masuk</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detail Barang Keluar</p>
                 </a>
               </li>
             </ul>

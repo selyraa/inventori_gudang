@@ -62,6 +62,12 @@ class KategoriBarangController extends Controller
         //jika data berhasil diupdate, akan kembali ke halaman utama
             return redirect()->route('kategori.index')->with('success', 'Kategori Barang Berhasil Diupdate');
     }
+
+    public function adminKategori()
+    {
+        $adminKategori = KategoriBarang::all();
+        return view('admin.kategori_barang.index')->with('kategori_barangs', $adminKategori);
+    }
 }
 
 
