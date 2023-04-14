@@ -1,5 +1,5 @@
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <!-- <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -11,10 +11,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset ('assets/dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('land/images/logo_glj.jpg') }}"alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">PT. Gudang Lancar Jaya</a>
+          <a href="#" class="d-block" color="black">PT. Gudang Lancar Jaya</a>
         </div>
       </div>
 
@@ -62,7 +62,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('barang.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Barang</p>
                 </a>

@@ -7,7 +7,8 @@ use App\Http\Controllers\KategoriBarangController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SatuanBarangController;
 use App\Http\Controllers\SupplierController;
-
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiMasukController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,5 +49,6 @@ Route::resource('petugas', PetugasController::class);
 Route::resource('kategori', KategoriBarangController::class);
 Route::resource('satuan', SatuanBarangController::class);
 Route::resource('supplier', SupplierController::class);
+Route::resource('barang', BarangController::class);
 
 

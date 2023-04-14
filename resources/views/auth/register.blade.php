@@ -10,22 +10,14 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- icheck bootstrap -->
-<<<<<<< HEAD
   <link rel="stylesheet" href="{{asset('assets/plugins/iCheck/icheck.min.css')}}">
-=======
-  <link rel="stylesheet" href="{{asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.min.css')}}">
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-<<<<<<< HEAD
     <a href="../../index2.html"><b>PT. Gudang Lancar Jaya</b></a>
-=======
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c
   </div>
 
   <div class="card">
@@ -54,11 +46,7 @@
           <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
-<<<<<<< HEAD
               <span class="fas fa-user"></span>
-=======
-              <span class="fas fa-lock"></span>
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c
             </div>
           </div>
         </div>
@@ -74,11 +62,7 @@
           <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" placeholder="Alamat">
           <div class="input-group-append">
             <div class="input-group-text">
-<<<<<<< HEAD
               <span class="fas fa-user"></span>
-=======
-              <span class="fas fa-lock"></span>
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c
             </div>
           </div>
         </div>
@@ -86,11 +70,7 @@
           <input type="text" name="noTelp" class="form-control @error('noTelp') is-invalid @enderror" placeholder="No Telepon">
           <div class="input-group-append">
             <div class="input-group-text">
-<<<<<<< HEAD
               <span class="fas fa-user"></span>
-=======
-              <span class="fas fa-lock"></span>
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c
             </div>
           </div>
         </div>
@@ -148,18 +128,10 @@
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<<<<<<< HEAD
 <script src="{{asset('assets/plugins/jQuery/jQuery-2.1.3.min.js')}}"></script>
-=======
-<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c
 <!-- Bootstrap 4 -->
 <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
 </body>
 </html>
-<<<<<<< HEAD
-
-=======
->>>>>>> 76b934f3e893845ff85a3f6648dd73a4bff9729c

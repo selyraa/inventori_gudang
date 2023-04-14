@@ -11,7 +11,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset ('assets/dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('land/images/logo_glj.jpg') }}" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">PT. Gudang Lancar Jaya</a>
@@ -119,10 +119,18 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Retur Barang
+                Data Retur
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Retur Barang</p>
+                </a>
+              </li>
+            </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">

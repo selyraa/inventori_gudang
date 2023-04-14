@@ -185,14 +185,6 @@ https://templatemo.com/tm-570-chain-app-dev
                     <h2>Warehouse Management System</h2>
                     <p>Kemudahan melakukan pelacakan keluar-masuk stok barang serta status stok akurat untuk memudahkan melakukan stock opname, aging stock hingga dead stock.</p>
                   </div>
-                  <div class="col-lg-12">
-                    <div class="white-button first-button scroll-to-section">
-                      <a href="#contact">Free Quote <i class="fab fa-apple"></i></a>
-                    </div>
-                    <div class="white-button scroll-to-section">
-                      <a href="#contact">Free Quote <i class="fab fa-google-play"></i></a>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -290,7 +282,7 @@ https://templatemo.com/tm-570-chain-app-dev
       </div>
       <div class="col-lg-12">
         <div class="copyright-text">
-          <p>Copyright © 2023 PT. Gudang Lancar Jaya. All Rights Reserved. 
+          <p>Copyright © 2023 PT. Gudang Lancar Jaya. All Rights Reserved.</p>
           </div>
         </div>
       </div>
