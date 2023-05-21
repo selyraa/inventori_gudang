@@ -82,8 +82,23 @@ class TransaksiMasukController extends Controller
     }
 
 
-    public function lapmasuk()
+    public function lapmasuk(Request $request)
     {
+        $mulai = $request->input('tgl_mulai');
+        $selesai = $request->input('tgl_selesai');
+
+        $filter = DB::table('detail_masuks')
+            ->join('transaksi_masuks', 'detail_masuks.idTransaksiMasuk', '=', 'transaksi_masuks.idTransaksiMasuk')
+            ->join('users', 'transaksi_masuks.idUser', '=', 'users.idUser')
+            ->join('suppliers', 'transaksi_masuks.idSupplier', '=', 'suppliers.idSupplier')
+            ->join('detail_barangs', 'detail_masuks.idDetailBarang', '=', 'detail_barangs.idDetailBarang')
+            ->join('barangs', 'detail_barangs.idBarang', '=', 'barangs.idBarang')
+            ->select('transaksi_masuks.idTransaksiMasuk', 'transaksi_masuks.tglTransaksiMasuk', 'users.nama as namaPetugas', 'suppliers.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaBeli', 'detail_barangs.hargaJual', 'detail_masuks.jumlah as stok')
+            ->when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
+                return $query->whereBetween('transaksi_masuks.tglTransaksiMasuk', [$mulai, $selesai]);
+            })
+            ->get();
+
         $laporan = DB::table('detail_masuks')
             ->join('transaksi_masuks', 'detail_masuks.idTransaksiMasuk', '=', 'transaksi_masuks.idTransaksiMasuk')
             ->join('users', 'transaksi_masuks.idUser', '=', 'users.idUser')
@@ -98,6 +113,10 @@ class TransaksiMasukController extends Controller
             $item->totalHarga = $item->hargaBeli * $item->stok;
             return $item;
         });
-        return view('admin.laporan_masuk.index', compact('laporan'));
+        $filter->map(function ($item) {
+            $item->totalHarga = $item->hargaBeli * $item->stok;
+            return $item;
+        });
+        return view('admin.laporan_masuk.index', compact('filter','laporan'));
     }
 }

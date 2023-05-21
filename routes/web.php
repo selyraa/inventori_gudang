@@ -46,7 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/satuan', [SatuanBarangController::class, 'adminSatuan'])->name('satuan');
     Route::get('/barang', [BarangController::class, 'adminBarang'])->name('barang');
     Route::get('/dashboardadm', [DashboardAdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/lapmasuk', [TransaksiMasukController::class, 'lapmasuk'])->name('lapmasuk');
+    Route::match(['get','post'],'/lapmasuk', [TransaksiMasukController::class, 'lapmasuk'])->name('lapmasuk');
     Route::get('/lapkeluar', [TransaksiKeluarController::class, 'lapkeluar'])->name('lapkeluar');
     Route::get('/lapsupplier', [SupplierController::class, 'lapSupplier'])->name('lapSupplier');
 });
