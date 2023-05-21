@@ -11,4 +11,19 @@ class DetailBarang extends Model
     protected $table = 'detail_barangs';
     protected $primaryKey = 'idDetailBarang';
     protected $keyType = 'string';
+    protected $fillable = [
+        'idDetailBarang',
+        'idBarang',
+        // 'idTransaksiMasuk',
+        'tglProduksi',
+        'tglExp',
+        'hargaBeli',
+        'hargaJual',
+        'stok',
+    ];
+
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'idBarang', 'idBarang');
+    }
 }

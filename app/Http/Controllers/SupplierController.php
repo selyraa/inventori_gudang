@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -65,5 +66,11 @@ class SupplierController extends Controller
         Supplier::find($idSupplier)->delete();
         return redirect()->route('supplier.index')
             -> with('success', 'Supplier Berhasil Dihapus');
+    }
+
+    public function lapSupplier()
+    {
+        $supplier = Supplier::all();
+        return view ('admin.laporan_supplier.index', compact('supplier'));
     }
 }

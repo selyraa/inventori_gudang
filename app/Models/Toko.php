@@ -11,5 +11,12 @@ class Toko extends Model
     protected $table = 'tokos';
     protected $primaryKey = 'idToko';
     protected $keyType = 'string';
+    protected $fillable = [
+        'idToko',
+        'nama',
+        'alamat',
+        'noTelp',
+    ];
+
 }
 

@@ -1,7 +1,9 @@
 @extends('admin.app')
 @section('content')
 <div class="col-md-12 d-flex flex-row justify-content-end">
-    <a class="btn btn-success" href="{{ route('admin.create') }}"> Input User</a>
+    <a class="btn rounded-pill" style="background-color: #282A3A; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;" href="{{ route('admin.create') }}">
+        <i class="fas fa-plus"></i>
+    </a>
 </div>
 <section class="content-header">
     <div class="container-fluid">
@@ -11,7 +13,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data user</h3><br>
+                <h3 class="card-title font-weight-bold" style="margin-top:15px;">Data User</h3><br>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -22,8 +24,8 @@
                 </div>
             </div>  
             <div class="card-body">
-                <table class="table table-hover">
-                <thead>
+                <table class="table table-hover table-bordered" style="color:black;">
+                <thead class="thead-dark">
                     <tr>
                         <th>ID User</th>
                         <th>Nama</th>
@@ -64,6 +66,8 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
+        <div class="col-md-12">
+            {{ $admin->links() }}
+        </div>
     </section>
 @endsection

@@ -8,7 +8,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Kategori Barang</h3><br>
+                <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black;">Kategori Barang</h3><br>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -19,21 +19,21 @@
                 </div>
             </div>  
             <div class="card-body">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID Kategori</th>
-                        <th>Nama Kategori</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($kategori_barangs as $k)
+                <table class="table table-hover table-bordered" style="color:black;">
+                    <thead class="thead-dark">
                         <tr>
-                            <td>{{ $k -> idKategori}}</td>
-                            <td>{{ $k -> namaKategori}}</td>
+                            <th>ID Kategori</th>
+                            <th>Nama Kategori</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach($kategori_barangs as $k)
+                            <tr>
+                                <td>{{ $k -> idKategori}}</td>
+                                <td>{{ $k -> namaKategori}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
             <!-- /.card-body -->

@@ -8,7 +8,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Satuan Barang</h3><br>
+                <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black;">Satuan Barang</h3><br>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -19,8 +19,8 @@
                 </div>
             </div>  
             <div class="card-body">
-                <table class="table">
-                <thead>
+                <table class="table table-hover table-bordered" style="color:black;">
+                <thead class="thead-dark">
                     <tr>
                         <th>ID Satuan</th>
                         <th>Nama Satuan Barang</th>
@@ -36,13 +36,6 @@
                 </tbody>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <!-- <div class="card-footer">
-                --
-            </div> -->
-            <!-- /.card-footer-->
         </div>
-        <!-- /.card -->
-
     </section>
 @endsection

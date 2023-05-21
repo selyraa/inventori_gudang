@@ -1,7 +1,7 @@
 @extends('admin.app')
  @section('content')
  <div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center" style ="color:black;">
         <div class="card" style="width: 24rem;">
         <div class="card-header">Detail Supplier</div>
         <div class="card-body">

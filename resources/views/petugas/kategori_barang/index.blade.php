@@ -1,7 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 <div class="col-md-12 d-flex flex-row justify-content-end">
-    <a class="btn btn-success" href="{{ route('kategori.create') }}"> Input Kategori Barang</a>
+    <a class="btn rounded-pill" style="background-color: #0A4D68; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;" href="{{ route('kategori.create') }}">
+        <i class="fas fa-plus"></i>
+    </a>
 </div>
 <section class="content-header">
     <div class="container-fluid">
@@ -11,7 +13,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Kategori Barang</h3><br>
+                <h3 class="card-title font-weight-bold" style="margin-top:15px;">Kategori Barang</h3><br>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -22,8 +24,8 @@
                 </div>
             </div>  
             <div class="card-body">
-                <table class="table">
-                <thead>
+                <table class="table table-hover table-bordered">
+                <thead style="background-color:#19A7CE; color:white;">
                     <tr>
                         <th>ID Kategori</th>
                         <th>Nama Kategori</th>

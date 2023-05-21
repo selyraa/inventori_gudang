@@ -1,5 +1,5 @@
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-primary elevation-4" style="background-color:#19A7CE;">
     <!-- Brand Logo -->
     <!-- <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -11,7 +11,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('land/images/logo_glj.jpg') }}"alt="User Image">
+          <img src="{{ asset('land/images/logo_glj.jpg') }}" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block" color="black">PT. Gudang Lancar Jaya</a>
@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('petugas.dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-solid fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -52,7 +52,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-solid fa-folder"></i>
               <p>
@@ -68,7 +68,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('detailbrg.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Detail Barang</p>
                 </a>
@@ -85,9 +85,15 @@
                   <p>Satuan Barang</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('toko.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Toko</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -97,25 +103,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('trmasuk.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Barang Masuk</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{ route('trkeluar.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Barang Keluar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('detailmasuk.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Detail Barang Masuk</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('detailkeluar.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Detail Barang Keluar</p>
                 </a>
@@ -132,4 +138,5 @@
                 </form>
               </p>
           </li>
+        </ul>
   </aside>

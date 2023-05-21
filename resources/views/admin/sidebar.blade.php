@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('admin.beranda') }}" class="nav-link">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-solid fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -51,7 +51,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-solid fa-folder"></i>
               <p>
@@ -61,7 +61,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('barang') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Barang</p>
                 </a>
@@ -86,7 +86,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -96,19 +96,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('lapmasuk') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Barang Masuk</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{ route('lapkeluar') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Barang Keluar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{ route('lapSupplier') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Data Supplier</p>
                 </a>

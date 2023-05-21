@@ -81,4 +81,10 @@ class BarangController extends Controller
         return redirect()->route('barang.index')
             -> with('success', 'Data Barang Berhasil Dihapus');
     }
+
+    public function adminBarang()
+    {
+        $adminBarang = Barang::all();
+        return view('admin.data_barang.index')->with('barangs', $adminBarang);
+    }
 }

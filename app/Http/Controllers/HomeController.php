@@ -38,5 +38,7 @@ class HomeController extends Controller
         $pengguna = User::where('role', '', 0);
         return view('petugas.index')->with('users', $pengguna);
     }
+
+   
 }
 

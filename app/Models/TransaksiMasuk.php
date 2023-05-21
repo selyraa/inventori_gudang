@@ -11,5 +11,13 @@ class TransaksiMasuk extends Model
     protected $table = 'transaksi_masuks';
     protected $primaryKey = 'idTransaksiMasuk';
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'idTransaksiMasuk',
+        'idUser',
+        'idSupplier',
+        'tglTransaksiMasuk',
+    ];
 }
+
 
