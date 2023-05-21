@@ -76,8 +76,23 @@ class TransaksiKeluarController extends Controller
             -> with('success', 'Data Transaksi Keluar Berhasil Dihapus');
     }
 
-    public function lapkeluar()
+    public function lapkeluar(Request $request)
     {
+        $mulai = $request->input('tgl_mulai');
+        $selesai = $request->input('tgl_selesai');
+
+        $filter = DB::table('detail_keluars')
+            ->join('transaksi_keluars', 'detail_keluars.idTransaksiKeluar', '=', 'transaksi_keluars.idTransaksiKeluar')
+            ->join('users', 'transaksi_keluars.idUser', '=', 'users.idUser')
+            ->join('tokos', 'transaksi_keluars.idToko', '=', 'tokos.idToko')
+            ->join('detail_barangs', 'detail_keluars.idDetailBarang', '=', 'detail_barangs.idDetailBarang')
+            ->join('barangs', 'detail_barangs.idBarang', '=', 'barangs.idBarang')
+            ->select('transaksi_keluars.idTransaksiKeluar', 'transaksi_keluars.tglTransaksiKeluar', 'users.nama as namaPetugas', 'tokos.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaJual', 'detail_keluars.jumlah as stok')
+            ->when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
+                return $query->whereBetween('transaksi_keluars.tglTransaksiKeluar', [$mulai, $selesai]);
+            })
+            ->get();
+
         $laporan = DB::table('detail_keluars')
             ->join('transaksi_keluars', 'detail_keluars.idTransaksiKeluar', '=', 'transaksi_keluars.idTransaksiKeluar')
             ->join('users', 'transaksi_keluars.idUser', '=', 'users.idUser')
@@ -92,7 +107,11 @@ class TransaksiKeluarController extends Controller
             $item->totalHarga = $item->hargaJual * $item->stok;
             return $item;
         });
-        return view('admin.laporan_keluar.index', compact('laporan'));
+        $filter->map(function ($item) {
+            $item->totalHarga = $item->hargaJual * $item->stok;
+            return $item;
+        });
+        return view('admin.laporan_keluar.index', compact('filter','laporan'));
     }
 
 }

@@ -49,6 +49,25 @@
                 </thead>
                 <tbody>
                     <?php
+                    if($mulai = null || $selesai = null){
+                        ?>
+                        @foreach($filter as $lm)
+                        <tr>
+                            <td>{{ $lm -> idTransaksiMasuk}}</td>
+                            <td>{{ $lm -> tglTransaksiMasuk}}</td>
+                            <td>{{ $lm -> namaPetugas}}</td>
+                            <td>{{ $lm -> nama}}</td>
+                            <td>{{ $lm -> namaBarang}}</td>
+                            <td>{{ $lm -> tglProduksi}}</td>
+                            <td>{{ $lm -> tglExp}}</td>
+                            <td>{{ $lm -> hargaBeli}}</td>
+                            <td>{{ $lm -> stok}}</td>
+                            <!-- <td>{{ $lm -> hargaJual}}</td> -->
+                            <td>{{ $lm -> totalHarga}}</td>
+                        </tr>
+                        @endforeach
+                    <?php
+                    }
                     if (isset($_POST['filter_tgl'])) {
                     ?>
                         @foreach($filter as $lm)
