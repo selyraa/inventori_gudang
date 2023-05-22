@@ -9,7 +9,8 @@ use App\Models\TransaksiMasuk;
 use App\Models\Barang;
 use App\Models\DetailBarang;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
+use Illuminate\Http\Response;
 
 class TransaksiMasukController extends Controller
 {
@@ -119,4 +120,46 @@ class TransaksiMasukController extends Controller
         });
         return view('admin.laporan_masuk.index', compact('filter','laporan'));
     }
+    public function exportPDF(Request $request)
+    {
+        $mulai = $request->input('tgl_mulai');
+        $selesai = $request->input('tgl_selesai');
+
+        $filter = DB::table('detail_masuks')
+            ->join('transaksi_masuks', 'detail_masuks.idTransaksiMasuk', '=', 'transaksi_masuks.idTransaksiMasuk')
+            ->join('users', 'transaksi_masuks.idUser', '=', 'users.idUser')
+            ->join('suppliers', 'transaksi_masuks.idSupplier', '=', 'suppliers.idSupplier')
+            ->join('detail_barangs', 'detail_masuks.idDetailBarang', '=', 'detail_barangs.idDetailBarang')
+            ->join('barangs', 'detail_barangs.idBarang', '=', 'barangs.idBarang')
+            ->select('transaksi_masuks.idTransaksiMasuk', 'transaksi_masuks.tglTransaksiMasuk', 'users.nama as namaPetugas', 'suppliers.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaBeli', 'detail_barangs.hargaJual', 'detail_masuks.jumlah as stok')
+            ->when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
+                return $query->whereBetween('transaksi_masuks.tglTransaksiMasuk', [$mulai, $selesai]);
+            })
+            ->get();
+
+        $laporan = DB::table('detail_masuks')
+            ->join('transaksi_masuks', 'detail_masuks.idTransaksiMasuk', '=', 'transaksi_masuks.idTransaksiMasuk')
+            ->join('users', 'transaksi_masuks.idUser', '=', 'users.idUser')
+            ->join('suppliers', 'transaksi_masuks.idSupplier', '=', 'suppliers.idSupplier')
+            ->join('detail_barangs', 'detail_masuks.idDetailBarang', '=', 'detail_barangs.idDetailBarang')
+            ->join('barangs', 'detail_barangs.idBarang', '=', 'barangs.idBarang')
+            ->select('transaksi_masuks.idTransaksiMasuk', 'transaksi_masuks.tglTransaksiMasuk', 'users.nama as namaPetugas', 'suppliers.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaBeli', 'detail_barangs.hargaJual', 'detail_masuks.jumlah as stok')
+            ->get();
+
+            $laporan->map(function ($item) {
+                $item->totalHarga = $item->hargaBeli * $item->stok;
+                return $item;
+            });
+            $filter->map(function ($item) {
+                $item->totalHarga = $item->hargaBeli * $item->stok;
+                return $item;
+            });
+
+        $pdf = PDF::loadView('admin.laporan_masuk.export_pdf', ['laporan' => $laporan, 'filter' => $filter])->setOptions(['defaultFont' => 'sans-serif']);
+        $pdfContent = $pdf->output();
+        $response = new Response($pdfContent);
+        $response->header('Content-Type', 'application/pdf');
+        return $response;  
+    }
 }
+

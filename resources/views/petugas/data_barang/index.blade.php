@@ -32,6 +32,7 @@
                         <th>ID Satuan</th>
                         <th>ID Kategori</th>
                         <th>Nama Barang</th>
+                        <th>Foto Produk</th>
                         <th width="280px">Action</th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@
                             <td>{{ $b -> idSatuan}}</td>
                             <td>{{ $b -> idKategori}}</td>
                             <td>{{ $b -> namaBarang}}</td>
+                            <td><img src="{{ asset('storage/'.$b->fotoProduk) }}" alt="Foto Produk" width="100"></td>
                             <td>
                                 <form action="{{ route('barang.destroy',$b->idBarang) }}" method="POST">
                                     <a class="btn btn-info" href="{{ route('barang.show',$b->idBarang) }}">Show</a>

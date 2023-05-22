@@ -19,6 +19,7 @@ class Barang extends Model
         'idSatuan',
         'idKategori',
         'namaBarang',
+        'fotoProduk',
     ];
     
 }

@@ -21,15 +21,22 @@
         <div class="card-body">
             <br>
             <div class="row mt-4">
-                <div class="col">
-                    <form method="post" action="{{ route('lapmasuk') }}" class="form-inline">
+                <div class="col-auto">
+                    <form method="post" action="{{ route('lapmasuk') }}" class="form-inline" id="form-filter">
                         @csrf
                         <input type="date" name="tgl_mulai" class="form-control">
                         <input type="date" name="tgl_selesai" class="form-control ml-3">
                         <button type="submit" name="filter_tgl" class="btn btn-info ml-3">Filter</button>
                     </form>
                 </div>
+                <div class="col-auto">
+                    <form method="get" action="{{ route('export_lapmasuk') }}" class="form-inline" id="form-export">
+                        @csrf
+                        <button type="submit" name="export" class="btn btn-info">Export Data</button>
+                    </form>
+                </div>
             </div>
+
             <br>
             <table class="table table-hover table-bordered" style="color:black;">
                 <thead class="thead-dark">
@@ -49,8 +56,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    if($mulai = null || $selesai = null){
-                        ?>
+                    if ($mulai = null || $selesai = null) {
+                    ?>
                         @foreach($filter as $lm)
                         <tr>
                             <td>{{ $lm -> idTransaksiMasuk}}</td>
@@ -87,7 +94,7 @@
                         @endforeach
                     <?php
                     } else {
-                        ?>
+                    ?>
                         @foreach($laporan as $lm)
                         <tr>
                             <td>{{ $lm -> idTransaksiMasuk}}</td>
@@ -102,7 +109,7 @@
                             <!-- <td>{{ $lm -> hargaJual}}</td> -->
                             <td>{{ $lm -> totalHarga}}</td>
                         </tr>
-                        @endforeach  
+                        @endforeach
                     <?php
                     }
                     ?>

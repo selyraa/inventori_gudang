@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Barang;
 use App\Models\User;
 use App\Models\SatuanBarang;
@@ -11,7 +12,8 @@ use App\Models\Supplier;
 
 class BarangController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $barang = Barang::all();
         return view('petugas.data_barang.index')->with('barangs', $barang);
     }
@@ -35,11 +37,22 @@ class BarangController extends Controller
             'idSatuan' => 'required',
             'idKategori' => 'required',
             'namaBarang' => 'required',
-            ]);
-            //fungsi eloquent untuk menambah data
-            Barang::create($request->all());
-            //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            return redirect()->route('barang.index')->with('success', 'Data Barang Berhasil Ditambahkan');
+            'fotoProduk' => 'required|image|max:2048',
+        ]);
+        $imageName = time() . '.' . $request->foto->extension();
+        $request->foto->move(public_path('storage'), $imageName);
+
+        $barang = new Barang;
+        $barang->idBarang = $request->get('idBarang');
+        $barang->idSupplier = $request->get('idSupplier');
+        $barang->idUser = $request->get('idUser');
+        $barang->idSatuan = $request->get('idSatuan');
+        $barang->idKategori = $request->get('idKategori');
+        $barang->namaBarang = $request->get('namaBarang');
+        $barang->fotoProduk = $imageName;
+
+        $barang->save();
+        return redirect()->route('barang.index')->with('success', 'Data Barang Berhasil Ditambahkan');
     }
 
     public function show($idBarang)
@@ -68,18 +81,42 @@ class BarangController extends Controller
             'idSatuan' => 'required',
             'idKategori' => 'required',
             'namaBarang' => 'required',
-            ]);
-        //fungsi eloquent untuk mengupdate data inputan kita
-            Barang::find($idBarang)->update($request->all());
+            'fotoProduk' => 'required|image|max:2048',
+        ]);
+
+        $barang = Barang::all()->where('idBarang', $idBarang)->first();
+        $barang->idBarang = $request->get('idBarang');
+        $barang->idSupplier = $request->get('idSupplier');
+        $barang->idUser = $request->get('idUser');
+        $barang->idSatuan = $request->get('idSatuan');
+        $barang->idKategori = $request->get('idKategori');
+        $barang->namaBarang = $request->get('namaBarang');
+        $barang->save();
+
+        if ($request->file('fotoProduk')) {
+            // hapus foto lama jika ada foto baru yang diupload
+            if ($barang->fotoProduk && file_exists(storage_path('app/public/' . $barang->fotoProduk))) {
+                \Storage::delete('public/' . $barang->fotoProduk);
+            }
+            // simpan foto baru ke direktori penyimpanan
+            $file = $request->file('fotoProduk');
+            $nama_file = $file->getClientOriginalName();
+            $file->storeAs('public/fotoProduk', $nama_file);
+            // simpan nama file foto ke dalam kolom 'foto' pada tabel 'mahasiswas'
+            $barang->fotoProduk = $nama_file;
+        }
+        $image_name = $request->file('fotoProduk')->store('images', 'public');
+        $barang->fotoProduk = $image_name;
+        $barang->save();
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('barang.index')->with('success', 'Data Barang Berhasil Diupdate');
+        return redirect()->route('barang.index')->with('success', 'Data Barang Berhasil Diupdate');
     }
 
     public function destroy($idBarang)
     {
         Barang::find($idBarang)->delete();
         return redirect()->route('barang.index')
-            -> with('success', 'Data Barang Berhasil Dihapus');
+            ->with('success', 'Data Barang Berhasil Dihapus');
     }
 
     public function adminBarang()

@@ -12,6 +12,7 @@
                 <li class="list-group-item"><b>ID Satuan: </b>{{$barang->idSatuan}}</li>
                 <li class="list-group-item"><b>ID Kategori: </b>{{$barang->idKategori}}</li>
                 <li class="list-group-item"><b>Nama Barang: </b>{{$barang->namaBarang}}</li>
+                <li class="list-group-item"><b>Foto Produk: </b><img src="{{ asset('storage/'.$barang->fotoProduk) }}" alt="Foto Produk" width="100"></li>
             </ul>
         </div>
         <a class="btn btn-success mt-3" href="{{ route('barang.index') }}">Kembali</a>
