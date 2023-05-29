@@ -41,13 +41,28 @@ class SatuanBarangController extends Controller
     public function show($idSatuan)
     {
         $satuan = SatuanBarang::find($idSatuan);
-        return view('petugas.satuan_barang.detail', compact('satuan'));
+        $showModal = true;
+        return view('petugas.satuan_barang.detail', compact('satuan', 'showModal'));
     }
 
     public function edit($idSatuan)
     {
         $satuan = SatuanBarang::find($idSatuan);
-        return view('petugas.satuan_barang.edit', compact('satuan'));
+        $showModal = true;
+        return view('petugas.satuan_barang.edit', compact('satuan', 'showModal'));
+    }
+
+    public function update(Request $request, string $idSatuan)
+    {
+        //melakukan validasi data
+        $request->validate([
+            'idSatuan' => 'required',
+            'namaSatuan' => 'required',
+            ]);
+        //fungsi eloquent untuk mengupdate data inputan kita
+        SatuanBarang::find($idSatuan)->update($request->all());
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+            return redirect()->route('satuan.index')->with('success', 'Satuan Barang Berhasil Diupdate');
     }
 
     public function adminSatuan()
