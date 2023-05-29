@@ -49,7 +49,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::match(['get','post'],'/lapmasuk', [TransaksiMasukController::class, 'lapmasuk'])->name('lapmasuk');
     Route::match(['get','post'],'/lapmasuk/export', [TransaksiMasukController::class, 'exportPDF'])->name('export_lapmasuk');
     Route::match(['get', 'post'], '/lapkeluar', [TransaksiKeluarController::class, 'lapkeluar'])->name('lapkeluar');
+    Route::match(['get','post'],'/lapkeluar/export', [TransaksiKeluarController::class, 'exportPDF'])->name('export_lapkeluar');
     Route::get('/lapsupplier', [SupplierController::class, 'lapSupplier'])->name('lapSupplier');
+    Route::match(['get','post'],'/lapsupplier/export', [SupplierController::class, 'exportPDF'])->name('export_lapsupplier');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -67,10 +69,14 @@ Route::resource('satuan', SatuanBarangController::class);
 Route::resource('supplier', SupplierController::class);
 Route::resource('barang', BarangController::class);
 Route::resource('trmasuk', TransaksiMasukController::class);
+Route::post('trmasuk/filterTransMasuk', [TransaksiMasukController::class, 'filterTransMasuk'])->name('trmasuk.filterTransMasuk');
+Route::get('/modal-content', [TransaksiMasukController::class, 'modalContent'])->name('trmasuk.modalContent');
 Route::resource('toko', TokoController::class);
 Route::resource('trkeluar', TransaksiKeluarController::class);
+Route::post('trkeluar/filterTransKeluar', [TransaksiKeluarController::class, 'filterTransKeluar'])->name('trkeluar.filterTransKeluar');
 Route::resource('detailbrg', DetailBarangController::class);
 Route::resource('detailmasuk', DetailMasukController::class);
+Route::get('/detail_masuk/fetch', [DetailMasukController::class, 'fetch'])->name('detail_masuk.fetch');
 Route::resource('detailkeluar', DetailKeluarController::class);
 
 

@@ -8,7 +8,7 @@ use App\Models\KategoriBarang;
 class KategoriBarangController extends Controller
 {
     public function index(){
-        $kategori = KategoriBarang::all();
+        $kategori = KategoriBarang::paginate(5);
         return view('petugas.kategori_barang.index')->with('kategori_barangs', $kategori);
     }
 

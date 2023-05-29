@@ -22,6 +22,7 @@
          <div class="form-group">
             <label for="idToko">ID Toko</label> 
             <input type="text" name="idToko" class="form-control" id="idToko" aria-describedby="idToko" > 
+         </div>
          <div class="form-group">
             <label for="nama">Nama Toko</label> 
             <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama" > 

@@ -34,8 +34,8 @@
          <div class="form-group">
             <label for="idDetailBarang">ID Detail Barang</label> 
             <select name="idDetailBarang" class="form-control">
-                @foreach($detailbarang as $b)
-                    <option value="{{ $b -> idDetailBarang }}">{{ $b -> barang -> namaBarang }}</option>
+                @foreach($detail as $d)
+                    <option value="{{ $d -> idSupplier }}">{{ $d -> namaBarang }}</option>
                 @endforeach
             </select>
          </div>

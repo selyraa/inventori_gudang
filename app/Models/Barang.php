@@ -21,5 +21,10 @@ class Barang extends Model
         'namaBarang',
         'fotoProduk',
     ];
+
+    public function detailbarang()
+    {
+        return $this->hasMany(DetailBarang::class, 'idBarang');
+    }
     
 }

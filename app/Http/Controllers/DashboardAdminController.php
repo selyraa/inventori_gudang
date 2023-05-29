@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Barang;
-use App\Models\User;
-use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
@@ -32,6 +28,29 @@ class DashboardAdminController extends Controller
             ->selectRaw('SUM(detail_barangs.hargaJual * detail_keluars.jumlah) AS totalPemasukan')
             ->value('totalPemasukan');
 
-        return view('admin.dashboard', compact('pengguna', 'supplier', 'toko', 'trmasuk', 'trkeluar', 'totalPengeluaran', 'totalPemasukan'));
+        $masuk = DB::table('transaksi_masuks')
+            ->select('tglTransaksiMasuk')
+            ->orderBy('tglTransaksiMasuk', 'asc')
+            ->get();
+
+        // Mendapatkan tanggal pertama
+        $tanggalPertama = $masuk->first()->tglTransaksiMasuk;
+
+        // Mendapatkan tanggal terakhir
+        $tanggalTerakhir = $masuk->last()->tglTransaksiMasuk;
+
+        $keluar = DB::table('transaksi_keluars')
+            ->select('tglTransaksiKeluar')
+            ->orderBy('tglTransaksiKeluar', 'asc')
+            ->get();
+
+        // Mendapatkan tanggal pertama
+        $tanggalAwal = $keluar->first()->tglTransaksiKeluar;
+
+        // Mendapatkan tanggal terakhir
+        $tanggalAkhir = $keluar->last()->tglTransaksiKeluar;
+
+
+        return view('admin.dashboard', compact('pengguna', 'supplier', 'toko', 'trmasuk', 'trkeluar', 'totalPengeluaran', 'totalPemasukan', 'masuk', 'tanggalPertama', 'tanggalTerakhir', 'keluar', 'tanggalAwal', 'tanggalAkhir'));
     }
 }

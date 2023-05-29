@@ -19,20 +19,27 @@
             </div>
         </div>
         <div class="card-body">
-            <br>
             <div class="row mt-4">
-                <div class="col">
-                    <form method="post" action="{{ route('lapkeluar') }}" class="form-inline">
+                <div class="col-auto">
+                    <form method="post" action="{{ route('lapkeluar') }}" class="form-inline" id="form-filter">
                         @csrf
-                        <input type="date" name="tgl_mulai" class="form-control">
-                        <input type="date" name="tgl_selesai" class="form-control ml-3">
+                        <input type="date" name="tgl_mulai" class="form-control" placeholder="Tanggal Mulai">
+                        <input type="date" name="tgl_selesai" class="form-control ml-3" placeholder="Tanggal Selesai">
                         <button type="submit" name="filter_tgl" class="btn btn-info ml-3">Filter</button>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <form method="get" action="{{ route('export_lapkeluar') }}" class="form-inline" id="form-export">
+                        @csrf
+                        <input type="hidden" name="tgl_mulai" value="{{ session('tgl_mulai') }}">
+                        <input type="hidden" name="tgl_selesai" value="{{ session('tgl_selesai') }}">
+                        <button type="submit" name="filter_tgl" class="btn btn-info">Export Data</button>
                     </form>
                 </div>
             </div>
             <br>
-            <table class="table table-hover table-bordered" style="color:black;">
-                <thead class="thead-dark">
+            <table class="table table-hover table-bordered" style="color:white;">
+                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff);">
                     <tr>
                         <th>ID Trans Keluar</th>
                         <th>Tgl Keluar</th>
@@ -47,7 +54,7 @@
                         <th>Total Harga</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="color:black;">
                     <?php
                     if ($mulai = null || $selesai = null) {
                     ?>
@@ -60,10 +67,10 @@
                             <td>{{ $lm -> namaBarang}}</td>
                             <td>{{ $lm -> tglProduksi}}</td>
                             <td>{{ $lm -> tglExp}}</td>
-                            <td>{{ $lm -> hargaJual}}</td>
+                            <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
                             <td>{{ $lm -> stok}}</td>
                             <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                            <td>{{ $lm -> totalHarga}}</td>
+                            <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
                         </tr>
                         @endforeach
                     <?php
@@ -79,10 +86,10 @@
                             <td>{{ $lm -> namaBarang}}</td>
                             <td>{{ $lm -> tglProduksi}}</td>
                             <td>{{ $lm -> tglExp}}</td>
-                            <td>{{ $lm -> hargaJual}}</td>
+                            <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
                             <td>{{ $lm -> stok}}</td>
                             <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                            <td>{{ $lm -> totalHarga}}</td>
+                            <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
                         </tr>
                         @endforeach
                     <?php
@@ -97,10 +104,10 @@
                             <td>{{ $lm -> namaBarang}}</td>
                             <td>{{ $lm -> tglProduksi}}</td>
                             <td>{{ $lm -> tglExp}}</td>
-                            <td>{{ $lm -> hargaJual}}</td>
+                            <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
                             <td>{{ $lm -> stok}}</td>
                             <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                            <td>{{ $lm -> totalHarga}}</td>
+                            <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
                         </tr>
                         @endforeach
                     <?php

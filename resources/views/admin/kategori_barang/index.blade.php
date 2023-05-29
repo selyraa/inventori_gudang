@@ -20,7 +20,7 @@
             </div>  
             <div class="card-body">
                 <table class="table table-hover table-bordered" style="color:black;">
-                    <thead class="thead-dark">
+                    <thead style="background: linear-gradient(to right, #6c63ff, #a892ff);">
                         <tr>
                             <th>ID Kategori</th>
                             <th>Nama Kategori</th>

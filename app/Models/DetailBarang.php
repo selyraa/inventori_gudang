@@ -22,8 +22,9 @@ class DetailBarang extends Model
         'stok',
     ];
 
+    // Model DetailBarang
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'idBarang', 'idBarang');
+        return $this->belongsTo(Barang::class, 'idBarang');
     }
 }

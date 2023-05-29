@@ -18,6 +18,9 @@ class TransaksiMasuk extends Model
         'idSupplier',
         'tglTransaksiMasuk',
     ];
+
+    public function detailMasuks()
+    {
+        return $this->hasMany(DetailMasuk::class, 'idTransaksiMasuk');
+    }
 }
-
-

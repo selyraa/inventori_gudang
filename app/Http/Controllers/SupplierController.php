@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
+use PDF;
+use Illuminate\Http\Response;
 
 class SupplierController extends Controller
 {
     public function index()
     {
-        $supplier = Supplier::paginate(5);
+        $supplier = Supplier::paginate(3);
         return view('admin.data_supplier.index', compact('supplier'));
     }
 
@@ -72,5 +74,15 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::all();
         return view ('admin.laporan_supplier.index', compact('supplier'));
+    }
+
+    public function exportPDF()
+    {
+        $supplier = Supplier::all();
+        $pdf = PDF::loadView('admin.laporan_supplier.export_pdf', ['supplier' => $supplier])->setOptions(['defaultFont' => 'sans-serif']);
+        $pdfContent = $pdf->output();
+        $response = new Response($pdfContent);
+        $response->header('Content-Type', 'application/pdf');
+        return $response;
     }
 }

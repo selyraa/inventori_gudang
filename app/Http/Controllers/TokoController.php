@@ -8,7 +8,7 @@ use App\Models\Toko;
 class TokoController extends Controller
 {
     public function index(){
-        $toko = Toko::all();
+        $toko = Toko::paginate(5);
         return view('petugas.toko.index')->with('toko', $toko);
     }
 

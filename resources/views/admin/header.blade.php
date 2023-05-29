@@ -1,88 +1,88 @@
 <style>
-  .main-header {
-    background-color: #2D7FC1;
-  }
+    .main-header {
+        background-color: #293462;
+    }
 
-  .navbar-light .navbar-nav .nav-link {
-    color: #fff;
-  }
+    .navbar-light .navbar-nav .nav-link {
+        color: #fff;
+    }
 
-  .navbar-light .navbar-nav .nav-link:hover {
-    color: #19A7CE;
-  }
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #19A7CE;
+    }
 
-  .navbar-light .navbar-toggler {
-    border-color: #fff;
-  }
+    .navbar-light .navbar-toggler {
+        border-color: #fff;
+    }
 
-  .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
+    .navbar-light .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
 
-  .navbar-light .navbar-search-block .form-control {
-    background-color: #293462;
-    color: #fff;
-    border-color: transparent;
-  }
+    .navbar-light .navbar-search-block .form-control {
+        background-color: #293462;
+        color: #fff;
+        border-color: transparent;
+    }
 
-  .navbar-light .navbar-search-block .btn-navbar {
-    background-color: #293462;
-    color: #fff;
-  }
+    .navbar-light .navbar-search-block .btn-navbar {
+        background-color: #293462;
+        color: #fff;
+    }
 
-  .navbar-light .navbar-search-block .btn-navbar i {
-    color: #fff;
-  }
+    .navbar-light .navbar-search-block .btn-navbar i {
+        color: #fff;
+    }
 </style>
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <!-- Left navbar links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="../../index3.html" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
-  </ul>
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../../index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
 
-  <!-- Right navbar links -->
-  <ul class="navbar-nav ml-auto">
-    <!-- Navbar Search -->
-    <li class="nav-item">
-      <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-        <i class="fas fa-search"></i>
-      </a>
-      <div class="navbar-search-block">
-        <form class="form-inline">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                <i class="fas fa-times"></i>
-              </button>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </li>
+          </form>
+        </div>
+      </li>
 
-    <!-- Messages Dropdown Menu -->
-    <!-- <li class="nav-item dropdown">
+      <!-- Messages Dropdown Menu -->
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item"> -->
-    <!-- Message Start -->
-    <!-- <div class="media">
+            <!-- Message Start -->
+            <!-- <div class="media">
               <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
@@ -93,12 +93,12 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div> -->
-    <!-- Message End -->
-    <!-- </a>
+            <!-- Message End -->
+          <!-- </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item"> -->
-    <!-- Message Start -->
-    <!-- <div class="media">
+            <!-- Message Start -->
+            <!-- <div class="media">
               <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
@@ -109,12 +109,12 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div> -->
-    <!-- Message End -->
-    <!-- </a>
+            <!-- Message End -->
+          <!-- </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item"> -->
-    <!-- Message Start -->
-    <!-- <div class="media">
+            <!-- Message Start -->
+            <!-- <div class="media">
               <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
@@ -125,14 +125,14 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div> -->
-    <!-- Message End -->
-    <!-- </a>
+            <!-- Message End -->
+          <!-- </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li> -->
-    <!-- Notifications Dropdown Menu -->
-    <!-- <li class="nav-item dropdown">
+      <!-- Notifications Dropdown Menu -->
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
@@ -158,15 +158,15 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li> -->
-    <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
-      </a>
-    </li>
-    <!-- <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li> -->
-  </ul>
-</nav>
+    </ul>
+  </nav>

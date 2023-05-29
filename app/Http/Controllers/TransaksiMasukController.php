@@ -16,16 +16,27 @@ class TransaksiMasukController extends Controller
 {
     public function index()
     {
-        $trmasuk = TransaksiMasuk::all();
-        return view('petugas.trans_masuk.index')->with('trmasuk', $trmasuk);
+        $user = User::where('role', '=', '0')->get();
+        $trmasuk = TransaksiMasuk::paginate(3);
+        $supplier = Supplier::all();
+
+        return view('petugas.trans_masuk.index', compact('user', 'trmasuk', 'supplier'));
     }
 
-    public function create()
+    public function modalContent()
     {
-        $user = User::where('role', '=', "0")->get();
+        $users = User::where('role', '=', '0')->get();
         $supplier = Supplier::all();
-        return view('petugas.trans_masuk.create', compact('user', 'supplier'));
+        return view('petugas.trans_masuk.modal', compact('users', 'supplier'));
     }
+
+
+    // public function create()
+    // {
+    //     $user = User::where('role', '=', "0")->get();
+    //     $supplier = Supplier::all();
+    //     return view('petugas.trans_masuk.create', compact('user', 'supplier'));
+    // }
 
     public function store(Request $request)
     {
@@ -45,6 +56,7 @@ class TransaksiMasukController extends Controller
     public function show($idTransaksiMasuk)
     {
         $trmasuk = TransaksiMasuk::find($idTransaksiMasuk);
+
         return view('petugas.trans_masuk.detail', compact('trmasuk'));
     }
 
@@ -74,7 +86,7 @@ class TransaksiMasukController extends Controller
     public function destroy($idTransaksiMasuk)
     {
         // Menghapus data terkait di tabel detail_barangs
-        DetailBarang::where('idTransaksiMasuk', $idTransaksiMasuk)->delete();
+        // DetailBarang::where('idTransaksiMasuk', $idTransaksiMasuk)->delete();
 
         // Menghapus data transaksi masuk
         TransaksiMasuk::find($idTransaksiMasuk)->delete();
@@ -85,8 +97,11 @@ class TransaksiMasukController extends Controller
 
     public function lapmasuk(Request $request)
     {
-        $mulai = $request->input('tgl_mulai');
-        $selesai = $request->input('tgl_selesai');
+        $request->session()->put('tgl_mulai', $request->input('tgl_mulai'));
+        $request->session()->put('tgl_selesai', $request->input('tgl_selesai'));
+
+        $mulai = $request->session()->get('tgl_mulai');
+        $selesai = $request->session()->get('tgl_selesai');
 
         $filter = DB::table('detail_masuks')
             ->join('transaksi_masuks', 'detail_masuks.idTransaksiMasuk', '=', 'transaksi_masuks.idTransaksiMasuk')
@@ -109,7 +124,7 @@ class TransaksiMasukController extends Controller
             ->select('transaksi_masuks.idTransaksiMasuk', 'transaksi_masuks.tglTransaksiMasuk', 'users.nama as namaPetugas', 'suppliers.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaBeli', 'detail_barangs.hargaJual', 'detail_masuks.jumlah as stok')
             ->get();
 
-        // Menghitung total harga untuk setiap laporan
+        // Menghitung total harga untuk setiap laporan`
         $laporan->map(function ($item) {
             $item->totalHarga = $item->hargaBeli * $item->stok;
             return $item;
@@ -118,13 +133,13 @@ class TransaksiMasukController extends Controller
             $item->totalHarga = $item->hargaBeli * $item->stok;
             return $item;
         });
-        return view('admin.laporan_masuk.index', compact('filter','laporan'));
+        return view('admin.laporan_masuk.index', compact('filter', 'laporan'));
     }
+
     public function exportPDF(Request $request)
     {
-        $mulai = $request->input('tgl_mulai');
-        $selesai = $request->input('tgl_selesai');
-
+        $mulai = $request->session()->get('tgl_mulai');
+        $selesai = $request->session()->get('tgl_selesai');
         $filter = DB::table('detail_masuks')
             ->join('transaksi_masuks', 'detail_masuks.idTransaksiMasuk', '=', 'transaksi_masuks.idTransaksiMasuk')
             ->join('users', 'transaksi_masuks.idUser', '=', 'users.idUser')
@@ -146,20 +161,45 @@ class TransaksiMasukController extends Controller
             ->select('transaksi_masuks.idTransaksiMasuk', 'transaksi_masuks.tglTransaksiMasuk', 'users.nama as namaPetugas', 'suppliers.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaBeli', 'detail_barangs.hargaJual', 'detail_masuks.jumlah as stok')
             ->get();
 
-            $laporan->map(function ($item) {
-                $item->totalHarga = $item->hargaBeli * $item->stok;
-                return $item;
-            });
-            $filter->map(function ($item) {
-                $item->totalHarga = $item->hargaBeli * $item->stok;
-                return $item;
-            });
+        $laporan->map(function ($item) {
+            $item->totalHarga = $item->hargaBeli * $item->stok;
+            return $item;
+        });
+        $filter->map(function ($item) {
+            $item->totalHarga = $item->hargaBeli * $item->stok;
+            return $item;
+        });
 
-        $pdf = PDF::loadView('admin.laporan_masuk.export_pdf', ['laporan' => $laporan, 'filter' => $filter])->setOptions(['defaultFont' => 'sans-serif']);
+        $masuk = DB::table('transaksi_masuks')
+            ->select('tglTransaksiMasuk')
+            ->orderBy('tglTransaksiMasuk', 'asc')
+            ->get();
+
+        // Mendapatkan tanggal pertama
+        $tanggalPertama = $masuk->first()->tglTransaksiMasuk;
+
+        // Mendapatkan tanggal terakhir
+        $tanggalTerakhir = $masuk->last()->tglTransaksiMasuk;
+
+        $pdf = PDF::loadView('admin.laporan_masuk.export_pdf', compact('laporan', 'filter', 'mulai', 'selesai', 'tanggalPertama', 'tanggalTerakhir'))->setOptions(['defaultFont' => 'sans-serif']);
         $pdfContent = $pdf->output();
         $response = new Response($pdfContent);
         $response->header('Content-Type', 'application/pdf');
-        return $response;  
+        return $response;
+    }
+
+    public function filterTransMasuk(Request $request)
+    {
+        $mulai = $request->input('tgl_mulai');
+        $selesai = $request->input('tgl_selesai');
+        $user = User::where('role', '=', "0")->get();
+        $trmasuk = TransaksiMasuk::all();
+        $tmasuk = TransaksiMasuk::paginate(3);
+        $supplier = Supplier::all();
+
+        $filter = TransaksiMasuk::when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
+            return $query->whereBetween('tglTransaksiMasuk', [$mulai, $selesai]);
+        })->get();
+        return view('petugas.trans_masuk.index', compact('filter', 'user', 'supplier', 'trmasuk', 'mulai', 'selesai', 'tmasuk'));
     }
 }
-

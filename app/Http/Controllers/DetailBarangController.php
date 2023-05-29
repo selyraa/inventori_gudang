@@ -10,8 +10,10 @@ use App\Models\DetailBarang;
 class DetailBarangController extends Controller
 {
     public function index(){
-        $detailbrg = DetailBarang::all();
-        return view('petugas.detail_barang.index')->with('detailbrg', $detailbrg);
+        $detailbrg = DetailBarang::paginate(3);
+        $barang = Barang::all();
+        $trmasuk = TransaksiMasuk::all();
+        return view('petugas.detail_barang.index', compact('detailbrg', 'barang', 'trmasuk'));
     }
 
     public function create()
@@ -43,7 +45,8 @@ class DetailBarangController extends Controller
     public function show($idDetailBarang)
     {
         $detailbrg = DetailBarang::find($idDetailBarang);
-        return view('petugas.detail_barang.detail', compact('detailbrg'));
+        $showModal = true;
+        return view('petugas.detail_barang.detail', compact('detailbrg', 'showModal'));
     }
 
     public function edit($idDetailBarang)
@@ -51,7 +54,8 @@ class DetailBarangController extends Controller
         $barang = Barang::all();
         $trmasuk = TransaksiMasuk::all();
         $detailbrg = DetailBarang::find($idDetailBarang);
-        return view('petugas.detail_barang.edit', compact('barang', 'trmasuk', 'detailbrg'));
+        $showModal = true;
+        return view('petugas.detail_barang.edit', compact('barang', 'trmasuk', 'detailbrg','showModal'));
     }
 
     public function update(Request $request, string $idDetailBarang)

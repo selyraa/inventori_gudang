@@ -8,8 +8,8 @@ use App\Models\SatuanBarang;
 class SatuanBarangController extends Controller
 {
     public function index(){
-        $satuan = SatuanBarang::all();
-        return view('petugas.satuan_barang.index')->with('satuan_barangs', $satuan);
+        $satuan = SatuanBarang::paginate(3);
+        return view('petugas.satuan_barang.index', compact('satuan'));
     }
 
     public function create()
@@ -52,8 +52,8 @@ class SatuanBarangController extends Controller
 
     public function adminSatuan()
     {
-        $adminSatuan = SatuanBarang::all();
-        return view('admin.satuan_barang.index')->with('satuan_barangs', $adminSatuan);
+        $adminSatuan = SatuanBarang::paginate(5);
+        return view('admin.satuan_barang.index', compact('adminSatuan'));
     }
 
 

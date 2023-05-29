@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,24 +13,29 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   @stack('custom_css')
 </head>
+
 <body>
   <!-- Navbar -->
-    @include('header')
+  @include('header')
   <!-- ./navbar -->
 
   <!-- Main Sidebar Container -->
-    @include('petugas.sidebar_petugas')
+  @include('petugas.sidebar_petugas')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style = "background-color: #F1F6F9">
+  <div class="content-wrapper" style="background-color: white">
     @yield('content')
   </div>
   <!-- /.content-wrapper -->
-    
-   
+  @include('footer')
   <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{asset('assets/plugins/jQuery/jQuery-2.1.3.min.js')}}"></script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -37,7 +43,8 @@
   <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('assets/dist/js/demo.js')}}"></script>
-  @include('footer')
+
   @stack('custom_js')
 </body>
+
 </html>

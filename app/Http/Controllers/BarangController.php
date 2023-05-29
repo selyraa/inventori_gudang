@@ -14,8 +14,12 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barang = Barang::all();
-        return view('petugas.data_barang.index')->with('barangs', $barang);
+        $barangs = Barang::paginate(2);
+        $user = User::where('role', '=', "0")->get();
+        $satuan = SatuanBarang::all();
+        $kategori = KategoriBarang::all();
+        $supplier = Supplier::all();
+        return view('petugas.data_barang.index', compact('barangs','user', 'satuan', 'kategori', 'supplier'));
     }
 
     public function create()
@@ -39,8 +43,8 @@ class BarangController extends Controller
             'namaBarang' => 'required',
             'fotoProduk' => 'required|image|max:2048',
         ]);
-        $imageName = time() . '.' . $request->foto->extension();
-        $request->foto->move(public_path('storage'), $imageName);
+        $imageName = time() . '.' . $request->fotoProduk->extension();
+        $request->fotoProduk->move(public_path('storage'), $imageName);
 
         $barang = new Barang;
         $barang->idBarang = $request->get('idBarang');
@@ -58,7 +62,8 @@ class BarangController extends Controller
     public function show($idBarang)
     {
         $barang = Barang::find($idBarang);
-        return view('petugas.data_barang.detail', compact('barang'));
+        $showModal = true;
+        return view('petugas.data_barang.detail', compact('barang', 'showModal'));
     }
 
     public function edit($idBarang)
@@ -68,7 +73,8 @@ class BarangController extends Controller
         $kategori = KategoriBarang::all();
         $supplier = Supplier::all();
         $barang = Barang::find($idBarang);
-        return view('petugas.data_barang.edit', compact('barang', 'user', 'satuan', 'kategori', 'supplier', 'barang'));
+        $showModal = true;
+        return view('petugas.data_barang.edit', compact('barang', 'user', 'satuan', 'kategori', 'supplier', 'barang', 'showModal'));
     }
 
     public function update(Request $request, string $idBarang)
@@ -121,7 +127,7 @@ class BarangController extends Controller
 
     public function adminBarang()
     {
-        $adminBarang = Barang::all();
-        return view('admin.data_barang.index')->with('barangs', $adminBarang);
+        $adminBarang = Barang::paginate(5);
+        return view('admin.data_barang.index', compact('adminBarang'));
     }
 }

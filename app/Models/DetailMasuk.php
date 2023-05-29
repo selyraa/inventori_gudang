@@ -18,13 +18,15 @@ class DetailMasuk extends Model
         'jumlah',
     ];
 
-    public function detailbarang()
+    public function detailBarang()
     {
-        return $this->belongsTo(DetailBarang::class, 'idDetailBarang', 'idDetailBarang');
+        return $this->belongsTo(DetailBarang::class, 'idDetailBarang');
     }
 
-    public function barang()
+
+
+    public function trmasuk()
     {
-        return $this->belongsTo(Barang::class);
+        return $this->belongsTo(TransaksiMasuk::class, 'idTransaksiMasuk', 'idTransaksiMasuk');
     }
 }

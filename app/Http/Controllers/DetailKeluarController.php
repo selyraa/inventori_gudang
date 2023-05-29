@@ -11,8 +11,10 @@ class DetailKeluarController extends Controller
 {
     public function index()
     {
-        $detailkeluar = DetailKeluar::all();
-        return view('petugas.detail_keluar.index')->with('detailkeluar', $detailkeluar);
+        $detailkeluar = DetailKeluar::paginate(5);
+        $detailbarang = DetailBarang::with('barang')->get();
+        $trkeluar = TransaksiKeluar::all();
+        return view('petugas.detail_keluar.index', compact('detailkeluar','detailbarang', 'trkeluar'));
     }
 
     public function create()
