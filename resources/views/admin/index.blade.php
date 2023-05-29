@@ -86,7 +86,9 @@
                                 <a class="btn btn-primary" href="{{ route('admin.edit',$ptg->idUser) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                @if ($ptg->count() > 1)
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                @endif
                             </form>
                         </td>
                     </tr>

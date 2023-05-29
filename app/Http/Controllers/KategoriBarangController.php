@@ -41,13 +41,15 @@ class KategoriBarangController extends Controller
     public function show($idKategori)
     {
         $kategori = KategoriBarang::find($idKategori);
-        return view('petugas.kategori_barang.detail', compact('kategori'));
+        $showModal = true;
+        return view('petugas.kategori_barang.detail', compact('kategori', 'showModal'));
     }
 
     public function edit($idKategori)
     {
         $kategori = KategoriBarang::find($idKategori);
-        return view('petugas.kategori_barang.edit', compact('kategori'));
+        $showModal = true;
+        return view('petugas.kategori_barang.edit', compact('kategori', 'showModal'));
     }
 
     public function update(Request $request, string $idKategori)

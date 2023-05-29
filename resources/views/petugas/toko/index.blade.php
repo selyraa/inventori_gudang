@@ -76,8 +76,8 @@
                         <td>{{ $t -> noTelp}}</td>
                         <td>
                             <form action="{{ route('toko.destroy',$t->idToko) }}" method="POST">
-                                <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('detailkeluar.show',$t->idToko) }}">Show</a>
-                                <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('detailkeluar.edit',$t->idToko) }}">Edit</a>
+                                <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('toko.show',$t->idToko) }}">Show</a>
+                                <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('toko.edit',$t->idToko) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>

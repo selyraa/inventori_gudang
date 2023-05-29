@@ -35,13 +35,15 @@ class TokoController extends Controller
     public function show($idToko)
     {
         $toko = Toko::find($idToko);
-        return view('petugas.toko.detail', compact('toko'));
+        $showModal = true;
+        return view('petugas.toko.detail', compact('toko', 'showModal'));
     }
 
     public function edit($idToko)
     {
         $toko = Toko::find($idToko);
-        return view('petugas.toko.edit', compact('toko'));
+        $showModal = true;
+        return view('petugas.toko.edit', compact('toko', 'showModal'));
     }
 
     public function update(Request $request, string $idToko)
