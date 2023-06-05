@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   @stack('custom_css')
 </head>
 
@@ -20,7 +22,6 @@
   <!-- Navbar -->
   @include('header_admin')
   <!-- ./navbar -->
-
   <!-- Main Sidebar Container -->
   @include('admin.sidebar')
   <!-- Content Wrapper. Contains page content -->
@@ -29,8 +30,6 @@
   </div>
   <!-- /.content-wrapper -->
   @include('footer')
-
-
   <!-- jQuery -->
   <script src="{{asset('assets/plugins/jQuery/jQuery-2.1.3.min.js')}}"></script>
   <!-- Bootstrap 4 -->
@@ -39,7 +38,6 @@
   <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('assets/dist/js/demo.js')}}"></script>
-
   @stack('custom_js')
 </body>
 

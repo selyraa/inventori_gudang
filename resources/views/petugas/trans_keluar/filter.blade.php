@@ -1,50 +1,14 @@
 @extends('petugas.app_petugas')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #9BA4B5;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #737f8f;
-    }
-
-    .pagination .active a {
-        background-color: #737f8f;
-    }
-</style>
-<br>
-<div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
-    <a class="btn rounded-pill" style="background-color: #2D7FC1; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
-        <i class="fas fa-plus"></i>
-    </a>
-</div>
-<section class="content-header">
-    <div class="container-fluid">
-    </div>
-</section>
+@if($showModal)
+<script>
+    $(document).ready(function() {
+        $('#modalFilter').modal('show');
+    });
+</script>
+@endif
 <section class="content">
-    <div class="card">
+    <div class="card" style="margin-top: 30px;">
         <div class="card-header">
             <h3 class="card-title font-weight-bold" style="margin-top: 15px;">Transaksi Barang Keluar</h3><br>
             <div class="card-tools">
@@ -57,16 +21,8 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row mt-2">
-                <div class="col-auto">
-                    <form method="post" action="{{ route('trkeluar.filterTransKeluar') }}" class="form-inline" id="form-filter">
-                        @csrf
-                        <input type="date" name="tgl_mulai" class="form-control">
-                        <input type="date" name="tgl_selesai" class="form-control ml-3">
-                        <button type="submit" name="filter_tgl" class="btn btn-info ml-3">Filter</button>
-                    </form>
-                </div>
-            </div>
+            <a class="btn rounded-pill" href="{{ route('trkeluar.index') }}" style="background-color: #2D7FC1; color: white;"><i class="fas fa-arrow-left"></i></a>
+            <br>
             <br>
             <table class="table table-hover table-bordered">
                 <thead style="background-color: #2D7FC1;">
@@ -148,55 +104,4 @@
         </div>
     </div>
 </section>
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Transaksi Barang Keluar</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form method="post" action="{{ route('trkeluar.store') }}" id="myForm">
-                    @csrf
-                    <div class="form-group">
-                        <!-- <label for="idTransaksiKeluar">ID Transaksi Keluar</label> -->
-                        <input type="text" name="idTransaksiKeluar" class="form-control" id="idTransaksiKeluar" aria-describedby="idTransaksiKeluar" placeholder="ID Transaksi Keluar">
-                    </div>
-                    <div class="form-group">
-                        <label for="idUser">ID User</label>
-                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->idUser }}">
-                        <small>Username: {{ Auth::user()->username }}</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="idToko">ID Toko</label>
-                        <select name="idToko" class="form-control">
-                            @foreach($toko as $t)
-                            <option value="{{ $t -> idToko }}">{{ $t -> nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="tglTransaksiKeluar">Tanggal Transaksi Keluar</label>
-                        <input type="date" name="tglTransaksiKeluar" class="form-control" id="tglTransaksiKeluar" aria-describedby="tglTransaksiKeluar" placeholder="Tanggal Transaksi Keluar">
-                    </div>
-                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
-                </form>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-md-12">
-    <ul class="pagination">
-        {{ $trkeluar->links() }}
-    </ul>
-</div>
 @endsection

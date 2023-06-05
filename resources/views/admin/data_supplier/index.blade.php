@@ -35,7 +35,7 @@
 </style>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
-    <a class="btn rounded-pill" style="background-color: #282A3A; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
+    <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
         <i class="fas fa-plus"></i>
     </a>
 </div>

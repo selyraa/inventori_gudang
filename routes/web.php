@@ -9,14 +9,17 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SatuanBarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ReturBarangController;
 use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\TokoController;
 use App\Http\Controllers\TransaksiKeluarController;
 use App\Http\Controllers\DetailBarangController;
 use App\Http\Controllers\DetailMasukController;
 use App\Http\Controllers\DetailKeluarController;
+use App\Http\Controllers\DetailReturController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\PenggantianBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +55,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::match(['get','post'],'/lapkeluar/export', [TransaksiKeluarController::class, 'exportPDF'])->name('export_lapkeluar');
     Route::get('/lapsupplier', [SupplierController::class, 'lapSupplier'])->name('lapSupplier');
     Route::match(['get','post'],'/lapsupplier/export', [SupplierController::class, 'exportPDF'])->name('export_lapsupplier');
+    Route::match(['get', 'post'], '/lapretur', [ReturBarangController::class, 'lapretur'])->name('lapretur');
+    Route::match(['get','post'],'/lapretur/export', [ReturBarangController::class, 'exportPDF'])->name('export_lapretur');
+    Route::match(['get', 'post'], '/lappenggantian', [PenggantianBarangController::class, 'lappenggantian'])->name('lappenggantian');
+    Route::match(['get','post'],'/lappenggantian/export', [PenggantianBarangController::class, 'exportPDF'])->name('export_lappenggantian');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -67,6 +74,7 @@ Route::resource('petugas', PetugasController::class);
 Route::resource('kategori', KategoriBarangController::class);
 Route::resource('satuan', SatuanBarangController::class);
 Route::resource('supplier', SupplierController::class);
+Route::resource('retur', ReturBarangController::class);
 Route::resource('barang', BarangController::class);
 Route::resource('trmasuk', TransaksiMasukController::class);
 Route::post('trmasuk/filterTransMasuk', [TransaksiMasukController::class, 'filterTransMasuk'])->name('trmasuk.filterTransMasuk');
@@ -78,6 +86,14 @@ Route::resource('detailbrg', DetailBarangController::class);
 Route::resource('detailmasuk', DetailMasukController::class);
 Route::get('/detail_masuk/fetch', [DetailMasukController::class, 'fetch'])->name('detail_masuk.fetch');
 Route::resource('detailkeluar', DetailKeluarController::class);
+Route::get('/get_stok/{idDetailBarang}', [DetailKeluarController::class, 'getStok']);
+Route::resource('detailretur', DetailReturController::class);
+Route::get('/retur_stok/{idDetailBarang}', [DetailReturController::class, 'stokRetur']);
+Route::resource('penggantianbarang', PenggantianBarangController::class);
+Route::get('/get_jumlah_retur/{idDetailRetur}', [PenggantianBarangController::class, 'getJumlahRetur'])->name('retur.getJumlahRetur');
+Route::get('/get_detail_retur/{idDetailRetur}', [PenggantianBarangController::class, 'getDetailRetur']);
+Route::get('/get_detail_barang/{idDetailBarang}', [PenggantianBarangController::class, 'getDetailBarang']);
+
 
 
 

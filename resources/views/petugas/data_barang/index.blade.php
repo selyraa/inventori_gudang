@@ -124,11 +124,7 @@
                     </div>
                     <div class="form-group">
                         <label for="idUser">ID User</label>
-                        <select name="idUser" class="form-control">
-                            @foreach($user as $u)
-                            <option value="{{ $u -> idUser }}">{{ $u -> username }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->username }}">
                     </div>
                     <div class="form-group">
                         <label for="idSatuan">ID Satuan</label>

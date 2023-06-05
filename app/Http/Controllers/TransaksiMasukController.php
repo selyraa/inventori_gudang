@@ -11,6 +11,9 @@ use App\Models\DetailBarang;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 
 class TransaksiMasukController extends Controller
 {
@@ -133,7 +136,22 @@ class TransaksiMasukController extends Controller
             $item->totalHarga = $item->hargaBeli * $item->stok;
             return $item;
         });
-        return view('admin.laporan_masuk.index', compact('filter', 'laporan'));
+
+        // Menghitung jumlah item per halaman
+        $perPage = 3;
+
+        // Mendapatkan nomor halaman saat ini dari query string (?page=)
+        $currentPage = Paginator::resolveCurrentPage();
+
+        // Membuat instance LengthAwarePaginator dengan data, jumlah item per halaman, dan halaman saat ini
+        $laporanPaginator = new LengthAwarePaginator(
+            $laporan->forPage($currentPage, $perPage),
+            $laporan->count(),
+            $perPage,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+        return view('admin.laporan_masuk.index', compact('filter', 'laporanPaginator'));
     }
 
     public function exportPDF(Request $request)
@@ -200,6 +218,7 @@ class TransaksiMasukController extends Controller
         $filter = TransaksiMasuk::when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
             return $query->whereBetween('tglTransaksiMasuk', [$mulai, $selesai]);
         })->get();
-        return view('petugas.trans_masuk.index', compact('filter', 'user', 'supplier', 'trmasuk', 'mulai', 'selesai', 'tmasuk'));
+        $showModal = true;
+        return view('petugas.trans_masuk.filter', compact('filter', 'user', 'supplier', 'trmasuk', 'mulai', 'selesai', 'tmasuk', 'showModal'));
     }
 }

@@ -236,9 +236,6 @@
         });
     });
 </script>
-
-
-
 <div class="col-md-12">
     <ul class="pagination">
         {{ $detailmasuk->links() }}

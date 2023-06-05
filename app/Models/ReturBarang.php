@@ -11,4 +11,11 @@ class ReturBarang extends Model
     protected $tabel = 'retur_barangs';
     protected $primaryKey = 'idRetur';
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'idRetur',
+        'idTransaksiMasuk',
+        'idUser',
+        'tglRetur',
+    ];
 }

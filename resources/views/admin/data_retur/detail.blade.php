@@ -1,4 +1,4 @@
-@extends('petugas.app_petugas')
+@extends('admin.app')
 @section('content')
 @if($showModal)
 <script>
@@ -13,22 +13,25 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Detail Kategori Barang</h4>
+                <h4 class="modal-title">Detail Data Retur</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>ID Kategori: </b>{{$kategori->idKategori}}</li>
-                <li class="list-group-item"><b>Nama Kategori: </b>{{$kategori->namaKategori}}</li>
-            </ul>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>ID Retur: </b>{{$retur->idRetur}}</li>
+                    <li class="list-group-item"><b>ID Transaksi Masuk: </b>{{$retur->idTransaksiMasuk}}</li>
+                    <li class="list-group-item"><b>ID User: </b>{{$retur->idUser}}</li>
+                    <li class="list-group-item"><b>Tanggal Retur: </b>{{$retur->tglRetur}}</li>
+                </ul>
             </div>
-
             <!-- Modal footer -->
             <div class="modal-footer">
-                <a class="btn btn-primary" href="{{ route('kategori.index') }}">Kembali</a>
+                <a class="btn btn-primary" href="{{ route('retur.index') }}">Kembali</a>
             </div>
+
+
         </div>
     </div>
 </div>

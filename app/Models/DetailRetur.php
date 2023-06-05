@@ -11,4 +11,12 @@ class DetailRetur extends Model
     protected $table = 'detail_returs';
     protected $primaryKey = 'idDetailRetur';
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'idDetailRetur',
+        'idRetur',
+        'idDetailBarang',
+        'jumlah',
+    ];
+
 }

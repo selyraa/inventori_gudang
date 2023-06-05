@@ -1,4 +1,3 @@
-<!-- View export_pdf.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +13,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb" style="justify-content: center; align-items: center; text-align: center;">
             <div class="pull-left mt-2">
-                <h1>LAPORAN BARANG MASUK</h1>
+                <h1>LAPORAN RETUR BARANG</h1>
                 <h2 style="margin-top: 0px">PT. GUDANG LANCAR JAYA</h2>
                 <?php
                 if ($mulai != null && $selesai != null) {
@@ -39,16 +38,14 @@
         <table border="1" style="color:black;">
             <thead style="background-color: black; color:white;">
                 <tr>
-                    <th>ID Trans Masuk</th>
-                    <th>Tgl Masuk</th>
-                    <th>Nama Petugas</th>
+                    <th>ID Retur</th>
+                    <th>Tgl Retur</th>
+                    <th>Nama Admin</th>
                     <th>Nama Supplier</th>
                     <th>Nama Barang</th>
                     <th>Tgl Produksi</th>
                     <th>Tgl Expired</th>
-                    <th>Harga Satuan</th>
-                    <th>Jumlah Masuk</th>
-                    <th>Total Harga</th>
+                    <th>Jumlah Retur</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,17 +54,14 @@
                 ?>
                     @foreach($filter as $lm)
                     <tr>
-                        <td>{{ $lm -> idTransaksiMasuk}}</td>
-                        <td>{{ $lm -> tglTransaksiMasuk}}</td>
-                        <td>{{ $lm -> namaPetugas}}</td>
+                        <td>{{ $lm -> idRetur}}</td>
+                        <td>{{ $lm -> tglRetur}}</td>
+                        <td>{{ $lm -> namaAdmin}}</td>
                         <td>{{ $lm -> nama}}</td>
                         <td>{{ $lm -> namaBarang}}</td>
                         <td>{{ $lm -> tglProduksi}}</td>
                         <td>{{ $lm -> tglExp}}</td>
-                        <td>Rp. {{ number_format($lm -> hargaBeli, 0, ',', '.') }}</td>
-                        <td>{{ $lm -> stok}}</td>
-                        <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                        <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                        <td>{{ $lm -> jumlahRetur}}</td>
                     </tr>
                     @endforeach
                 <?php
@@ -75,17 +69,14 @@
                 ?>
                     @foreach($laporan as $lm)
                     <tr>
-                        <td>{{ $lm -> idTransaksiMasuk}}</td>
-                        <td>{{ $lm -> tglTransaksiMasuk}}</td>
-                        <td>{{ $lm -> namaPetugas}}</td>
+                        <td>{{ $lm -> idRetur}}</td>
+                        <td>{{ $lm -> tglRetur}}</td>
+                        <td>{{ $lm -> namaAdmin}}</td>
                         <td>{{ $lm -> nama}}</td>
                         <td>{{ $lm -> namaBarang}}</td>
                         <td>{{ $lm -> tglProduksi}}</td>
                         <td>{{ $lm -> tglExp}}</td>
-                        <td>Rp. {{ number_format($lm -> hargaBeli, 0, ',', '.') }}</td>
-                        <td>{{ $lm -> stok}}</td>
-                        <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                        <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                        <td>{{ $lm -> jumlahRetur}}</td>
                     </tr>
                     @endforeach
                 <?php
@@ -95,4 +86,5 @@
         </table>
     </section>
 </body>
+
 </html>

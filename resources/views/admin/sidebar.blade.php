@@ -1,13 +1,11 @@
 <style>
   .main-sidebar {
     background-color: #6c63ff;
-    display: flex;
-    flex-direction: column;
   }
 
   .sidebar-content {
-    flex: 1;
-    overflow-y: auto;
+    /* flex: 1;
+    overflow-y: auto; */
   }
 
   .brand-link {
@@ -58,7 +56,7 @@
   </a>
   <div class="sidebar sidebar-content">
     <br>
-    <div class="form-inline">
+    <div class="form-inline"> 
       <div class="input-group" data-widget="sidebar-search">
         <input class="form-control form-control-sidebar bg-white" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -127,6 +125,35 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
+              Data Retur
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('retur.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Retur Barang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('detailretur.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Detail Retur</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('penggantianbarang.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Penggantian Barang</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
               Laporan
               <i class="right fas fa-angle-left"></i>
             </p>
@@ -150,28 +177,16 @@
                 <p>Laporan Data Supplier</p>
               </a>
             </li>
-          </ul>
-        </li>
-
-        <li class="nav-item menu-open">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Data Retur
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('lapmasuk') }}" class="nav-link">
+              <a href="{{ route('lapretur') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Retur Barang</p>
+                <p>Laporan Retur Barang</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('lapkeluar') }}" class="nav-link">
+              <a href="{{ route('lappenggantian') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Detail Retur</p>
+                <p>Laporan Penggantian</p>
               </a>
             </li>
           </ul>

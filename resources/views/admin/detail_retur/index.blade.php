@@ -1,4 +1,4 @@
-@extends('petugas.app_petugas')
+@extends('admin.app')
 @section('content')
 <style>
     .pagination {
@@ -20,33 +20,34 @@
         padding: 8px 12px;
         text-decoration: none;
         color: #fff;
-        background-color: #9BA4B5;
+        background-color: #6c63ff;
         border-radius: 5px;
         transition: background-color 0.3s ease;
     }
 
     .pagination li a:hover {
-        background-color: #737f8f;
+        background-color: #a892ff;
     }
 
     .pagination .active a {
-        background-color: #737f8f;
+        background-color: #a892ff;
     }
 </style>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
-    <a class="btn rounded-pill" style="background-color: #2D7FC1; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
+    <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
         <i class="fas fa-plus"></i>
     </a>
 </div>
 <section class="content-header">
     <div class="container-fluid">
-    </div>
+    </div><!-- /.container-fluid -->
 </section>
 <section class="content">
+    <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top: 15px;">Detail Barang Keluar</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Data Detail Retur</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -57,30 +58,30 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered">
-                <thead style=" background-color: #2D7FC1;">
+            <table class="table table-hover table-bordered" style="color:black;">
+                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:white;">
                     <tr>
-                        <th>ID Detail Keluar</th>
-                        <th>ID Transaksi Keluar</th>
+                        <th>ID Detail Retur</th>
+                        <th>ID Retur</th>
                         <th>ID Detail Barang</th>
-                        <th>Jumlah</th>
+                        <th>Jumlah Retur</th>
                         <th width="280px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($detailkeluar as $dk)
+                    @foreach ($detailretur as $dr)
                     <tr>
-                        <td>{{ $dk -> idDetailKeluar}}</td>
-                        <td>{{ $dk -> idTransaksiKeluar}}</td>
-                        <td>{{ $dk -> idDetailBarang}}</td>
-                        <td>{{ $dk -> jumlah}}</td>
+                        <td>{{ $dr -> idDetailRetur}}</td>
+                        <td>{{ $dr -> idRetur}}</td>
+                        <td>{{ $dr -> idDetailBarang}}</td>
+                        <td>{{ $dr -> jumlah}}</td>
                         <td>
-                            <form action="{{ route('detailkeluar.destroy',$dk->idDetailKeluar) }}" method="POST">
-                                <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('detailkeluar.show',$dk->idDetailKeluar) }}">Show</a>
-                                <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('detailkeluar.edit',$dk->idDetailKeluar) }}">Edit</a>
+                            <form action="{{ route('detailretur.destroy',$dr->idDetailRetur) }}" method="POST">
+                                <a class="btn btn-info" href="{{ route('detailretur.show',$dr->idDetailRetur) }}">Show</a>
+                                <a class="btn btn-primary" href="{{ route('detailretur.edit',$dr->idDetailRetur) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -90,30 +91,31 @@
         </div>
     </div>
 </section>
+<!-- The Modal -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Detail Barang Keluar</h4>
+                <h4 class="modal-title">Tambah Detail Data Retur</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form method="post" action="{{ route('detailkeluar.store') }}" id="myForm">
+                <form method="post" action="{{ route('detailretur.store') }}" id="myForm" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="idDetailKeluar">ID Detail Keluar</label>
-                        <input type="text" name="idDetailKeluar" class="form-control" id="idDetailKeluar" aria-describedby="idDetailKeluar">
+                        <label for="idDetailRetur">ID Detail Retur</label>
+                        <input type="text" name="idDetailRetur" class="form-control" id="idDetailRetur" aria-describedby="idDetailRetur">
                     </div>
                     <div class="form-group">
-                        <label for="idTransaksiKeluar">ID Transaksi Keluar</label>
-                        <select name="idTransaksiKeluar" class="form-control">
-                            <option value="">-- Pilih ID Transaksi Keluar --</option>
-                            @foreach($trkeluar as $tk)
-                            <option value="{{ $tk->idTransaksiKeluar }}">{{ $tk->idTransaksiKeluar }}</option>
+                        <label for="idRetur">ID Retur</label>
+                        <select name="idRetur" class="form-control" id="idRetur">
+                            <option value="">-- Pilih ID Data Retur --</option>
+                            @foreach($retur as $r)
+                            <option value="{{ $r->idRetur }}">{{ $r->idRetur }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -139,6 +141,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
+
         </div>
     </div>
 </div>
@@ -159,7 +162,7 @@
         var submitButton = document.querySelector('button[type="submit"]');
 
         if (idDetailBarang !== '' && !isNaN(jumlah)) {
-            axios.get('/get_stok/' + idDetailBarang)
+            axios.get('/retur_stok/' + idDetailBarang)
                 .then(function(response) {
                     var stok = response.data.stok;
 
@@ -184,7 +187,7 @@
 </script>
 <div class="col-md-12">
     <ul class="pagination">
-        {{ $detailkeluar->links() }}
+        {{ $detailretur->links() }}
     </ul>
 </div>
 @endsection

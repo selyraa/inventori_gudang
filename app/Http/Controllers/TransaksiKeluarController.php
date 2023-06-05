@@ -99,6 +99,7 @@ class TransaksiKeluarController extends Controller
             ->when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
                 return $query->whereBetween('transaksi_keluars.tglTransaksiKeluar', [$mulai, $selesai]);
             })
+            ->orderBy('transaksi_keluars.idTransaksiKeluar', 'asc')
             ->get();
 
         $laporan = DB::table('detail_keluars')
@@ -108,6 +109,7 @@ class TransaksiKeluarController extends Controller
             ->join('detail_barangs', 'detail_keluars.idDetailBarang', '=', 'detail_barangs.idDetailBarang')
             ->join('barangs', 'detail_barangs.idBarang', '=', 'barangs.idBarang')
             ->select('transaksi_keluars.idTransaksiKeluar', 'transaksi_keluars.tglTransaksiKeluar', 'users.nama as namaPetugas', 'tokos.nama', 'barangs.namaBarang', 'detail_barangs.tglProduksi', 'detail_barangs.tglExp', 'detail_barangs.hargaJual', 'detail_keluars.jumlah as stok')
+            ->orderBy('transaksi_keluars.idTransaksiKeluar', 'asc')
             ->get();
 
         // Menghitung total harga untuk setiap laporan
@@ -132,7 +134,8 @@ class TransaksiKeluarController extends Controller
         })->get();
 
         $trkeluar = TransaksiKeluar::all();
-        return view('petugas.trans_keluar.index', compact('filter', 'trkeluar'));
+        $showModal = true;
+        return view('petugas.trans_keluar.filter', compact('filter', 'trkeluar', 'showModal'));
     }
 
     public function exportPDF(Request $request)

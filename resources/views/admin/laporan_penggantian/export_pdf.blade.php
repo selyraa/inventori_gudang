@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb" style="justify-content: center; align-items: center; text-align: center;">
             <div class="pull-left mt-2">
-                <h1>LAPORAN BARANG MASUK</h1>
+                <h1>LAPORAN PENGGANTIAN BARANG</h1>
                 <h2 style="margin-top: 0px">PT. GUDANG LANCAR JAYA</h2>
                 <?php
                 if ($mulai != null && $selesai != null) {
@@ -39,16 +39,13 @@
         <table border="1" style="color:black;">
             <thead style="background-color: black; color:white;">
                 <tr>
-                    <th>ID Trans Masuk</th>
-                    <th>Tgl Masuk</th>
-                    <th>Nama Petugas</th>
-                    <th>Nama Supplier</th>
-                    <th>Nama Barang</th>
-                    <th>Tgl Produksi</th>
-                    <th>Tgl Expired</th>
-                    <th>Harga Satuan</th>
-                    <th>Jumlah Masuk</th>
-                    <th>Total Harga</th>
+                    <th>ID Retur</th>
+                    <th>Tgl Penggantian</th>
+                    <th>Jumlah Retur</th>
+                    <th>Jumlah Penggantian</th>
+                    <th>Selisih Retur</th>
+                    <th>Pengurangan Profit</th>
+                    <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,17 +54,13 @@
                 ?>
                     @foreach($filter as $lm)
                     <tr>
-                        <td>{{ $lm -> idTransaksiMasuk}}</td>
-                        <td>{{ $lm -> tglTransaksiMasuk}}</td>
-                        <td>{{ $lm -> namaPetugas}}</td>
-                        <td>{{ $lm -> nama}}</td>
-                        <td>{{ $lm -> namaBarang}}</td>
-                        <td>{{ $lm -> tglProduksi}}</td>
-                        <td>{{ $lm -> tglExp}}</td>
-                        <td>Rp. {{ number_format($lm -> hargaBeli, 0, ',', '.') }}</td>
-                        <td>{{ $lm -> stok}}</td>
-                        <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                        <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                        <td>{{ $lm -> idRetur}}</td>
+                        <td>{{ $lm -> tglPenggantian}}</td>
+                        <td>{{ $lm -> jumlahRetur}}</td>
+                        <td>{{ $lm -> jumlahPenggantian}}</td>
+                        <td>{{ $lm -> selisihRetur}}</td>
+                        <td>Rp. {{ number_format($lm -> penguranganProfit, 0, ',', '.') }}</td>
+                        <td>{{ $lm -> keterangan}}</td>
                     </tr>
                     @endforeach
                 <?php
@@ -75,17 +68,13 @@
                 ?>
                     @foreach($laporan as $lm)
                     <tr>
-                        <td>{{ $lm -> idTransaksiMasuk}}</td>
-                        <td>{{ $lm -> tglTransaksiMasuk}}</td>
-                        <td>{{ $lm -> namaPetugas}}</td>
-                        <td>{{ $lm -> nama}}</td>
-                        <td>{{ $lm -> namaBarang}}</td>
-                        <td>{{ $lm -> tglProduksi}}</td>
-                        <td>{{ $lm -> tglExp}}</td>
-                        <td>Rp. {{ number_format($lm -> hargaBeli, 0, ',', '.') }}</td>
-                        <td>{{ $lm -> stok}}</td>
-                        <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                        <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                        <td>{{ $lm -> idRetur}}</td>
+                        <td>{{ $lm -> tglPenggantian}}</td>
+                        <td>{{ $lm -> jumlahRetur}}</td>
+                        <td>{{ $lm -> jumlahPenggantian}}</td>
+                        <td>{{ $lm -> selisihRetur}}</td>
+                        <td>Rp. {{ number_format($lm -> penguranganProfit, 0, ',', '.') }}</td>
+                        <td>{{ $lm -> keterangan}}</td>
                     </tr>
                     @endforeach
                 <?php
@@ -95,4 +84,5 @@
         </table>
     </section>
 </body>
+
 </html>

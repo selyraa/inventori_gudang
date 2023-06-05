@@ -36,7 +36,7 @@
 
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end">
-    <a class="btn rounded-pill" style="background-color: #282A3A; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;" href="{{ route('admin.create') }}">
+    <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;" href="{{ route('admin.create') }}">
         <i class="fas fa-plus"></i>
     </a>
 </div>
@@ -86,7 +86,9 @@
                                 <a class="btn btn-primary" href="{{ route('admin.edit',$ptg->idUser) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                @if ($ptg->count() > 1)
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                @endif
                             </form>
                         </td>
                     </tr>

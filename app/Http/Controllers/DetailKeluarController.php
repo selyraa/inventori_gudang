@@ -14,7 +14,15 @@ class DetailKeluarController extends Controller
         $detailkeluar = DetailKeluar::paginate(5);
         $detailbarang = DetailBarang::with('barang')->get();
         $trkeluar = TransaksiKeluar::all();
-        return view('petugas.detail_keluar.index', compact('detailkeluar','detailbarang', 'trkeluar'));
+        return view('petugas.detail_keluar.index', compact('detailkeluar', 'detailbarang', 'trkeluar'));
+    }
+
+    public function getStok($idDetailBarang)
+    {
+        $detailBarang = DetailBarang::findOrFail($idDetailBarang);
+        $stok = $detailBarang->stok;
+
+        return response()->json(['stok' => $stok]);
     }
 
     public function create()
@@ -91,6 +99,6 @@ class DetailKeluarController extends Controller
     public function destroy($idDetailKeluar)
     {
         DetailKeluar::find($idDetailKeluar)->delete();
-        return redirect()->route('detailkeluar.index')->with('success', 'Detail Barang Masuk Berhasil Dihapus');
+        return redirect()->route('detailkeluar.index')->with('success', 'Detail Barang Keluar Berhasil Dihapus');
     }
 }
