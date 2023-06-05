@@ -109,7 +109,8 @@ class DetailMasukController extends Controller
     public function show($idDetailMasuk)
     {
         $detailmasuk = DetailMasuk::with('detailbarang')->find($idDetailMasuk);
-        return view('petugas.detail_masuk.detail', compact('detailmasuk'));
+        $showModal = true;
+        return view('petugas.detail_masuk.detail', compact('detailmasuk', 'showModal'));
     }
 
     public function edit($idDetailMasuk)
@@ -117,7 +118,8 @@ class DetailMasukController extends Controller
         $detailbarang = DetailBarang::with('barang')->get();
         $trmasuk = TransaksiMasuk::all();
         $detailmasuk = DetailMasuk::find($idDetailMasuk);
-        return view('petugas.detail_masuk.edit', compact('detailbarang', 'trmasuk', 'detailmasuk'));
+        $showModal = true;
+        return view('petugas.detail_masuk.edit', compact('detailbarang', 'trmasuk', 'detailmasuk', 'showModal'));
     }
 
     public function update(Request $request, string $idDetailMasuk)

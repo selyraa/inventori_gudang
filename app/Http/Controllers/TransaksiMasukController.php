@@ -59,8 +59,8 @@ class TransaksiMasukController extends Controller
     public function show($idTransaksiMasuk)
     {
         $trmasuk = TransaksiMasuk::find($idTransaksiMasuk);
-
-        return view('petugas.trans_masuk.detail', compact('trmasuk'));
+        $showModal = true;
+        return view('petugas.trans_masuk.detail', compact('trmasuk', 'showModal'));
     }
 
     public function edit($idTransaksiMasuk)
@@ -68,7 +68,8 @@ class TransaksiMasukController extends Controller
         $user = User::where('role', '=', "0")->get();
         $supplier = Supplier::all();
         $trmasuk = TransaksiMasuk::find($idTransaksiMasuk);
-        return view('petugas.trans_masuk.edit', compact('trmasuk', 'user', 'supplier'));
+        $showModal = true;
+        return view('petugas.trans_masuk.edit', compact('trmasuk', 'user', 'supplier', 'showModal'));
     }
 
     public function update(Request $request, string $idTransaksiMasuk)
