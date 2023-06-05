@@ -19,6 +19,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
+<<<<<<< HEAD
                 <form method="post" action="{{ route('satuan.update', $satuan->idSatuan) }}" id="myForm">
                     @csrf
                     @method('PUT')
@@ -32,6 +33,21 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+=======
+            <form method="post" action="{{ route('satuan.update', $satuan->idSatuan) }}" id="myForm">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="idSatuan">ID Satuan Barang</label> 
+                    <input type="text" name="idSatuan" class="form-control" id="idSatuan" value="{{ $satuan->idSatuan }}" aria-describedby="idSatuan" > 
+                </div>
+                <div class="form-group">
+                    <label for="namaSatuan">Nama Satuan Barang</label> 
+                    <input type="text" name="namaSatuan" class="form-control" id="namaSatuan" value="{{ $satuan->namaSatuan }}" aria-describedby="namaSatuan" > 
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+>>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
             </div>
 
             <!-- Modal footer -->

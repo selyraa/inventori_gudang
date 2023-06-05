@@ -19,6 +19,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
+<<<<<<< HEAD
                 <form method="post" action="{{ route('kategori.update', $kategori->idKategori) }}" id="myForm">
                     @csrf
                     @method('PUT')
@@ -32,6 +33,21 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+=======
+            <form method="post" action="{{ route('kategori.update', $kategori->idKategori) }}" id="myForm">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="idKategori">ID Kategori Barang</label> 
+                    <input type="text" name="idKategori" class="form-control" id="idKategori" value="{{ $kategori->idKategori }}" aria-describedby="idKategori" > 
+                </div>
+                <div class="form-group">
+                    <label for="namaKategori">Nama Kategori Barang</label> 
+                    <input type="text" name="namaKategori" class="form-control" id="namaKategori" value="{{ $kategori->namaKategori }}" aria-describedby="namaKategori" > 
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+>>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
             </div>
 
             <!-- Modal footer -->
@@ -43,4 +59,9 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+
+>>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
