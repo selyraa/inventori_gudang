@@ -82,8 +82,6 @@
             <div class="modal-footer">
                 <a class="btn btn-primary" href="{{ route('barang.index') }}">Kembali</a>
             </div>
-
-
         </div>
     </div>
 </div>

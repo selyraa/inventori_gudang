@@ -23,7 +23,7 @@ class DetailKeluarController extends Controller
         $trkeluar = TransaksiKeluar::all();
         return view('petugas.detail_keluar.create', compact('detailbarang', 'trkeluar'));
     }
-
+    
 
     public function store(Request $request)
     {
@@ -49,7 +49,8 @@ class DetailKeluarController extends Controller
     public function show($idDetailKeluar)
     {
         $detailkeluar = DetailKeluar::find($idDetailKeluar);
-        return view('petugas.detail_keluar.detail', compact('detailkeluar'));
+        $showModal = true;
+        return view('petugas.detail_keluar.detail', compact('detailkeluar', 'showModal'));
     }
 
     public function edit($idDetailKeluar)
@@ -57,7 +58,8 @@ class DetailKeluarController extends Controller
         $detailbarang = DetailBarang::with('barang')->get();
         $trkeluar = TransaksiKeluar::all();
         $detailkeluar = DetailKeluar::find($idDetailKeluar);
-        return view('petugas.detail_keluar.edit', compact('detailbarang', 'trkeluar', 'detailkeluar'));
+        $showModal = true;
+        return view('petugas.detail_keluar.edit', compact('detailbarang', 'trkeluar', 'detailkeluar', 'showModal'));
     }
 
     public function update(Request $request, string $idDetailKeluar)

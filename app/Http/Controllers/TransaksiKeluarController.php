@@ -47,8 +47,9 @@ class TransaksiKeluarController extends Controller
 
     public function show($idTransaksiKeluar)
     {
-        $trkeluar = TransaksiKeluar::find($idTransaksiKeluar)->get();
-        return view('petugas.trans_keluar.detail', compact('trkeluar'));
+        $trkeluar = TransaksiKeluar::find($idTransaksiKeluar);
+        $showModal = true;
+        return view('petugas.trans_keluar.detail', compact('trkeluar', 'showModal'));
     }
 
     public function edit($idTransaksiKeluar)
@@ -56,7 +57,8 @@ class TransaksiKeluarController extends Controller
         $user = User::where('role', '=', "0")->get();
         $toko = Toko::all();
         $trkeluar = TransaksiKeluar::find($idTransaksiKeluar);
-        return view('petugas.trans_keluar.edit', compact('trkeluar', 'user', 'toko'));
+        $showModal = true;
+        return view('petugas.trans_keluar.edit', compact('trkeluar', 'user', 'toko', 'showModal'));
     }
 
     public function update(Request $request, string $idTransaksiKeluar)
