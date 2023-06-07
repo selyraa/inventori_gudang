@@ -31,7 +31,7 @@ class DetailKeluarController extends Controller
         $trkeluar = TransaksiKeluar::all();
         return view('petugas.detail_keluar.create', compact('detailbarang', 'trkeluar'));
     }
-
+    
 
     public function store(Request $request)
     {
