@@ -3,11 +3,6 @@
     background-color: #6c63ff;
   }
 
-  .sidebar-content {
-    /* flex: 1;
-    overflow-y: auto; */
-  }
-
   .brand-link {
     background-color: #6c63ff;
   }
@@ -72,7 +67,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="{{ route('admin.dashboard') }}" class="nav-link">
-            <i class="nav-icon fas fa-solid fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-solid fa-th-large"></i>
             <p>
               Dashboard
             </p>
@@ -80,7 +75,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-solid fa-user"></i>
+            <i class="nav-icon fas fa-solid fa-users"></i>
             <p>
               Data Pengguna
             </p>
@@ -88,7 +83,7 @@
         </li>
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-solid fa-folder"></i>
+            <i class="nav-icon fas fa-database"></i>
             <p>
               Data Master
               <i class="right fas fa-angle-left"></i>
@@ -123,7 +118,7 @@
         </li>
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-exchange-alt"></i>
             <p>
               Data Retur
               <i class="right fas fa-angle-left"></i>
@@ -152,7 +147,7 @@
         </li>
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-print"></i>
             <p>
               Laporan
               <i class="right fas fa-angle-left"></i>
@@ -193,7 +188,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>
               {{ __('Logout') }}
             </p>

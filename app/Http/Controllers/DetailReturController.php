@@ -50,7 +50,8 @@ class DetailReturController extends Controller
     public function show($idDetailRetur)
     {
         $detailretur = DetailRetur::find($idDetailRetur);
-        return view('admin.detail_retur.detail', compact('detailretur'));
+        $showModal = true;
+        return view('admin.detail_retur.detail', compact('detailretur', 'showModal'));
     }
 
     public function edit($idDetailRetur)

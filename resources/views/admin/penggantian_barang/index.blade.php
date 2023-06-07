@@ -130,7 +130,6 @@
                     <div class="form-group">
                         <label for="jumlahPenggantian">Jumlah Penggantian</label>
                         <input type="number" name="jumlahPenggantian" class="form-control" id="jumlahPenggantian" aria-describedby="jumlahPenggantian">
-
                     </div>
                     <div class="form-group">
                         <label for="selisihRetur">Selisih Retur</label>

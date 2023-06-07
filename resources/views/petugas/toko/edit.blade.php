@@ -19,7 +19,6 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-<<<<<<< HEAD
                 <form method="post" action="{{ route('toko.update', $toko->idToko) }}" id="myForm">
                     @csrf
                     @method('PUT')
@@ -41,29 +40,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-=======
-            <form method="post" action="{{ route('toko.update', $toko->idToko) }}" id="myForm">
-                @csrf
-                @method('PUT')
-                <div class="form-group">
-                    <label for="idToko">ID Toko</label> 
-                    <input type="text" name="idToko" class="form-control" id="idToko" value="{{ old('idToko', $toko->idToko) }}" aria-describedby="idToko" > 
-                </div>
-                <div class="form-group">
-                    <label for="nama">Nama Toko</label> 
-                    <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama', $toko->nama) }}" aria-describedby="nama" > 
-                </div>
-                <div class="form-group">
-                    <label for="alamat">Alamat Toko</label> 
-                    <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat', $toko->alamat) }}" aria-describedby="alamat" > 
-                </div>
-                <div class="form-group">
-                    <label for="noTelp">No Telp</label> 
-                    <input type="text" name="noTelp" class="form-control" id="noTelp" value="{{ old('noTelp', $toko->noTelp) }}" aria-describedby="noTelp" > 
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
->>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
             </div>
 
             <!-- Modal footer -->

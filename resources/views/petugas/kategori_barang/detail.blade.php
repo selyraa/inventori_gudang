@@ -32,9 +32,5 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection
 
->>>>>>> 30f6f0419290cc205b634e756114667334f7eee7

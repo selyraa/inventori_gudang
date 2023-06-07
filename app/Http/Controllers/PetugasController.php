@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class PetugasController extends Controller
 {
@@ -38,12 +39,16 @@ class PetugasController extends Controller
             'username' => 'required',
             'password' => 'required',
             'noTelp' => 'required',
-            ]);
-            //fungsi eloquent untuk menambah data
-            User::create($request->all());
-            //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            return redirect()->route('petugas.index')->with('success', 'Petugas Berhasil Ditambahkan');
-   
+        ]);
+
+        // Menggunakan Hash::make untuk mengenkripsi password
+        $requestData = $request->all();
+        $requestData['password'] = Hash::make($request->password);
+
+        //fungsi eloquent untuk menambah data
+        User::create($requestData);
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('petugas.index')->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
 
@@ -53,7 +58,8 @@ class PetugasController extends Controller
     public function show($idUser)
     {
         $petugas = User::find($idUser);
-        return view('petugas.detail', compact('petugas'));
+        $showModal = true;
+        return view('petugas.detail', compact('petugas', 'showModal'));
     }
 
     /**
@@ -62,7 +68,8 @@ class PetugasController extends Controller
     public function edit($idUser)
     {
         $petugas = User::find($idUser);
-        return view('petugas.edit', compact('petugas'));
+        $showModal = true;
+        return view('petugas.edit', compact('petugas', 'showModal'));
     }
 
     /**
@@ -79,11 +86,16 @@ class PetugasController extends Controller
             'username' => 'required',
             'password' => 'required',
             'noTelp' => 'required',
-            ]);
+        ]);
+
+        // Menggunakan Hash::make untuk mengenkripsi password
+        $requestData = $request->all();
+        $requestData['password'] = Hash::make($request->password);
+
         //fungsi eloquent untuk mengupdate data inputan kita
-            User::find($idUser)->update($request->all());
+        User::find($idUser)->update($requestData);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('petugas.index')->with('success', 'Petugas Berhasil Diupdate');
+        return redirect()->route('petugas.index')->with('success', 'Petugas Berhasil Diupdate');
     }
 
     /**
@@ -93,6 +105,6 @@ class PetugasController extends Controller
     {
         User::find($idUser)->delete();
         return redirect()->route('petugas.index')
-            -> with('success', 'Petugas Berhasil Dihapus');
+            ->with('success', 'Petugas Berhasil Dihapus');
     }
 }

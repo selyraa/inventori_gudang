@@ -13,6 +13,7 @@ class DashboardAdminController extends Controller
         $toko = DB::table('tokos')->count();
         $trmasuk = DB::table('transaksi_masuks')->count();
         $trkeluar = DB::table('transaksi_keluars')->count();
+        $retur = DB::table('detail_returs')->count();
 
         // Menghitung total pengeluaran
         $totalPengeluaran = DB::table('detail_masuks')
@@ -50,7 +51,35 @@ class DashboardAdminController extends Controller
         // Mendapatkan tanggal terakhir
         $tanggalAkhir = $keluar->last()->tglTransaksiKeluar;
 
+        $penurunanProfit = DB::table('penggantian_barangs')
+            ->selectRaw('SUM(penguranganProfit) AS penurunanProfit')
+            ->value('penurunanProfit');
 
-        return view('admin.dashboard', compact('pengguna', 'supplier', 'toko', 'trmasuk', 'trkeluar', 'totalPengeluaran', 'totalPemasukan', 'masuk', 'tanggalPertama', 'tanggalTerakhir', 'keluar', 'tanggalAwal', 'tanggalAkhir'));
+        $dataPenguranganProfit = DB::table('penggantian_barangs')
+            ->select(DB::raw('MONTH(tglPenggantian) AS Bulan, SUM(penguranganProfit) AS TotalPenguranganProfit'))
+            ->groupBy('Bulan')
+            ->orderBy('Bulan')
+            ->get();
+
+
+
+        return view('admin.dashboard', compact(
+            'pengguna',
+            'supplier',
+            'toko',
+            'trmasuk',
+            'trkeluar',
+            'totalPengeluaran',
+            'totalPemasukan',
+            'masuk',
+            'tanggalPertama',
+            'tanggalTerakhir',
+            'keluar',
+            'tanggalAwal',
+            'tanggalAkhir',
+            'retur',
+            'penurunanProfit',
+            'dataPenguranganProfit',
+        ));
     }
 }

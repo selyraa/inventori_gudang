@@ -58,19 +58,11 @@ class SatuanBarangController extends Controller
         $request->validate([
             'idSatuan' => 'required',
             'namaSatuan' => 'required',
-<<<<<<< HEAD
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         SatuanBarang::find($idSatuan)->update($request->all());
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('satuan.index')->with('success', 'Satuan Barang Berhasil Diupdate');
-=======
-            ]);
-        //fungsi eloquent untuk mengupdate data inputan kita
-        SatuanBarang::find($idSatuan)->update($request->all());
-        //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('satuan.index')->with('success', 'Satuan Barang Berhasil Diupdate');
->>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
     }
 
     public function adminSatuan()

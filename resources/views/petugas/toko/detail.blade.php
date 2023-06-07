@@ -19,21 +19,12 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-<<<<<<< HEAD
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>ID Toko: </b>{{$toko->idToko}}</li>
                     <li class="list-group-item"><b>Nama Toko: </b>{{$toko->nama}}</li>
                     <li class="list-group-item"><b>Alamat Toko: </b>{{$toko->alamat}}</li>
                     <li class="list-group-item"><b>No Telp: </b>{{$toko->noTelp}}</li>
                 </ul>
-=======
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>ID Toko: </b>{{$toko->idToko}}</li>
-                <li class="list-group-item"><b>Nama Toko: </b>{{$toko->nama}}</li>
-                <li class="list-group-item"><b>Alamat Toko: </b>{{$toko->alamat}}</li>
-                <li class="list-group-item"><b>No Telp: </b>{{$toko->noTelp}}</li>
-            </ul>
->>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
             </div>
 
             <!-- Modal footer -->

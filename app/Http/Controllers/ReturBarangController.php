@@ -56,7 +56,8 @@ class ReturBarangController extends Controller
         $user = User::where('role', '=', "1")->get();
         $trmasuk = TransaksiMasuk::all();
         $retur = ReturBarang::find($idRetur);
-        return view('admin.data_retur.edit', compact('user', 'trmasuk', 'retur'));
+        $showModal = true;
+        return view('admin.data_retur.edit', compact('user', 'trmasuk', 'retur', 'showModal'));
     }
 
     public function update(Request $request, string $idRetur)

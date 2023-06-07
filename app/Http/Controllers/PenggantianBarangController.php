@@ -82,25 +82,61 @@ class PenggantianBarangController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(sc $sc)
+    public function show($idPenggantianBarang)
     {
-        //
+        $penggantian = PenggantianBarang::find($idPenggantianBarang);
+        $showModal = true;
+        return view('admin.penggantian_barang.detail', compact('penggantian', 'showModal'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(sc $sc)
+    public function edit($idPenggantianBarang)
     {
-        //
+        $detailretur = DetailRetur::all();
+        $penggantian = PenggantianBarang::find($idPenggantianBarang);
+        $showModal = true;
+        return view('admin.penggantian_barang.edit', compact('detailretur', 'penggantian', 'showModal'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, sc $sc)
+    public function update(Request $request, $idPenggantianBarang)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'idPenggantianBarang' => 'required',
+            'idDetailRetur' => 'required',
+            'jumlahPenggantian' => 'required',
+            'selisihRetur' => 'required',
+            'penguranganProfit' => 'required',
+            'keterangan' => 'required',
+            'tglPenggantian' => 'required',
+        ]);
+        //fungsi eloquent untuk mengupdate data inputan kita
+        $penggantian = PenggantianBarang::findOrFail($idPenggantianBarang);
+
+        // Update detail transaksi masuk
+        $penggantian->update($request->all());
+
+        $penggantian->idDetailRetur = $request->get('idDetailRetur');
+
+        // Mengupdate stok barang di tabel detail_barang
+        $detailRetur = DetailRetur::find($request->idDetailRetur);
+        $detailbarang = DetailBarang::find($detailRetur->idDetailBarang);
+        $detailbarang->stok += $request->jumlahPenggantian;
+        $detailbarang->save();
+
+        // Jika data berhasil ditambahkan dan perubahan stok tersimpan, akan kembali ke halaman utama
+        if ($detailbarang->save()) {
+            return redirect()->route('penggantianbarang.index')->with('success', 'Penggantian Barang Retur Berhasil Ditambahkan');
+        } else {
+            // Jika terjadi kesalahan saat menyimpan perubahan stok, dapatkan pesan kesalahan
+            $error = $detailbarang->getErrors()->all();
+            return redirect()->back()->with('error', $error);
+        }
     }
 
     /**
