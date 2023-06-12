@@ -38,7 +38,7 @@
       <h1 class="card-title font-weight-bold" style="margin-top: 15px; color: #000; font-size: 20pt">Dashboard</h1>
     </div>
 
-    <div class="row p-5" style="color:black; font-face:cursive; font-weight:normal; font-size:14pt">
+    <div class="row p-5" style="color:black; font-family:Arial; font-weight:normal; font-size:14pt">
 
       <div class="col-6">
         <div class="row">

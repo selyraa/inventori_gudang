@@ -13,7 +13,7 @@ class DetailMasukController extends Controller
 {
     public function index()
     {
-        $detailmasuk = DetailMasuk::with('detailBarang.barang:idBarang,namaBarang')->paginate(5);
+        $detailmasuk = DetailMasuk::with('detailBarang.barang:idBarang,namaBarang')->paginate(4);
         $trmasuk = TransaksiMasuk::all();
 
         $selectedIdTransaksiMasuk = request()->input('idTransaksiMasuk');

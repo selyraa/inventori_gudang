@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Barang;
+use App\Models\DetailBarang;
 use App\Models\User;
 use App\Models\SatuanBarang;
 use App\Models\KategoriBarang;
@@ -127,7 +128,12 @@ class BarangController extends Controller
 
     public function adminBarang()
     {
-        $adminBarang = Barang::paginate(5);
+        $adminBarang = Barang::paginate(4);
         return view('admin.data_barang.index', compact('adminBarang'));
+    }
+    public function adminDetailBrg()
+    {
+        $adminDetailBrg = DetailBarang::paginate(10);
+        return view('admin.detail_barang.index', compact('adminDetailBrg'));
     }
 }

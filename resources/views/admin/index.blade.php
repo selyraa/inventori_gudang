@@ -48,7 +48,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top:15px;">Data User</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Data Pengguna</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -60,7 +60,7 @@
         </div>
         <div class="card-body">
             <table class="table table-hover table-bordered" style="color:black;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff)">
+                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:#fff;">
                     <tr>
                         <th>ID User</th>
                         <th>Nama</th>
@@ -74,12 +74,12 @@
                 <tbody>
                     @foreach ($admin as $ptg)
                     <tr>
-                        <td>{{ $ptg -> idUser}}</td>
-                        <td>{{ $ptg -> nama}}</td>
-                        <td>{{ $ptg -> umur}}</td>
-                        <td>{{ $ptg -> alamat}}</td>
-                        <td>{{ $ptg -> username}}</td>
-                        <td>{{ $ptg -> noTelp}}</td>
+                        <td>{{ $ptg->idUser }}</td>
+                        <td>{{ $ptg->nama }}</td>
+                        <td>{{ $ptg->umur }}</td>
+                        <td>{{ $ptg->alamat }}</td>
+                        <td>{{ $ptg->username }}</td>
+                        <td>{{ $ptg->noTelp }}</td>
                         <td>
                             <form action="{{ route('admin.destroy',$ptg->idUser) }}" method="POST">
                                 <a class="btn btn-info" href="{{ route('admin.show',$ptg->idUser) }}">Show</a>

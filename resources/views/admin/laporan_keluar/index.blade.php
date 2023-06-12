@@ -1,5 +1,38 @@
 @extends('admin.app')
 @section('content')
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #6c63ff;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination li a:hover {
+        background-color: #a892ff;
+    }
+
+    .pagination .active a {
+        background-color: #a892ff;
+    }
+</style>
 <section class="content-header">
     <div class="container-fluid">
     </div><!-- /.container-fluid -->
@@ -8,7 +41,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black;">Laporan Barang Keluar</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Laporan Barang Keluar</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -36,88 +69,98 @@
                         <button type="submit" name="filter_tgl" class="btn btn-info">Export Data</button>
                     </form>
                 </div>
+                <div class="col-auto">
+                    <form method="post" action="{{ route('lapkeluar') }}" class="form-inline" id="form-reset">
+                        @csrf
+                        <button type="submit" name="reset_filter" class="btn btn-info">Reset</button>
+                    </form>
+                </div>
             </div>
             <br>
-            <table class="table table-hover table-bordered" style="color:white;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff);">
-                    <tr>
-                        <th>ID Trans Keluar</th>
-                        <th>Tgl Keluar</th>
-                        <th>Nama Petugas</th>
-                        <th>Nama Toko</th>
-                        <th>Nama Barang</th>
-                        <th>Tgl Produksi</th>
-                        <th>Tgl Expired</th>
-                        <th>Harga Jual</th>
-                        <!-- <th>Harga Jual</th> -->
-                        <th>Jumlah Keluar</th>
-                        <th>Total Harga</th>
-                    </tr>
-                </thead>
-                <tbody style="color:black;">
-                    <?php
-                    if ($mulai = null || $selesai = null) {
-                    ?>
-                        @foreach($filter as $lm)
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:white; ">
                         <tr>
-                            <td>{{ $lm -> idTransaksiKeluar}}</td>
-                            <td>{{ $lm -> tglTransaksiKeluar}}</td>
-                            <td>{{ $lm -> namaPetugas}}</td>
-                            <td>{{ $lm -> nama}}</td>
-                            <td>{{ $lm -> namaBarang}}</td>
-                            <td>{{ $lm -> tglProduksi}}</td>
-                            <td>{{ $lm -> tglExp}}</td>
-                            <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
-                            <td>{{ $lm -> stok}}</td>
-                            <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                            <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                            <th>ID Trans Keluar</th>
+                            <th>Tgl Keluar</th>
+                            <th>Nama Petugas</th>
+                            <th>Nama Toko</th>
+                            <th>Nama Barang</th>
+                            <th>Tgl Produksi</th>
+                            <th>Tgl Expired</th>
+                            <th>Harga Jual</th>
+                            <!-- <th>Harga Jual</th> -->
+                            <th>Jumlah Keluar</th>
+                            <th>Total Harga</th>
                         </tr>
-                        @endforeach
-                    <?php
-                    }
-                    if (isset($_POST['filter_tgl'])) {
-                    ?>
-                        @foreach($filter as $lm)
-                        <tr>
-                            <td>{{ $lm -> idTransaksiKeluar}}</td>
-                            <td>{{ $lm -> tglTransaksiKeluar}}</td>
-                            <td>{{ $lm -> namaPetugas}}</td>
-                            <td>{{ $lm -> nama}}</td>
-                            <td>{{ $lm -> namaBarang}}</td>
-                            <td>{{ $lm -> tglProduksi}}</td>
-                            <td>{{ $lm -> tglExp}}</td>
-                            <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
-                            <td>{{ $lm -> stok}}</td>
-                            <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                            <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    } else {
-                    ?>
-                        @foreach($laporan as $lm)
-                        <tr>
-                            <td>{{ $lm -> idTransaksiKeluar}}</td>
-                            <td>{{ $lm -> tglTransaksiKeluar}}</td>
-                            <td>{{ $lm -> namaPetugas}}</td>
-                            <td>{{ $lm -> nama}}</td>
-                            <td>{{ $lm -> namaBarang}}</td>
-                            <td>{{ $lm -> tglProduksi}}</td>
-                            <td>{{ $lm -> tglExp}}</td>
-                            <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
-                            <td>{{ $lm -> stok}}</td>
-                            <!-- <td>{{ $lm -> hargaJual}}</td> -->
-                            <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    }
-                    ?>
-                </tbody>
-                </tbody>
-
-            </table>
+                    </thead>
+                    <tbody style="color: black;">
+                        <?php
+                        if ($mulai = null || $selesai = null) {
+                        ?>
+                            @foreach($filter as $lm)
+                            <tr>
+                                <td>{{ $lm -> idTransaksiKeluar}}</td>
+                                <td>{{ $lm -> tglTransaksiKeluar}}</td>
+                                <td>{{ $lm -> namaPetugas}}</td>
+                                <td>{{ $lm -> nama}}</td>
+                                <td>{{ $lm -> namaBarang}}</td>
+                                <td>{{ $lm -> tglProduksi}}</td>
+                                <td>{{ $lm -> tglExp}}</td>
+                                <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
+                                <td>{{ $lm -> stok}}</td>
+                                <!-- <td>{{ $lm -> hargaJual}}</td> -->
+                                <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        if (isset($_POST['filter_tgl'])) {
+                        ?>
+                            @foreach($filter as $lm)
+                            <tr>
+                                <td>{{ $lm -> idTransaksiKeluar}}</td>
+                                <td>{{ $lm -> tglTransaksiKeluar}}</td>
+                                <td>{{ $lm -> namaPetugas}}</td>
+                                <td>{{ $lm -> nama}}</td>
+                                <td>{{ $lm -> namaBarang}}</td>
+                                <td>{{ $lm -> tglProduksi}}</td>
+                                <td>{{ $lm -> tglExp}}</td>
+                                <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
+                                <td>{{ $lm -> stok}}</td>
+                                <!-- <td>{{ $lm -> hargaJual}}</td> -->
+                                <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        } else {
+                        ?>
+                            @foreach($laporanPaginator as $lm)
+                            <tr>
+                                <td>{{ $lm -> idTransaksiKeluar}}</td>
+                                <td>{{ $lm -> tglTransaksiKeluar}}</td>
+                                <td>{{ $lm -> namaPetugas}}</td>
+                                <td>{{ $lm -> nama}}</td>
+                                <td>{{ $lm -> namaBarang}}</td>
+                                <td>{{ $lm -> tglProduksi}}</td>
+                                <td>{{ $lm -> tglExp}}</td>
+                                <td>Rp. {{ number_format($lm -> hargaJual, 0, ',', '.') }}</td>
+                                <td>{{ $lm -> stok}}</td>
+                                <!-- <td>{{ $lm -> hargaJual}}</td> -->
+                                <td>Rp. {{ number_format($lm -> totalHarga, 0, ',', '.') }}</td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 </section>
+<div class="col-md-12">
+    <ul class="pagination">
+        {{ $laporanPaginator->links() }}
+    </ul>
+</div>
 @endsection

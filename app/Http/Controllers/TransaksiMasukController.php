@@ -134,7 +134,7 @@ class TransaksiMasukController extends Controller
         });
 
         // Menghitung jumlah item per halaman
-        $perPage = 3;
+        $perPage = 5;
 
         // Mendapatkan nomor halaman saat ini dari query string (?page=)
         $currentPage = Paginator::resolveCurrentPage();
@@ -204,7 +204,10 @@ class TransaksiMasukController extends Controller
         // Mendapatkan tanggal terakhir
         $tanggalTerakhir = $masuk->last()->tglTransaksiMasuk;
 
-        $pdf = PDF::loadView('admin.laporan_masuk.export_pdf', compact('laporan', 'filter', 'mulai', 'selesai', 'tanggalPertama', 'tanggalTerakhir'))->setOptions(['defaultFont' => 'sans-serif']);
+        $totalHargaLaporan = $laporan->sum('totalHarga');
+        $totalHargaFilter = $filter->sum('totalHarga');
+
+        $pdf = PDF::loadView('admin.laporan_masuk.export_pdf', compact('laporan', 'filter', 'mulai', 'selesai', 'tanggalPertama', 'tanggalTerakhir', 'totalHargaLaporan', 'totalHargaFilter'))->setOptions(['defaultFont' => 'sans-serif']);
         $pdfContent = $pdf->output();
         $response = new Response($pdfContent);
         $response->header('Content-Type', 'application/pdf');

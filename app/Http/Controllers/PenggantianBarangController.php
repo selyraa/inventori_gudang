@@ -246,7 +246,10 @@ class PenggantianBarangController extends Controller
         // Mendapatkan tanggal terakhir
         $tanggalTerakhir = $penggantian->last()->tglPenggantian;
 
-        $pdf = PDF::loadView('admin.laporan_penggantian.export_pdf', compact('laporan', 'filter', 'mulai', 'selesai', 'tanggalPertama', 'tanggalTerakhir'))->setOptions(['defaultFont' => 'sans-serif']);
+        $totalHargaLaporan = $laporan->sum('penguranganProfit');
+        $totalHargaFilter = $filter->sum('penguranganProfit');
+
+        $pdf = PDF::loadView('admin.laporan_penggantian.export_pdf', compact('laporan', 'filter', 'mulai', 'selesai', 'tanggalPertama', 'tanggalTerakhir', 'totalHargaLaporan', 'totalHargaFilter'))->setOptions(['defaultFont' => 'sans-serif']);
         $pdfContent = $pdf->output();
         $response = new Response($pdfContent);
         $response->header('Content-Type', 'application/pdf');

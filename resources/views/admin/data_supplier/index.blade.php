@@ -47,7 +47,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black;">Data Supplier</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Data Supplier</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -59,7 +59,7 @@
         </div>
         <div class="card-body">
             <table class="table table-hover table-bordered" style="color:black;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff);">
+                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:#fff;">
                     <tr>
                         <th>ID Supplier</th>
                         <th>Nama Supplier</th>

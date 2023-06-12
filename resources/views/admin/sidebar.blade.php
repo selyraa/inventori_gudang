@@ -97,6 +97,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ route('detailbrg') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Detail Barang</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('kategori') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori Barang</p>

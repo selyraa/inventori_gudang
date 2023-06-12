@@ -128,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="jumlah">Jumlah</label>
-                        <input type="text" name="jumlah" class="form-control" id="jumlah" aria-describedby="Jumlah">
+                        <input type="number" name="jumlah" class="form-control" id="jumlah" aria-describedby="Jumlah">
                     </div>
                     <!-- Tambahkan input tersembunyi untuk menyimpan ID Transaksi Masuk, ID Supplier, dan ID Detail Barang yang terkait -->
                     <input type="hidden" id="selectedTransaksiMasuk" name="selectedTransaksiMasuk">

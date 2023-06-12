@@ -128,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="jumlah">Jumlah</label>
-                        <input type="text" name="jumlah" class="form-control" id="jumlah" aria-describedby="jumlah">
+                        <input type="number" name="jumlah" class="form-control" id="jumlah" aria-describedby="jumlah">
                         <small id="stokMessage" class="text-danger"></small>
                     </div>
                     <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
