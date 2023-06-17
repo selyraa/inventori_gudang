@@ -11,9 +11,9 @@ class DetailKeluarController extends Controller
 {
     public function index()
     {
-        $detailkeluar = DetailKeluar::paginate(5);
+        $detailkeluar = DetailKeluar::with('detailbarang.barang:idBarang,namaBarang')->paginate(2);
         $detailbarang = DetailBarang::with('barang')->get();
-        $trkeluar = TransaksiKeluar::all();
+        $trkeluar = TransaksiKeluar::with('toko')->get();
         return view('petugas.detail_keluar.index', compact('detailkeluar', 'detailbarang', 'trkeluar'));
     }
 
@@ -64,7 +64,7 @@ class DetailKeluarController extends Controller
     public function edit($idDetailKeluar)
     {
         $detailbarang = DetailBarang::with('barang')->get();
-        $trkeluar = TransaksiKeluar::all();
+        $trkeluar = TransaksiKeluar::with('toko')->get();
         $detailkeluar = DetailKeluar::find($idDetailKeluar);
         $showModal = true;
         return view('petugas.detail_keluar.edit', compact('detailbarang', 'trkeluar', 'detailkeluar', 'showModal'));

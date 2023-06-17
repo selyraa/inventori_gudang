@@ -18,4 +18,9 @@ class ReturBarang extends Model
         'idUser',
         'tglRetur',
     ];
+
+    public function trmasuk()
+    {
+        return $this->belongsTo(TransaksiMasuk::class, 'idTransaksiMasuk');
+    }
 }

@@ -1,6 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalShow').modal('show');
@@ -19,7 +22,6 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-<<<<<<< HEAD
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>ID Transaksi Keluar: </b>{{$trkeluar->idTransaksiKeluar}}</li>
                     <li class="list-group-item"><b>ID User: </b>{{$trkeluar->idUser}}</li>
@@ -33,18 +35,3 @@
         </div>
     </div>
     @endsection
-=======
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>ID Transaksi Keluar: </b>{{$trkeluar->idTransaksiKeluar}}</li>
-                <li class="list-group-item"><b>ID User: </b>{{$trkeluar->idUser}}</li>
-                <li class="list-group-item"><b>ID Toko: </b>{{$trkeluar->idToko}}</li>
-                <li class="list-group-item"><b>Tanggal Transaksi Keluar: </b>{{$trkeluar->tglTransaksiKeluar}}</li>
-            </ul>
-            <div class="modal-footer">
-                <a class="btn btn-primary" href="{{ route('trkeluar.index') }}">Kembali</a>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
->>>>>>> ed6447af82c608a7e085fc957ce6f6419886c6d9

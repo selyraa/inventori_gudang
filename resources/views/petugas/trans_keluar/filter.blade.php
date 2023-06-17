@@ -1,6 +1,10 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalFilter').modal('show');
@@ -24,83 +28,115 @@
             <a class="btn rounded-pill" href="{{ route('trkeluar.index') }}" style="background-color: #2D7FC1; color: white;"><i class="fas fa-arrow-left"></i></a>
             <br>
             <br>
-            <table class="table table-hover table-bordered">
-                <thead style="background-color: #2D7FC1;">
-                    <tr>
-                        <th>ID Transaksi Keluar</th>
-                        <th>ID User</th>
-                        <th>ID Toko</th>
-                        <th>Tanggal Transaksi Keluar</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($mulai = null || $selesai = null) {
-                    ?>
-                        @foreach($filter as $tk)
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ $tk -> idTransaksiKeluar}}</td>
-                            <td>{{ $tk -> idUser}}</td>
-                            <td>{{ $tk -> idToko}}</td>
-                            <td>{{ $tk -> tglTransaksiKeluar}}</td>
-                            <td>
-                                <form action="{{ route('trkeluar.destroy',$tk->idTransaksiKeluar) }}" method="POST">
-                                    <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('trkeluar.show',$tk->idTransaksiKeluar) }}">Show</a>
-                                    <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('trkeluar.edit',$tk->idTransaksiKeluar) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
-                                </form>
-                            </td>
+                            <th>ID Transaksi Keluar</th>
+                            <th>ID User</th>
+                            <th>ID Toko</th>
+                            <th>Tanggal Transaksi Keluar</th>
+                            <th width="280px">Action</th>
                         </tr>
-                        @endforeach
-                    <?php
-                    }
-                    if (isset($_POST['filter_tgl'])) {
-                    ?>
-                        @foreach($filter as $tk)
-                        <tr>
-                            <td>{{ $tk -> idTransaksiKeluar}}</td>
-                            <td>{{ $tk -> idUser}}</td>
-                            <td>{{ $tk -> idToko}}</td>
-                            <td>{{ $tk -> tglTransaksiKeluar}}</td>
-                            <td>
-                                <form action="{{ route('trkeluar.destroy',$tk->idTransaksiKeluar) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('trkeluar.show',$tk->idTransaksiKeluar) }}">Show</a>
-                                    <a class="btn btn-primary" href="{{ route('trkeluar.edit',$tk->idTransaksiKeluar) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    } else {
-                    ?>
-                        @foreach($trkeluar as $tk)
-                        <tr>
-                            <td>{{ $tk -> idTransaksiKeluar}}</td>
-                            <td>{{ $tk -> idUser}}</td>
-                            <td>{{ $tk -> idToko}}</td>
-                            <td>{{ $tk -> tglTransaksiKeluar}}</td>
-                            <td>
-                                <form action="{{ route('trkeluar.destroy',$tk->idTransaksiKeluar) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('trkeluar.show',$tk->idTransaksiKeluar) }}">Show</a>
-                                    <a class="btn btn-primary" href="{{ route('trkeluar.edit',$tk->idTransaksiKeluar) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($mulai = null || $selesai = null) {
+                        ?>
+                            @foreach($filter as $tk)
+                            <tr>
+                                <td>{{ $tk -> idTransaksiKeluar}}</td>
+                                <td>
+                                    {{ $tk -> idUser}}
+                                    @if($tk->petugas)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tk->petugas->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $tk -> idToko}}
+                                    @if($tk->toko)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tk->toko->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $tk -> tglTransaksiKeluar}}</td>
+                                <td>
+                                    <form action="{{ route('trkeluar.destroy',$tk->idTransaksiKeluar) }}" method="POST">
+                                        <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('trkeluar.show',$tk->idTransaksiKeluar) }}">Show</a>
+                                        <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('trkeluar.edit',$tk->idTransaksiKeluar) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        if (isset($_POST['filter_tgl'])) {
+                        ?>
+                            @foreach($filter as $tk)
+                            <tr>
+                                <td>{{ $tk -> idTransaksiKeluar}}</td>
+                                <td>
+                                    {{ $tk -> idUser}}
+                                    @if($tk->petugas)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tk->petugas->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $tk -> idToko}}
+                                    @if($tk->toko)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tk->toko->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $tk -> tglTransaksiKeluar}}</td>
+                                <td>
+                                    <form action="{{ route('trkeluar.destroy',$tk->idTransaksiKeluar) }}" method="POST">
+                                        <a class="btn-action btn-show" href="{{ route('trkeluar.show',$tk->idTransaksiKeluar) }}">Show</a>
+                                        <a class="btn-action btn-edit" href="{{ route('trkeluar.edit',$tk->idTransaksiKeluar) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-action btn-delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        } else {
+                        ?>
+                            @foreach($trkeluar as $tk)
+                            <tr>
+                                <td>{{ $tk -> idTransaksiKeluar}}</td>
+                                <td>
+                                    {{ $tk -> idUser}}
+                                    @if($tk->petugas)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tk->petugas->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $tk -> idToko}}
+                                    @if($tk->toko)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tk->toko->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $tk -> tglTransaksiKeluar}}</td>
+                                <td>
+                                    <form action="{{ route('trkeluar.destroy',$tk->idTransaksiKeluar) }}" method="POST">
+                                        <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('trkeluar.show',$tk->idTransaksiKeluar) }}">Show</a>
+                                        <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('trkeluar.edit',$tk->idTransaksiKeluar) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>

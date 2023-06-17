@@ -1,6 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -19,7 +22,6 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-<<<<<<< HEAD
                 <form method="post" action="{{ route('trmasuk.update', $trmasuk->idTransaksiMasuk) }}" id="myForm">
                     @csrf
                     @method('PUT')
@@ -31,19 +33,6 @@
                         <label for="idUser">ID User</label>
                         <select name="idUser" class="form-control" id="user">
                             @foreach($user as $u)
-=======
-            <form method="post" action="{{ route('trmasuk.update', $trmasuk->idTransaksiMasuk) }}" id="myForm">
-                @csrf
-                @method('PUT')
-                <div class="form-group">
-                    <label for="idTransaksiMasuk">ID Transaksi Masuk</label> 
-                    <input type="text" name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk" value="{{ old('idTransaksiMasuk', $trmasuk->idTransaksiMasuk) }}" aria-describedby="idTransaksiMasuk" > 
-                </div>
-                <div class="form-group">
-                    <label for="idUser">ID User</label>
-                    <select name="idUser" class="form-control" id="user">
-                        @foreach($user as $u)
->>>>>>> ed6447af82c608a7e085fc957ce6f6419886c6d9
                             <option value="{{ $u -> idUser }}">{{ $u -> username }}</option>
                             @endforeach
                         </select>
@@ -53,7 +42,6 @@
                         <select name="idSupplier" class="form-control" id="supplier">
                             @foreach($supplier as $s)
                             <option value="{{ old('idSupplier', $s -> idSupplier) }}">{{ $s -> nama }}</option>
-<<<<<<< HEAD
                             @endforeach
                         </select>
                     </div>
@@ -61,19 +49,8 @@
                         <label for="tglTransaksiMasuk">Tanggal Transaksi Masuk</label>
                         <input type="date" name="tglTransaksiMasuk" class="form-control" id="tglTransaksiMasuk" value="{{ old('tglTransaksiMasuk', $trmasuk->tglTransaksiMasuk) }}" aria-describedby="tglTransaksiMasuk">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
-=======
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="tglTransaksiMasuk">Tanggal Transaksi Masuk</label> 
-                    <input type="date" name="tglTransaksiMasuk" class="form-control" id="tglTransaksiMasuk" value="{{ old('tglTransaksiMasuk', $trmasuk->tglTransaksiMasuk) }}" aria-describedby="tglTransaksiMasuk" > 
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
->>>>>>> ed6447af82c608a7e085fc957ce6f6419886c6d9
             </div>
 
             <!-- Modal footer -->

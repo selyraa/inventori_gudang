@@ -1,6 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalShow').modal('show');

@@ -17,4 +17,14 @@ class TransaksiKeluar extends Model
         'idToko',
         'tglTransaksiKeluar',
     ];
+
+    public function toko()
+    {
+        return $this->belongsTo(Toko::class, 'idToko');
+    }
+
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 }

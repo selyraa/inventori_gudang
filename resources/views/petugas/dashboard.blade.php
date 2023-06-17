@@ -8,36 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PT. Gudang Lancar Jaya</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghdjkPvT3KUIKqUf7xvePIjIwTkK+" crossorigin="anonymous">
-  <style>
-    .card {
-      width: 100%;
-    }
-
-    .card-body {
-      /* height: calc(114vh - 140px);
-      overflow-y: auto;  */
-    }
-
-    .info-box {
-      background-color: rgba(255, 255, 255, 0.);
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .info-box-icon {
-      background: linear-gradient(to bottom, #2D7FC1, #007bff);
-      color: #fff;
-    }
-
-    .info-box:hover {
-      transform: translateY(-3px);
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .border-left-custom {
-      border-left: 8px solid #2D7FC1 !important;
-    }
-  </style>
+  <link rel="stylesheet" href="{{asset('assets/css/dashboard.css')}}">
 </head>
 
 <body>

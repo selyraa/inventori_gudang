@@ -98,7 +98,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('detailbrg') }}" class="nav-link">
+              <a href="{{ route('detailbrg.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Detail Barang</p>
               </a>

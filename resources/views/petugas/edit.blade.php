@@ -1,6 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -54,7 +57,7 @@
                     <label for="role">Role</label> 
                     <input type="text" name="role" class="form-control" id="role" value="{{ $petugas->role }}" aria-describedby="role" > 
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn-action btn-submit">Submit</button>
             </form>
             </div>
 

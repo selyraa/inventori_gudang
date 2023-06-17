@@ -17,7 +17,7 @@ class ReturBarangController extends Controller
     {
         $retur = ReturBarang::paginate(3);
         $user = User::all();
-        $trmasuk = TransaksiMasuk::all();
+        $trmasuk = TransaksiMasuk::with('supplier')->get();
         return view('admin.data_retur.index', compact('retur', 'user', 'trmasuk'));
     }
 

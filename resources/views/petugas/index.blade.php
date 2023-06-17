@@ -1,38 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
 
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #9BA4B5;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #737f8f;
-    }
-
-    .pagination .active a {
-        background-color: #737f8f;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
     <a class="btn rounded-pill" style="background-color: #2D7FC1; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
@@ -58,40 +29,42 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered">
-                <thead style="background-color: #2D7FC1;">
-                    <tr>
-                        <th>ID User</th>
-                        <th>Nama</th>
-                        <th>Umur</th>
-                        <th>Alamat</th>
-                        <th>Username</th>
-                        <th>No Telp</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($pengguna as $ptg)
-                    <tr>
-                        <td>{{ $ptg -> idUser}}</td>
-                        <td>{{ $ptg -> nama}}</td>
-                        <td>{{ $ptg -> umur}}</td>
-                        <td>{{ $ptg -> alamat}}</td>
-                        <td>{{ $ptg -> username}}</td>
-                        <td>{{ $ptg -> noTelp}}</td>
-                        <td>
-                            <form action="{{ route('petugas.destroy',$ptg->idUser) }}" method="POST">
-                                <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('petugas.show',$ptg->idUser) }}">Show</a>
-                                <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('petugas.edit',$ptg->idUser) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID User</th>
+                            <th>Nama</th>
+                            <th>Umur</th>
+                            <th>Alamat</th>
+                            <th>Username</th>
+                            <th>No Telp</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pengguna as $ptg)
+                        <tr>
+                            <td>{{ $ptg -> idUser}}</td>
+                            <td>{{ $ptg -> nama}}</td>
+                            <td>{{ $ptg -> umur}} tahun</td>
+                            <td>{{ $ptg -> alamat}}</td>
+                            <td>{{ $ptg -> username}}</td>
+                            <td>{{ $ptg -> noTelp}}</td>
+                            <td>
+                                <form action="{{ route('petugas.destroy',$ptg->idUser) }}" method="POST">
+                                    <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('petugas.show',$ptg->idUser) }}">Show</a>
+                                    <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('petugas.edit',$ptg->idUser) }}">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
@@ -137,7 +110,7 @@
                         <label for=" noTelp">No Telepon</label>
                         <input type="text" name="noTelp" class="form-control" id="noTelp" aria-describedby="noTelp">
                     </div>
-                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

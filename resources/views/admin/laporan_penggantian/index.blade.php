@@ -36,6 +36,12 @@
                         <button type="submit" name="filter_tgl" class="btn btn-info">Export Data</button>
                     </form>
                 </div>
+                <div class="col-auto">
+                    <form method="post" action="{{ route('lappenggantian') }}" class="form-inline" id="form-reset">
+                        @csrf
+                        <button type="submit" name="reset_filter" class="btn btn-info">Reset</button>
+                    </form>
+                </div>
             </div>
             <br>
             <table class="table table-hover table-bordered" style="color:white;">

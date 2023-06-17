@@ -1,6 +1,10 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -19,7 +23,6 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-<<<<<<< HEAD
                 <form method="post" action="{{ route('detailkeluar.update', $detailkeluar->idDetailKeluar) }}" id="myForm">
                     @csrf
                     @method('PUT')
@@ -30,21 +33,10 @@
                     <div class="form-group">
                         <label for="idTransaksiKeluar">ID Transaksi Keluar</label>
                         <select name="idTransaksiKeluar" class="form-control" id="idTransaksiKeluar">
-                            @foreach($trkeluar as $tk)
-=======
-            <form method="post" action="{{ route('detailkeluar.update', $detailkeluar->idDetailKeluar) }}" id="myForm">
-                @csrf
-                @method('PUT')
-                <div class="form-group">
-                    <label for="idDetailKeluar">ID Detail Keluar</label> 
-                    <input type="text" name="idDetailKeluar" class="form-control" id="idDetailKeluar" value="{{ old('idDetailKeluar', $detailkeluar->idDetailKeluar) }}" aria-describedby="idDetailKeluar" > 
-                </div>
-                <div class="form-group">
-                    <label for="idTransaksiKeluar">ID Transaksi Keluar</label> 
-                    <select name="idTransaksiKeluar" class="form-control" id="idTransaksiKeluar">
-                        @foreach($trkeluar as $tk)
->>>>>>> ed6447af82c608a7e085fc957ce6f6419886c6d9
-                            <option value="{{ old('idTransaksiKeluar', $tk -> idTransaksiKeluar) }}">{{ $tk -> idTransaksiKeluar }}</option>
+                            @foreach($trkeluar as $dk)
+                            @if($dk->toko)
+                            <option value="{{ old('idTransaksiKeluar', $dk->idTransaksiKeluar) }}">{{ $dk -> idTransaksiKeluar }} || {{ $dk->toko->nama }} </option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -53,7 +45,6 @@
                         <select name="idDetailBarang" class="form-control" id="idDetailBarang">
                             @foreach($detailbarang as $db)
                             <option value="{{ old('idDetailBarang', $db -> idDetailBarang) }}">{{ $db -> barang -> namaBarang }}</option>
-<<<<<<< HEAD
                             @endforeach
                         </select>
                     </div>
@@ -61,19 +52,8 @@
                         <label for="jumlah">Jumlah</label>
                         <input type="text" name="jumlah" class="form-control" id="jumlah" value="{{ old('jumlah', $detailkeluar->jumlah) }}" aria-describedby="jumlah">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
-=======
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="jumlah">Jumlah</label> 
-                    <input type="text" name="jumlah" class="form-control" id="jumlah" value="{{ old('jumlah', $detailkeluar->jumlah) }}" aria-describedby="jumlah" > 
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
->>>>>>> ed6447af82c608a7e085fc957ce6f6419886c6d9
             </div>
 
             <!-- Modal footer -->

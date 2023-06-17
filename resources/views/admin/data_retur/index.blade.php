@@ -115,14 +115,14 @@
                         <select name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk">
                             <option value="">-- Pilih ID Transaksi Masuk --</option>
                             @foreach($trmasuk as $tm)
-                            <option value="{{ $tm->idTransaksiMasuk }}">{{ $tm->idTransaksiMasuk }}</option>
+                            <option value="{{ $tm->idTransaksiMasuk }}" data-supplier="{{ $tm->supplier->idSupplier }}">{{ $tm->idTransaksiMasuk }} || {{ $tm->supplier->nama }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="idUser">ID User</label>
                         <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->idUser }}">
-                        <small>Username: {{ Auth::user()->username }}</small>
+                        <small>Nama Admin: {{ Auth::user()->nama }}</small>
                     </div>
                     <div class="form-group">
                         <label for="tglRetur">Tanggal Retur</label>

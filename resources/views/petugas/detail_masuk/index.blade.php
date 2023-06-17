@@ -1,38 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
 
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #9BA4B5;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #737f8f;
-    }
-
-    .pagination .active a {
-        background-color: #737f8f;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
     <a class="btn rounded-pill" style="background-color: #2D7FC1; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
@@ -57,36 +28,48 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered">
-                <thead style="background-color: #2D7FC1;">
-                    <tr>
-                        <th>ID Detail Masuk</th>
-                        <th>ID Transaksi Masuk</th>
-                        <th>ID detail Barang</th>
-                        <th>Jumlah</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($detailmasuk as $dm)
-                    <tr>
-                        <td>{{ $dm -> idDetailMasuk}}</td>
-                        <td>{{ $dm -> idTransaksiMasuk}}</td>
-                        <td>{{ $dm -> detailbarang -> idDetailBarang}}</td>
-                        <td>{{ $dm -> jumlah}}</td>
-                        <td>
-                            <form action="{{ route('detailmasuk.destroy',$dm->idDetailMasuk) }}" method="POST">
-                                <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('detailmasuk.show',$dm->idDetailMasuk) }}">Show</a>
-                                <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('detailmasuk.edit',$dm->idDetailMasuk) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID Detail Masuk</th>
+                            <th>ID Transaksi Masuk</th>
+                            <th>ID detail Barang</th>
+                            <th>Jumlah</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($detailmasuk as $dm)
+                        <tr>
+                            <td>{{ $dm -> idDetailMasuk}}</td>
+                            <td>
+                                {{ $dm -> idTransaksiMasuk}}
+                                @if($dm->trmasuk->suppliers)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $dm->trmasuk->suppliers->nama }}</p>
+                                @endif
+                            </td>
+                            <td>
+                                {{ $dm -> detailbarang -> idDetailBarang}}
+                                @if($dm->detailbarang->barang)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $dm->detailbarang->barang->namaBarang }}</p>
+                                @endif
+                            </td>
+                            <td>{{ $dm -> jumlah}}</td>
+                            <td>
+                                <form action="{{ route('detailmasuk.destroy',$dm->idDetailMasuk) }}" method="POST">
+                                    <a class="btn-action btn-show" href="{{ route('detailmasuk.show',$dm->idDetailMasuk) }}">Show</a>
+                                    <a class="btn-action btn-edit" href="{{ route('detailmasuk.edit',$dm->idDetailMasuk) }}">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-action btn-delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
@@ -108,12 +91,21 @@
                         <label for="idDetailMasuk">ID Detail Masuk</label>
                         <input type="text" name="idDetailMasuk" class="form-control" id="idDetailMasuk" aria-describedby="idDetailMasuk">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="idTransaksiMasuk">ID Transaksi Masuk</label>
                         <select name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk">
                             <option value="">-- Pilih ID Transaksi Masuk --</option>
                             @foreach($trmasuk as $tm)
                             <option value="{{ $tm->idTransaksiMasuk }}" data-supplier="{{ $tm   ->idSupplier }}">{{ $tm->idTransaksiMasuk }}</option>
+                            @endforeach
+                        </select>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="idTransaksiMasuk">ID Transaksi Masuk</label>
+                        <select name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk">
+                            <option value="">-- Pilih ID Transaksi Masuk --</option>
+                            @foreach($trmasuk as $tm)
+                            <option value="{{ $tm->idTransaksiMasuk }}" data-supplier="{{ $tm->idSupplier }}">{{ $tm->idTransaksiMasuk }} || {{ $tm->suppliers->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -134,7 +126,7 @@
                     <input type="hidden" id="selectedTransaksiMasuk" name="selectedTransaksiMasuk">
                     <input type="hidden" id="selectedSupplier" name="selectedSupplier">
                     <input type="hidden" id="selectedDetailBarang" name="selectedDetailBarang">
-                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

@@ -1,38 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
 
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #9BA4B5;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #737f8f;
-    }
-
-    .pagination .active a {
-        background-color: #737f8f;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
     <a class="btn rounded-pill" style="background-color: #2D7FC1; color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
@@ -68,83 +39,110 @@
                 </div>
             </div>
             <br>
-            <table class="table table-hover table-bordered">
-                <thead style="background-color: #2D7FC1;">
-                    <tr>
-                        <th>ID Transaksi Masuk</th>
-                        <th>ID User</th>
-                        <th>ID Supplier</th>
-                        <th>Tanggal Transaksi Masuk</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($mulai = null || $selesai = null) {
-                    ?>
-                        @foreach($trmasuk as $tm)
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ $tm -> idTransaksiMasuk}}</td>
-                            <td>{{ $tm -> idUser}}</td>
-                            <td>{{ $tm -> idSupplier}}</td>
-                            <td>{{ $tm -> tglTransaksiMasuk}}</td>
-                            <td>
-                                <form action="{{ route('trmasuk.destroy',$tm->idTransaksiMasuk) }}" method="POST">
-                                    <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('trmasuk.show',$tm->idTransaksiMasuk) }}">Show</a>
-                                    <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('trmasuk.edit',$tm->idTransaksiMasuk) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
-                                </form>
-                            </td>
+                            <th>ID Transaksi Masuk</th>
+                            <th>ID User</th>
+                            <th>ID Supplier</th>
+                            <th>Tanggal Transaksi Masuk</th>
+                            <th width="280px">Action</th>
                         </tr>
-                        @endforeach
-                    <?php
-                    }
-                    if (isset($_POST['filter_tgl'])) {
-                    ?>
-                        @foreach($filter as $tm)
-                        <tr>
-                            <td>{{ $tm -> idTransaksiMasuk}}</td>
-                            <td>{{ $tm -> idUser}}</td>
-                            <td>{{ $tm -> idSupplier}}</td>
-                            <td>{{ $tm -> tglTransaksiMasuk}}</td>
-                            <td>
-                                <form action="{{ route('trmasuk.destroy',$tm->idTransaksiMasuk) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('trmasuk.show',$tm->idTransaksiMasuk) }}">Show</a>
-                                    <a class="btn btn-primary" href="{{ route('trmasuk.edit',$tm->idTransaksiMasuk) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    } else {
-                    ?>
-                        @foreach($trmasuk as $tm)
-                        <tr>
-                            <td>{{ $tm -> idTransaksiMasuk}}</td>
-                            <td>{{ $tm -> idUser}}</td>
-                            <td>{{ $tm -> idSupplier}}</td>
-                            <td>{{ $tm -> tglTransaksiMasuk}}</td>
-                            <td>
-                                <form action="{{ route('trmasuk.destroy',$tm->idTransaksiMasuk) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('trmasuk.show',$tm->idTransaksiMasuk) }}">Show</a>
-                                    <a class="btn btn-primary" href="{{ route('trmasuk.edit',$tm->idTransaksiMasuk) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($mulai = null || $selesai = null) {
+                        ?>
+                            @foreach($trmasuk as $tm)
+                            <tr>
+                                <td>{{ $tm -> idTransaksiMasuk}}</td>
+                                <td>
+                                    {{ $tm -> idUser}}
+                                    @if($tm->petugas)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tm->petugas->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $tm -> idSupplier}}
+                                    @if($tm->suppliers)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tm->suppliers->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $tm -> tglTransaksiMasuk}}</td>
+                                <td>
+                                    <form action="{{ route('trmasuk.destroy',$tm->idTransaksiMasuk) }}" method="POST">
+                                        <a class="btn" style="background-color: #19A7CE; color: #FFFFFF;" href="{{ route('trmasuk.show',$tm->idTransaksiMasuk) }}">Show</a>
+                                        <a class="btn" style="background-color: #3461A4; color: #FFFFFF;" href="{{ route('trmasuk.edit',$tm->idTransaksiMasuk) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn" style="background-color: #E74C3C; color: #FFFFFF;">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        if (isset($_POST['filter_tgl'])) {
+                        ?>
+                            @foreach($filter as $tm)
+                            <tr>
+                                <td>{{ $tm -> idTransaksiMasuk}}</td>
+                                <td>{{ $tm -> idUser}}</td>
+                                <td>
+                                    {{ $tm -> idSupplier}}
+                                    @if($tm->suppliers)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tm->suppliers->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $tm -> tglTransaksiMasuk}}</td>
+                                <td>
+                                    <form action="{{ route('trmasuk.destroy',$tm->idTransaksiMasuk) }}" method="POST">
+                                        <a class="btn btn-info" href="{{ route('trmasuk.show',$tm->idTransaksiMasuk) }}">Show</a>
+                                        <a class="btn btn-primary" href="{{ route('trmasuk.edit',$tm->idTransaksiMasuk) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        } else {
+                        ?>
+                            @foreach($trmasuk as $tm)
+                            <tr>
+                                <td>{{ $tm -> idTransaksiMasuk}}</td>
+                                <td>
+                                    {{ $tm -> idUser}}
+                                    @if($tm->petugas)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tm->petugas->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $tm -> idSupplier}}
+                                    @if($tm->suppliers)
+                                    <p style="font-weight: bold; font-size: 17px;">{{ $tm->suppliers->nama }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $tm -> tglTransaksiMasuk}}</td>
+                                <td>
+                                    <form action="{{ route('trmasuk.destroy',$tm->idTransaksiMasuk) }}" method="POST">
+                                        <a class="btn-action btn-show "href="{{ route('trmasuk.show',$tm->idTransaksiMasuk) }}">Show</a>
+                                        <a class="btn-action btn-edit" href="{{ route('trmasuk.edit',$tm->idTransaksiMasuk) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-action btn-delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
@@ -170,7 +168,7 @@
                     <div class="form-group">
                         <label for="idUser">ID User</label>
                         <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->idUser }}">
-                        <small>Username: {{ Auth::user()->username }}</small>
+                        <small>Nama Petugas: {{ Auth::user()->nama }}</small>
                     </div>
                     <div class="form-group">
                         <label for="idSupplier">ID Supplier</label>
@@ -184,7 +182,7 @@
                         <label for="tglTransaksiMasuk">Tanggal Transaksi Masuk</label>
                         <input type="date" name="tglTransaksiMasuk" class="form-control" id="tglTransaksiMasuk" aria-describedby="tglTransaksiMasuk" placeholder="Tanggal Transaksi Masuk">
                     </div>
-                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

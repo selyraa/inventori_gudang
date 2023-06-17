@@ -1,6 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -54,7 +57,7 @@
                         <label for="stok">Stok</label>
                         <input type="integer" name="stok" class="form-control" id="stok" value="{{ old('stok', $detailbrg->stok) }}" aria-describedby="stok">
                     </div>
-                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

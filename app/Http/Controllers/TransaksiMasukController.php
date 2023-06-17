@@ -20,7 +20,7 @@ class TransaksiMasukController extends Controller
     public function index()
     {
         $user = User::where('role', '=', '0')->get();
-        $trmasuk = TransaksiMasuk::paginate(3);
+        $trmasuk = TransaksiMasuk::with('suppliers', 'petugas')->paginate(2);
         $supplier = Supplier::all();
 
         return view('petugas.trans_masuk.index', compact('user', 'trmasuk', 'supplier'));
@@ -219,14 +219,12 @@ class TransaksiMasukController extends Controller
         $mulai = $request->input('tgl_mulai');
         $selesai = $request->input('tgl_selesai');
         $user = User::where('role', '=', "0")->get();
-        $trmasuk = TransaksiMasuk::all();
-        $tmasuk = TransaksiMasuk::paginate(3);
+        $trmasuk = TransaksiMasuk::with('suppliers', 'petugas')->get();
         $supplier = Supplier::all();
-
         $filter = TransaksiMasuk::when($mulai && $selesai, function ($query) use ($mulai, $selesai) {
             return $query->whereBetween('tglTransaksiMasuk', [$mulai, $selesai]);
         })->get();
         $showModal = true;
-        return view('petugas.trans_masuk.filter', compact('filter', 'user', 'supplier', 'trmasuk', 'mulai', 'selesai', 'tmasuk', 'showModal'));
+        return view('petugas.trans_masuk.filter', compact('filter', 'user', 'supplier', 'trmasuk', 'mulai', 'selesai', 'showModal'));
     }
 }

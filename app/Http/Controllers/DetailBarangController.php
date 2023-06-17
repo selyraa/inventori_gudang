@@ -10,7 +10,7 @@ use App\Models\DetailBarang;
 class DetailBarangController extends Controller
 {
     public function index(){
-        $detailbrg = DetailBarang::paginate(3);
+        $detailbrg = DetailBarang::with('barang')->paginate(2);
         $barang = Barang::all();
         $trmasuk = TransaksiMasuk::all();
         return view('petugas.detail_barang.index', compact('detailbrg', 'barang', 'trmasuk'));

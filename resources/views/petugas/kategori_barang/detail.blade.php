@@ -1,5 +1,8 @@
 @extends('petugas.app_petugas')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 @if($showModal)
 <script>
     $(document).ready(function() {
@@ -7,6 +10,7 @@
     });
 </script>
 @endif
+
 <div class="modal fade" id="modalShow">
     <div class="modal-dialog">
         <div class="modal-content">

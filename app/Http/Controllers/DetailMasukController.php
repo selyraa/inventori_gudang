@@ -7,15 +7,16 @@ use App\Models\Barang;
 use App\Models\TransaksiMasuk;
 use App\Models\DetailMasuk;
 use App\Models\DetailBarang;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
 
 class DetailMasukController extends Controller
 {
     public function index()
     {
-        $detailmasuk = DetailMasuk::with('detailBarang.barang:idBarang,namaBarang')->paginate(4);
-        $trmasuk = TransaksiMasuk::all();
-
+        $detailmasuk = DetailMasuk::with('detailBarang.barang:idBarang,namaBarang')->paginate(2);
+        $trmasuk = TransaksiMasuk::with('suppliers')->get();
+        
         $selectedIdTransaksiMasuk = request()->input('idTransaksiMasuk');
         $selectedTransaksiMasuk = null;
         $detail = [];
@@ -48,9 +49,9 @@ class DetailMasukController extends Controller
             $idSupplier = $transaksiMasuk->idSupplier;
 
             $detail = Barang::join('detail_barangs', 'barangs.idBarang', '=', 'detail_barangs.idBarang')
-                            ->where('idSupplier', $idSupplier)
-                            ->select('detail_barangs.idDetailBarang','barangs.idBarang', 'barangs.namaBarang')
-                            ->get();
+                ->where('idSupplier', $idSupplier)
+                ->select('detail_barangs.idDetailBarang', 'barangs.idBarang', 'barangs.namaBarang')
+                ->get();
         }
 
         return response()->json($detail);
@@ -116,7 +117,7 @@ class DetailMasukController extends Controller
     public function edit($idDetailMasuk)
     {
         $detailbarang = DetailBarang::with('barang')->get();
-        $trmasuk = TransaksiMasuk::all();
+        $trmasuk = TransaksiMasuk::with('suppliers')->get();
         $detailmasuk = DetailMasuk::find($idDetailMasuk);
         $showModal = true;
         return view('petugas.detail_masuk.edit', compact('detailbarang', 'trmasuk', 'detailmasuk', 'showModal'));

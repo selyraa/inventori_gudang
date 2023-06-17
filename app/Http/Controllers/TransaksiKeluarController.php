@@ -19,7 +19,7 @@ class TransaksiKeluarController extends Controller
 {
     public function index()
     {
-        $trkeluar = TransaksiKeluar::paginate(3);
+        $trkeluar = TransaksiKeluar::with('toko', 'petugas')->paginate(2);
         $user = User::where('role', '=', "0")->get();
         $toko = Toko::all();
         return view('petugas.trans_keluar.index', compact('trkeluar', 'user', 'toko'));
@@ -156,7 +156,7 @@ class TransaksiKeluarController extends Controller
             return $query->whereBetween('tglTransaksiKeluar', [$mulai, $selesai]);
         })->get();
 
-        $trkeluar = TransaksiKeluar::all();
+        $trkeluar = TransaksiKeluar::with('toko', 'petugas');
         $showModal = true;
         return view('petugas.trans_keluar.filter', compact('filter', 'trkeluar', 'showModal'));
     }

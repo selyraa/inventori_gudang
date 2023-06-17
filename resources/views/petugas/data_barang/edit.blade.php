@@ -1,6 +1,9 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -74,7 +77,7 @@
                         <input type="file" class="form-control" required="required" name="fotoProduk" value="{{ $barang->fotoProduk }}"></br>
                         <img width="100px" height="100px" src="{{asset('storage/'.$barang->fotoProduk)}}">
                     </div>
-                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

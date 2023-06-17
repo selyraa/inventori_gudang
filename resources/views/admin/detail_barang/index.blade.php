@@ -71,7 +71,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
-                    <thead>
+                    <thead style="color:#fff;">
                         <tr>
                             <th>ID Detail Barang</th>
                             <th>ID Barang</th>
@@ -86,7 +86,14 @@
                         @foreach($adminDetailBrg as $db)
                         <tr>
                             <td>{{ $db -> idDetailBarang}}</td>
-                            <td>{{ $db -> idBarang}}</td>
+                            <td>
+                                {{ $db -> idBarang}}
+                                <br>
+                                @if($db->barang)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $db->barang->namaBarang }}</p>
+                                @endif
+                            </td>
+                            </td>
                             <!-- <td>{{ $db -> idTransaksiMasuk}}</td> -->
                             <td>{{ $db -> tglProduksi}}</td>
                             <td>{{ $db -> tglExp}}</td>

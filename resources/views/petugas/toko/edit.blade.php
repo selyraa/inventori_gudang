@@ -38,7 +38,7 @@
                         <label for="noTelp">No Telp</label>
                         <input type="text" name="noTelp" class="form-control" id="noTelp" value="{{ old('noTelp', $toko->noTelp) }}" aria-describedby="noTelp">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

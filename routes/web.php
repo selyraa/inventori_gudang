@@ -94,6 +94,7 @@ Route::resource('penggantianbarang', PenggantianBarangController::class);
 Route::get('/get_jumlah_retur/{idDetailRetur}', [PenggantianBarangController::class, 'getJumlahRetur'])->name('retur.getJumlahRetur');
 Route::get('/get_detail_retur/{idDetailRetur}', [PenggantianBarangController::class, 'getDetailRetur']);
 Route::get('/get_detail_barang/{idDetailBarang}', [PenggantianBarangController::class, 'getDetailBarang']);
+Route::get('/get-supplier-name', [DetailMasukController::class, 'getSupplierName']);
 
 
 

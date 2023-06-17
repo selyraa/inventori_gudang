@@ -15,12 +15,13 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barangs = Barang::paginate(2);
+        $barangs = Barang::with('supplier', 'satuan', 'kategori', 'petugas')->paginate(2);
         $user = User::where('role', '=', "0")->get();
         $satuan = SatuanBarang::all();
         $kategori = KategoriBarang::all();
         $supplier = Supplier::all();
-        return view('petugas.data_barang.index', compact('barangs','user', 'satuan', 'kategori', 'supplier'));
+
+        return view('petugas.data_barang.index', compact('barangs', 'user', 'satuan', 'kategori', 'supplier'));
     }
 
     public function create()
@@ -133,7 +134,7 @@ class BarangController extends Controller
     }
     public function adminDetailBrg()
     {
-        $adminDetailBrg = DetailBarang::paginate(10);
+        $adminDetailBrg = DetailBarang::with('barang')->paginate(4);
         return view('admin.detail_barang.index', compact('adminDetailBrg'));
     }
 }
