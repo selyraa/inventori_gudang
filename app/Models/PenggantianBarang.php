@@ -22,4 +22,9 @@ class PenggantianBarang extends Model
         'keterangan',
         'tglPenggantian',
     ];
+
+    public function detailretur()
+    {
+        return $this->belongsTo(DetailRetur::class, 'idDetailRetur');
+    }
 }

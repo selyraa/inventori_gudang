@@ -1,38 +1,8 @@
 @extends('admin.app')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #6c63ff;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #a892ff;
-    }
-
-    .pagination .active a {
-        background-color: #a892ff;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
     <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
@@ -58,36 +28,38 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered" style="color:black;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:#fff;">
-                    <tr>
-                        <th>ID Supplier</th>
-                        <th>Nama Supplier</th>
-                        <th>Alamat</th>
-                        <th>No Telp</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($supplier as $sup)
-                    <tr>
-                        <td>{{ $sup -> idSupplier}}</td>
-                        <td>{{ $sup -> nama}}</td>
-                        <td>{{ $sup -> alamat}}</td>
-                        <td>{{ $sup -> noTelp}}</td>
-                        <td>
-                            <form action="{{ route('supplier.destroy',$sup->idSupplier) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('supplier.show',$sup->idSupplier) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('supplier.edit',$sup->idSupplier) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID Supplier</th>
+                            <th>Nama Supplier</th>
+                            <th>Alamat</th>
+                            <th>No Telp</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($supplier as $sup)
+                        <tr>
+                            <td>{{ $sup -> idSupplier}}</td>
+                            <td>{{ $sup -> nama}}</td>
+                            <td>{{ $sup -> alamat}}</td>
+                            <td>{{ $sup -> noTelp}}</td>
+                            <td>
+                                <form action="{{ route('supplier.destroy',$sup->idSupplier) }}" method="POST">
+                                    <a class="btn-action btn-show" href="{{ route('supplier.show',$sup->idSupplier) }}">Show</a>
+                                    <a class="btn-action btn-edit" href="{{ route('supplier.edit',$sup->idSupplier) }}">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-action btn-delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>

@@ -1,5 +1,8 @@
 @extends('admin.app')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <section class="content-header">
     <div class="container-fluid">
     </div><!-- /.container-fluid -->
@@ -29,8 +32,9 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered" style="color:white;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff);">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                     <tr>
                         <th>ID Supplier</th>
                         <th>Nama Supplier</th>

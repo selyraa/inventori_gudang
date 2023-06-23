@@ -1,5 +1,8 @@
 @extends('admin.app')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 @if($showModal)
 <script>
     $(document).ready(function() {
@@ -31,7 +34,7 @@
                         <select name="idDetailRetur" class="form-control" id="idDetailRetur">
                             <option value="">-- Pilih ID Detail Retur --</option>
                             @foreach($detailretur as $dr)
-                            <option value="{{ $dr->idDetailRetur }}">{{ $dr->idDetailRetur }}</option>
+                            <option value="{{ $dr->idDetailRetur }}" data-supplier="{{ $dr->retur->trmasuk->suppliers->idSuplier }}">{{ $dr->idDetailRetur }} || {{ $dr->retur->trmasuk->suppliers->nama }}</option>
                             @endforeach
                         </select>
                         <br>
@@ -57,7 +60,7 @@
                         <label for="tglPenggantian">Tanggal Penggantian</label>
                         <input type="date" name="tglPenggantian" class="form-control" id="tglPenggantian" value="{{ old('tglPenggantian', $penggantian->tglPenggantian) }}" aria-describedby="tglPenggantian">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
             <!-- Modal footer -->

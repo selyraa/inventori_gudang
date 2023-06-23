@@ -19,8 +19,8 @@ class PenggantianBarangController extends Controller
 
     public function index()
     {
-        $penggantian = PenggantianBarang::paginate(3);
-        $detailretur = DetailRetur::all();
+        $penggantian = PenggantianBarang::with('detailretur')->paginate(3);
+        $detailretur = DetailRetur::with('retur')->get();
         return view('admin.penggantian_barang.index', compact('penggantian', 'detailretur'));
     }
 
@@ -94,7 +94,7 @@ class PenggantianBarangController extends Controller
      */
     public function edit($idPenggantianBarang)
     {
-        $detailretur = DetailRetur::all();
+        $detailretur = DetailRetur::with('retur')->get();
         $penggantian = PenggantianBarang::find($idPenggantianBarang);
         $showModal = true;
         return view('admin.penggantian_barang.edit', compact('detailretur', 'penggantian', 'showModal'));

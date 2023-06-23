@@ -18,5 +18,14 @@ class DetailRetur extends Model
         'idDetailBarang',
         'jumlah',
     ];
+    public function retur()
+    {
+        return $this->belongsTo(ReturBarang::class, 'idRetur');
+    }
+
+    public function detailbarang()
+    {
+        return $this->belongsTo(DetailBarang::class, 'idDetailBarang');
+    }
 
 }

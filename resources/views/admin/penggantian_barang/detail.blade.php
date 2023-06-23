@@ -1,5 +1,8 @@
 @extends('admin.app')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 @if($showModal)
 <script>
     $(document).ready(function() {

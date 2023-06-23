@@ -1,38 +1,9 @@
 @extends('admin.app')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
 
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #6c63ff;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #a892ff;
-    }
-
-    .pagination .active a {
-        background-color: #a892ff;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
     <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
@@ -58,36 +29,48 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered" style="color:black;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:white;">
-                    <tr>
-                        <th>ID Retur</th>
-                        <th>ID Transaksi Masuk</th>
-                        <th>ID User</th>
-                        <th>Tanggal Retur</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($retur as $r)
-                    <tr>
-                        <td>{{ $r -> idRetur}}</td>
-                        <td>{{ $r -> idTransaksiMasuk}}</td>
-                        <td>{{ $r -> idUser}}</td>
-                        <td>{{ $r -> tglRetur}}</td>
-                        <td>
-                            <form action="{{ route('retur.destroy',$r->idRetur) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('retur.show',$r->idRetur) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('retur.edit',$r->idRetur) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID Retur</th>
+                            <th>ID Transaksi Masuk</th>
+                            <th>ID User</th>
+                            <th>Tanggal Retur</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($retur as $r)
+                        <tr>
+                            <td>{{ $r -> idRetur}}</td>
+                            <td>
+                                {{ $r -> idTransaksiMasuk}}
+                                @if($r->trmasuk)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $r->trmasuk->suppliers->nama }}</p>
+                                @endif
+                            </td>
+                            <td>
+                                {{ $r -> idUser}}
+                                @if($r->admin)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $r->admin->nama }}</p>
+                                @endif
+                            </td>
+                            <td>{{ $r -> tglRetur}}</td>
+                            <td>
+                                <form action="{{ route('retur.destroy',$r->idRetur) }}" method="POST">
+                                    <a class="btn-action btn-show" href="{{ route('retur.show',$r->idRetur) }}">Show</a>
+                                    <a class="btn-action btn-edit" href="{{ route('retur.edit',$r->idRetur) }}">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-action btn-delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
@@ -115,7 +98,7 @@
                         <select name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk">
                             <option value="">-- Pilih ID Transaksi Masuk --</option>
                             @foreach($trmasuk as $tm)
-                            <option value="{{ $tm->idTransaksiMasuk }}" data-supplier="{{ $tm->supplier->idSupplier }}">{{ $tm->idTransaksiMasuk }} || {{ $tm->supplier->nama }}</option>
+                            <option value="{{ $tm->idTransaksiMasuk }}" data-supplier="{{ $tm->suppliers->idSupplier }}">{{ $tm->idTransaksiMasuk }} || {{ $tm->suppliers->nama }}</option>
                             @endforeach
                         </select>
                     </div>

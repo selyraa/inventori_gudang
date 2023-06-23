@@ -1,6 +1,9 @@
 @extends('admin.app')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -31,7 +34,7 @@
                         <select name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk">
                             <option value="">-- Pilih ID Transaksi Masuk --</option>
                             @foreach($trmasuk as $tm)
-                            <option value="{{ $tm->idTransaksiMasuk }}">{{ $tm->idTransaksiMasuk }}</option>
+                            <option value="{{ $tm->idTransaksiMasuk }}" data-supplier="{{ $tm->suppliers->idSupplier }}">{{ $tm->idTransaksiMasuk }} || {{ $tm->suppliers->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -44,7 +47,7 @@
                         <label for="tglRetur">Tanggal Retur</label>
                         <input type="date" name="tglRetur" class="form-control" id="tglRetur" value="{{ old('tglRetur', $retur->tglRetur) }}" aria-describedby="tglRetur">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

@@ -18,28 +18,10 @@
   <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap.min.css') }}">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{asset('assets/css/landing_page.css')}}">
   <link rel="stylesheet" href="{{ asset('land/css/templatemo-chain-app-dev.css') }}">
   <link rel="stylesheet" href="{{ asset('land/css/animated.css') }}">
   <link rel="stylesheet" href="{{ asset('land/css/owl.css') }}">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-    }
-
-    .active {
-      font-weight: bold;
-    }
-  </style>
 </head>
 
 <body>
@@ -63,7 +45,7 @@
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="#home" class="logo">
               <img src="{{ asset('assets/images/logo_glj.jpg') }}" alt="Chain App Dev">
             </a>
             <!-- ***** Logo End ***** -->
@@ -77,7 +59,7 @@
                 <div class="gradient-button">
                   <div class="white-button first-button scroll-to-section">
                     <a href="{{ route('login') }}">Sign In <i class="fa fa-sign-in-alt"></i></a>
-                    <a href="{{ route('register') }}">Register <i class="fa fa-sign-in-alt"></i></a>
+                    <a href="{{ route('register') }}" style="margin-left: 10px;">Register <i class="fa fa-sign-in-alt"></i></a>
                   </div>
                 </div>
               </li>
@@ -118,7 +100,7 @@
   </div>
   <div id="vision">
     <div class="container">
-    <img src="{{ asset('assets/images/services-right-dec.png') }}" alt="">
+      <img src="{{ asset('assets/images/services-right-dec.png') }}" alt="">
       <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
           <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">

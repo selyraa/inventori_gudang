@@ -15,9 +15,9 @@ class ReturBarangController extends Controller
 {
     public function index()
     {
-        $retur = ReturBarang::paginate(3);
+        $retur = ReturBarang::with('admin')->paginate(3);
         $user = User::all();
-        $trmasuk = TransaksiMasuk::with('supplier')->get();
+        $trmasuk = TransaksiMasuk::with('suppliers')->get();
         return view('admin.data_retur.index', compact('retur', 'user', 'trmasuk'));
     }
 
@@ -54,7 +54,7 @@ class ReturBarangController extends Controller
     public function edit($idRetur)
     {
         $user = User::where('role', '=', "1")->get();
-        $trmasuk = TransaksiMasuk::all();
+        $trmasuk = TransaksiMasuk::with('suppliers')->get();
         $retur = ReturBarang::find($idRetur);
         $showModal = true;
         return view('admin.data_retur.edit', compact('user', 'trmasuk', 'retur', 'showModal'));

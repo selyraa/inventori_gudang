@@ -129,8 +129,12 @@ class BarangController extends Controller
 
     public function adminBarang()
     {
-        $adminBarang = Barang::paginate(4);
-        return view('admin.data_barang.index', compact('adminBarang'));
+        $adminBarang = Barang::with('supplier', 'satuan', 'kategori', 'petugas')->paginate(4);
+        $user = User::where('role', '=', "0")->get();
+        $satuan = SatuanBarang::all();
+        $kategori = KategoriBarang::all();
+        $supplier = Supplier::all();
+        return view('admin.data_barang.index', compact('adminBarang', 'user', 'satuan', 'kategori', 'supplier'));
     }
     public function adminDetailBrg()
     {

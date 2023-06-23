@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\DetailBarang;
 use App\Models\ReturBarang;
 use App\Models\DetailRetur;
-
+use App\Models\TransaksiMasuk;
 
 class DetailReturController extends Controller
 {
     public function index()
     {
-        $detailretur = DetailRetur::paginate(5);
+        $detailretur = DetailRetur::with('retur', 'detailbarang')->paginate(5);
         $detailbarang = DetailBarang::with('barang')->get();
-        $retur = ReturBarang::all();
-        return view('admin.detail_retur.index', compact('detailretur', 'detailbarang', 'retur'));
+        $trmasuk = TransaksiMasuk::with('suppliers')->get();
+        $retur = ReturBarang::with('trmasuk')->get();
+        return view('admin.detail_retur.index', compact('detailretur', 'detailbarang', 'retur', 'trmasuk'));
     }
 
     public function stokRetur($idDetailBarang)
@@ -57,7 +58,7 @@ class DetailReturController extends Controller
     public function edit($idDetailRetur)
     {
         $detailbarang = DetailBarang::with('barang')->get();
-        $retur = ReturBarang::all();
+        $retur = ReturBarang::with('trmasuk')->get();
         $detailretur = DetailRetur::find($idDetailRetur);
         $showModal = true;
         return view('admin.detail_retur.edit', compact('detailbarang', 'retur', 'detailretur', 'showModal'));

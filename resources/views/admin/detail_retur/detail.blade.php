@@ -1,6 +1,9 @@
 @extends('admin.app')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalShow').modal('show');

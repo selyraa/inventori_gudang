@@ -1,0 +1,264 @@
+/* =====================================
+  GLOBAL STYLES
+====================================== */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #000;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #03A9F4;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+/* =====================================
+    HEADER STYLES
+  ====================================== */
+/* .header-area {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  } */
+
+/* .main-nav {
+    margin-right: 100px;
+    margin-left: 100px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    transition: background-color 0.5s ease-in-out;
+  } */
+
+/* .main-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+  }
+  
+  .main-nav ul li {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  
+  .main-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+  } */
+
+.menu-trigger {
+    display: none;
+    color: #888;
+    font-size: 24px;
+    margin-top: 25px;
+    float: right;
+    cursor: pointer;
+}
+
+.gradient-button {
+    margin-right: 25px;
+    /* display: flex; */
+}
+
+.white-button.first-button.scroll-to-section a:first-child {
+    margin-right: 10px;
+    
+}
+
+.white-button {
+    
+    border-radius: 5px;
+    padding: 10px 16px;
+    display: flex;
+}
+
+/* =====================================
+    BANNER STYLES
+  ====================================== */
+.main-banner {
+    background-image: url('../assets/images/gudang_landing.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    color: #000;
+}
+
+.main-banner h2 {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+.main-banner p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.left-content .row .col-lg-12 h2 {
+    margin-top: 5px;
+}
+
+/* =====================================
+    FEATURES STYLES
+  ====================================== */
+/* .features {
+    background-color: #f4f4f4;
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  .features h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .features p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .features .feature-item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .features .feature-item .icon {
+    font-size: 40px;
+    margin-right: 10px;
+    color: #03A9F4;
+  }
+  
+  .features .feature-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .features .feature-item p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 0;
+  } */
+
+/* =====================================
+    ABOUT STYLES
+  ====================================== */
+/* .about {
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  .about h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .about p {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .about .about-item {
+    margin-bottom: 40px;
+  }
+  
+  .about .about-item img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .about .about-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .about .about-item p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 0;
+  } 
+  
+  /* =====================================
+    CONTACT STYLES
+  ====================================== */
+/* .contact {
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  .contact h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .contact p {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .contact .contact-item {
+    margin-bottom: 40px;
+  }
+  
+  .contact .contact-item i {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #03A9F4;
+  }
+  
+  .contact .contact-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .contact .contact-item p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 0;
+  } */
+
+/* =====================================
+    FOOTER STYLES
+  ====================================== */
+/* .footer {
+    background-color: #222;
+    color: #888;
+    padding: 40px 0;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .footer p a {
+    font-family: 'Montserrat', sans-serif;
+    color: #888;
+    text-decoration: none;
+  }
+  
+  .footer p a:hover {
+    color: #fff;
+  } */

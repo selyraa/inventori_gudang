@@ -1,42 +1,13 @@
 @extends('admin.app')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
 
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #6c63ff;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #a892ff;
-    }
-
-    .pagination .active a {
-        background-color: #a892ff;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 
 <br>
-<div class="col-md-12 d-flex flex-row justify-content-end">
-    <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;" href="{{ route('admin.create') }}">
+<div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
+    <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
         <i class="fas fa-plus"></i>
     </a>
 </div>
@@ -59,44 +30,102 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered" style="color:black;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:#fff;">
-                    <tr>
-                        <th>ID User</th>
-                        <th>Nama</th>
-                        <th>Umur</th>
-                        <th>Alamat</th>
-                        <th>Username</th>
-                        <th>No Telp</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($admin as $ptg)
-                    <tr>
-                        <td>{{ $ptg->idUser }}</td>
-                        <td>{{ $ptg->nama }}</td>
-                        <td>{{ $ptg->umur }}</td>
-                        <td>{{ $ptg->alamat }}</td>
-                        <td>{{ $ptg->username }}</td>
-                        <td>{{ $ptg->noTelp }}</td>
-                        <td>
-                            <form action="{{ route('admin.destroy',$ptg->idUser) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('admin.show',$ptg->idUser) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('admin.edit',$ptg->idUser) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                @if ($ptg->count() > 1)
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                @endif
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID User</th>
+                            <th>Nama</th>
+                            <th>Umur</th>
+                            <th>Alamat</th>
+                            <th>Username</th>
+                            <th>No Telp</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($admin as $ptg)
+                        <tr>
+                            <td>{{ $ptg->idUser }}</td>
+                            <td>{{ $ptg->nama }}</td>
+                            <td>{{ $ptg->umur }}</td>
+                            <td>{{ $ptg->alamat }}</td>
+                            <td>{{ $ptg->username }}</td>
+                            <td>{{ $ptg->noTelp }}</td>
+                            <td>
+                                <form action="{{ route('admin.destroy',$ptg->idUser) }}" method="POST">
+                                    <a class="btn-action btn-show" href="{{ route('admin.show',$ptg->idUser) }}">Show</a>
+                                    <a class="btn-action btn-edit" href="{{ route('admin.edit',$ptg->idUser) }}">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    @if ($ptg->count() > 1)
+                                    <button type="submit" class="btn-action btn-delete">Delete</button>
+                                    @endif
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Data User</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form method="post" action="{{ route('admin.store') }}" id="myForm">
+                    @csrf
+                    <div class="form-group">
+                        <label for="idUser">ID User</label>
+                        <input type="text" name="idUser" class="form-control" id="idUser" aria-describedby="idUser" >
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama User</label>
+                        <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama" >
+                    </div>
+                    <div class="form-group">
+                        <label for="umur">Umur User</label>
+                        <input type="text" name="umur" class="form-control" id="umur" aria-describedby="umur" >
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat" class="form-control" id="alamat" aria-describedby="alamat" >
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" aria-describedby="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" aria-describedby="password">
+                    </div>
+                    <div class="form-group">
+                        <label for=" noTelp">No Telepon</label>
+                        <input type="text" name="noTelp" class="form-control" id="noTelp" aria-describedby="noTelp" >
+                    </div>
+                    <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
     <div class="col-md-12">
         <ul class="pagination">
             {{ $admin->links() }}

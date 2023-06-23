@@ -67,7 +67,7 @@ class KategoriBarangController extends Controller
 
     public function adminKategori()
     {
-        $adminKategori = KategoriBarang::all();
-        return view('admin.kategori_barang.index')->with('kategori_barangs', $adminKategori);
+        $adminKategori = KategoriBarang::paginate(5);
+        return view('admin.kategori_barang.index', compact('adminKategori'));
     }
 }

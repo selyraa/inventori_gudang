@@ -1,6 +1,9 @@
 @extends('admin.app')
 @section('content')
 @if($showModal)
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <script>
     $(document).ready(function() {
         $('#modalEdit').modal('show');
@@ -31,7 +34,7 @@
                         <select name="idRetur" class="form-control" id="retur">
                             <option value="">-- Pilih ID Data Retur --</option>
                             @foreach($retur as $r)
-                            <option value="{{ old('idRetur', $r -> idRetur) }}">{{ $r -> idRetur }}</option>
+                            <option value="{{ $r->idRetur }}" data-supplier="{{ $r->trmasuk->suppliers->idSuplier }}">{{ $r->idRetur }} || {{ $r->trmasuk->suppliers->nama }}</option>
                             @endforeach
                         </select>
                     </div>

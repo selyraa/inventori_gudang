@@ -1,38 +1,9 @@
 @extends('admin.app')
 @section('content')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        list-style-type: none;
-        padding: 0;
-    }
 
-    .pagination li {
-        margin: 0 5px;
-    }
-
-    .pagination li a {
-        display: block;
-        padding: 8px 12px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #6c63ff;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .pagination li a:hover {
-        background-color: #a892ff;
-    }
-
-    .pagination .active a {
-        background-color: #a892ff;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+</head>
 <br>
 <div class="col-md-12 d-flex flex-row justify-content-end" data-toggle="modal" data-target="#myModal">
     <a class="btn rounded-pill" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: white; padding: 12px 16px; font-size: 24px; margin-left: -8px;">
@@ -58,42 +29,49 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered" style="color:black;">
-                <thead style="background: linear-gradient(to right, #6c63ff, #a892ff); color:white;">
-                    <tr>
-                        <th>ID Penggantian Barang</th>
-                        <th>ID Detail Retur</th>
-                        <th>Jumlah Penggantian</th>
-                        <th>Selisih Retur</th>
-                        <th>Pengurangan Profit</th>
-                        <th>Keterangan</th>
-                        <th>Tanggal Penggantian</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($penggantian as $pg)
-                    <tr>
-                        <td>{{ $pg -> idPenggantianBarang}}</td>
-                        <td>{{ $pg -> idDetailRetur}}</td>
-                        <td>{{ $pg -> jumlahPenggantian}}</td>
-                        <td>{{ $pg -> selisihRetur}}</td>
-                        <td>Rp. {{ number_format($pg -> penguranganProfit, 0, ',', '.') }}</td>
-                        <td>{{ $pg -> keterangan}}</td>
-                        <td>{{ $pg -> tglPenggantian}}</td>
-                        <td>
-                            <form action="{{ route('penggantianbarang.destroy',$pg->idPenggantianBarang) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('penggantianbarang.show',$pg->idPenggantianBarang) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('penggantianbarang.edit',$pg->idPenggantianBarang) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID Penggantian Barang</th>
+                            <th>ID Detail Retur</th>
+                            <th>Jumlah Penggantian</th>
+                            <th>Selisih Retur</th>
+                            <th>Pengurangan Profit</th>
+                            <th>Keterangan</th>
+                            <th>Tanggal Penggantian</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($penggantian as $pg)
+                        <tr>
+                            <td>{{ $pg -> idPenggantianBarang}}</td>
+                            <td>
+                                {{ $pg -> idDetailRetur}}
+                                @if($pg->detailretur)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $pg->detailretur->retur->trmasuk->suppliers->nama }}</p>
+                                @endif
+                            </td>
+                            <td>{{ $pg -> jumlahPenggantian}}</td>
+                            <td>{{ $pg -> selisihRetur}}</td>
+                            <td>Rp. {{ number_format($pg -> penguranganProfit, 0, ',', '.') }}</td>
+                            <td>{{ $pg -> keterangan}}</td>
+                            <td>{{ $pg -> tglPenggantian}}</td>
+                            <td>
+                                <form action="{{ route('penggantianbarang.destroy',$pg->idPenggantianBarang) }}" method="POST">
+                                    <a class="btn-action btn-show" href="{{ route('penggantianbarang.show',$pg->idPenggantianBarang) }}">Show</a>
+                                    <a class="btn-action btn-edit" href="{{ route('penggantianbarang.edit',$pg->idPenggantianBarang) }}">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-action btn-delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
@@ -121,7 +99,7 @@
                         <select name="idDetailRetur" class="form-control" id="idDetailRetur">
                             <option value="">-- Pilih ID Detail Retur --</option>
                             @foreach($detailretur as $dr)
-                            <option value="{{ $dr->idDetailRetur }}">{{ $dr->idDetailRetur }}</option>
+                            <option value="{{ $dr->idDetailRetur }}" data-supplier="{{ $dr->retur->trmasuk->suppliers->idSuplier }}">{{ $dr->idDetailRetur }} || {{ $dr->retur->trmasuk->suppliers->nama }}</option>
                             @endforeach
                         </select>
                         <br>

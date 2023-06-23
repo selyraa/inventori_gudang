@@ -29,23 +29,25 @@ class SupplierController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'noTelp' => 'required',
-            ]);
-            //fungsi eloquent untuk menambah data
-            Supplier::create($request->all());
-            //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            return redirect()->route('supplier.index')->with('success', 'Supplier Berhasil Ditambahkan');
+        ]);
+        //fungsi eloquent untuk menambah data
+        Supplier::create($request->all());
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('supplier.index')->with('success', 'Supplier Berhasil Ditambahkan');
     }
 
     public function show($idSupplier)
     {
         $supplier = Supplier::find($idSupplier);
-        return view('admin.data_supplier.detail', compact('supplier'));
+        $showModal = true;
+        return view('admin.data_supplier.detail', compact('supplier', 'showModal'));
     }
 
     public function edit($idSupplier)
     {
         $supplier = Supplier::find($idSupplier);
-        return view('admin.data_supplier.edit', compact('supplier'));
+        $showModal = true;
+        return view('admin.data_supplier.edit', compact('supplier', 'showModal'));
     }
 
     public function update(Request $request, string $idSupplier)
@@ -56,24 +58,27 @@ class SupplierController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'noTelp' => 'required',
-            ]);
-        //fungsi eloquent untuk mengupdate data inputan kita
-            Supplier::find($idSupplier)->update($request->all());
-        //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('supplier.index')->with('success', 'Supplier Berhasil Diupdate');
+        ]);
+        $supplier = Supplier::all()->where('idSupplier', $idSupplier)->first();
+        $supplier->idSupplier = $request->get('idSupplier');
+        $supplier->nama = $request->get('nama');
+        $supplier->alamat = $request->get('alamat');
+        $supplier->noTelp = $request->get('noTelp');
+        $supplier->save();
+        return redirect()->route('supplier.index')->with('success', 'Supplier Berhasil Diupdate');
     }
 
     public function destroy($idSupplier)
     {
         Supplier::find($idSupplier)->delete();
         return redirect()->route('supplier.index')
-            -> with('success', 'Supplier Berhasil Dihapus');
+            ->with('success', 'Supplier Berhasil Dihapus');
     }
 
     public function lapSupplier()
     {
         $supplier = Supplier::all();
-        return view ('admin.laporan_supplier.index', compact('supplier'));
+        return view('admin.laporan_supplier.index', compact('supplier'));
     }
 
     public function exportPDF()

@@ -23,4 +23,9 @@ class ReturBarang extends Model
     {
         return $this->belongsTo(TransaksiMasuk::class, 'idTransaksiMasuk');
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 }
