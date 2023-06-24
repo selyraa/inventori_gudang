@@ -1,6 +1,7 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+
 <head>
     <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
 </head>
@@ -31,17 +32,19 @@
                     </div>
                     <div class="form-group">
                         <label for="idUser">ID User</label>
-                        <select name="idUser" class="form-control" id="user">
-                            @foreach($user as $u)
-                            <option value="{{ $u -> idUser }}">{{ $u -> username }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->idUser }}">
+                        <small>Nama Petugas: {{ Auth::user()->nama }}</small>
                     </div>
                     <div class="form-group">
                         <label for="idToko">ID Toko</label>
                         <select name="idToko" class="form-control" id="toko">
+                            @php
+                            $currentIdToko = $trkeluar->idToko; 
+                            @endphp
                             @foreach($toko as $t)
-                            <option value="{{ old('idToko', $t -> idToko) }}">{{ $t -> nama }}</option>
+                            <option value="{{ $t->idToko }}" {{ (old('idToko', $t->idToko) == $currentIdToko) ? 'selected' : '' }}>
+                                {{ $t->idToko }} || {{ $t->nama }}
+                            </option>
                             @endforeach
                         </select>
                     </div>

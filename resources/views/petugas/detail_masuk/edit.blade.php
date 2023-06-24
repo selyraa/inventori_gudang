@@ -33,19 +33,21 @@
                     <div class="form-group">
                         <label for="idTransaksiMasuk">ID Transaksi Masuk</label>
                         <select name="idTransaksiMasuk" class="form-control" id="idTransaksiMasuk">
-                            @foreach($trmasuk as $dm)
-                                @if($dm->suppliers)
-                                    <option value="{{ old('idTransaksiMasuk', $dm->idTransaksiMasuk) }}" data-supplier="{{ $dm->idSupplier }}">{{ $dm->idTransaksiMasuk }} || {{ $dm->suppliers->nama }}</option>
-                                @endif
+                            @php
+                            $currentIdSupplier = $detailmasuk->trmasuk->idSupplier; 
+                            @endphp
+                            @foreach($trmasuk as $tm)
+                            <option value="{{ $tm->idSupplier }}" {{ (old('idSupplier', $tm->idSupplier) == $currentIdSupplier) ? 'selected' : '' }}>
+                                {{ $tm->idTransaksiMasuk }} || {{ $tm->suppliers->nama }}
+                            </option>
                             @endforeach
-
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="idDetailBarang">ID Detail Barang</label>
                         <select name="idDetailBarang" class="form-control" id="idDetailBarang">
                             @foreach($detailbarang as $b)
-                            <option value="{{ old('idDetailBarang', $b -> idDetailBarang) }}">{{ $b -> barang -> namaBarang }}</option>
+                            <option value="{{ old('idDetailBarang', $b -> idDetailBarang) }}">{{ $b -> idDetailBarang }} || {{ $b -> barang -> namaBarang }}</option>
                             @endforeach
                         </select>
                     </div>

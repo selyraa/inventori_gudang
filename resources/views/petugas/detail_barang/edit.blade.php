@@ -1,6 +1,7 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+
 <head>
     <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
 </head>
@@ -32,9 +33,15 @@
                     <div class="form-group">
                         <label for="idBarang">ID Barang</label>
                         <select name="idBarang" class="form-control" id="idBarang">
+                            @php
+                            $currentIdBarang = $detailbrg->idBarang;
+                            @endphp
                             @foreach($barang as $b)
-                            <option value="{{ old('idBarang', $b -> idBarang) }}">{{ $b -> namaBarang }}</option>
+                            <option value="{{ $b->idBarang }}" {{ (old('idBarang', $b->idBarang) == $currentIdBarang) ? 'selected' : '' }}>
+                                {{ $b->idBarang }} || {{ $b->namaBarang }}
+                            </option>
                             @endforeach
+                            
                         </select>
                     </div>
                     <div class="form-group">

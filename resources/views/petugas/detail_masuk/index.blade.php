@@ -34,7 +34,7 @@
                         <tr>
                             <th>ID Detail Masuk</th>
                             <th>ID Transaksi Masuk</th>
-                            <th>ID detail Barang</th>
+                            <th>ID Detail Barang</th>
                             <th>Jumlah</th>
                             <th width="280px">Action</th>
                         </tr>
@@ -114,7 +114,7 @@
                         <select name="idDetailBarang" class="form-control" id="idDetailBarang">
                             <option value="">-- Pilih ID Detail Barang --</option>
                             @foreach($detail as $d)
-                            <option value="{{ $d->idDetailBarang }}">{{ $d->namaBarang }}</option>
+                            <option value="{{ $d->idDetailBarang }}">{{ $d->idDetailBarang }} || {{ $d->namaBarang }}</option>
                             @endforeach
                         </select>
                     </div>

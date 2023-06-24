@@ -99,7 +99,7 @@
                         <select name="idDetailRetur" class="form-control" id="idDetailRetur">
                             <option value="">-- Pilih ID Detail Retur --</option>
                             @foreach($detailretur as $dr)
-                            <option value="{{ $dr->idDetailRetur }}" data-supplier="{{ $dr->retur->trmasuk->suppliers->idSuplier }}">{{ $dr->idDetailRetur }} || {{ $dr->retur->trmasuk->suppliers->nama }}</option>
+                            <option value="{{ $dr->idDetailRetur }}" data-supplier="{{ $dr->retur->trmasuk->suppliers->idSuplier }}" data-barang="{{ $dr->detailbarang->barang->idBarang }}">{{ $dr->retur->idRetur }} || {{ $dr->retur->trmasuk->suppliers->nama }} || {{ $dr->detailbarang->barang->namaBarang }}</option>
                             @endforeach
                         </select>
                         <br>

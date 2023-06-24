@@ -33,18 +33,26 @@
                     <div class="form-group">
                         <label for="idTransaksiKeluar">ID Transaksi Keluar</label>
                         <select name="idTransaksiKeluar" class="form-control" id="idTransaksiKeluar">
-                            @foreach($trkeluar as $dk)
-                            @if($dk->toko)
-                            <option value="{{ old('idTransaksiKeluar', $dk->idTransaksiKeluar) }}">{{ $dk -> idTransaksiKeluar }} || {{ $dk->toko->nama }} </option>
-                            @endif
+                            @php
+                            $currentIdToko = $detailkeluar->trkeluar->idToko; 
+                            @endphp
+                            @foreach($trkeluar as $tk)
+                            <option value="{{ $tk->idToko }}" {{ (old('idToko', $tk->idToko) == $currentIdToko) ? 'selected' : '' }}>
+                                {{ $tk->idTransaksiKeluar }} || {{ $tk->toko->nama }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="idDetailBarang">ID Detail Barang</label>
                         <select name="idDetailBarang" class="form-control" id="idDetailBarang">
+                            @php
+                            $currentIdDetailBarang = $detailkeluar->idDetailBarang; 
+                            @endphp
                             @foreach($detailbarang as $db)
-                            <option value="{{ old('idDetailBarang', $db -> idDetailBarang) }}">{{ $db -> barang -> namaBarang }}</option>
+                            <option value="{{ $db->idDetailBarang }}" {{ (old('idDetailBarang', $db->idDetailBarang) == $currentIdDetailBarang) ? 'selected' : '' }}>
+                                {{ $db->idDetailBarang }} || {{ $db->barang->namaBarang }}
+                            </option>
                             @endforeach
                         </select>
                     </div>

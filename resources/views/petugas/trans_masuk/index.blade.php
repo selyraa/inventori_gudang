@@ -174,7 +174,7 @@
                         <label for="idSupplier">ID Supplier</label>
                         <select name="idSupplier" class="form-control">
                             @foreach($supplier as $s)
-                            <option value="{{ $s -> idSupplier }}">{{ $s -> nama }}</option>
+                            <option value="{{ $s -> idSupplier }}">{{ $s -> idSupplier }} || {{ $s -> nama }}</option>
                             @endforeach
                         </select>
                     </div>

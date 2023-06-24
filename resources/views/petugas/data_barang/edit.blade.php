@@ -1,6 +1,7 @@
 @extends('petugas.app_petugas')
 @section('content')
 @if($showModal)
+
 <head>
     <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
 </head>
@@ -32,39 +33,43 @@
                     <div class="form-group">
                         <label for="idSupplier">ID Supplier</label>
                         <select name="idSupplier" class="form-control" id="supplier">
+                            @php
+                            $currentIdSupplier = $barang->idSupplier; 
+                            @endphp
                             @foreach($supplier as $s)
-                            <option value="{{ old('idSupplier', $s -> idSupplier) }}">{{ $s -> nama }}</option>
+                            <option value="{{ $s->idSupplier }}" {{ (old('idSupplier', $s->idSupplier) == $currentIdSupplier) ? 'selected' : '' }}>
+                                {{ $s->idSupplier }} || {{ $s->nama }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="idUser">ID User</label>
-                        <select name="idUser" class="form-control" id="user">
-                            @foreach($user as $u)
-                            <option value="{{ $u -> idUser }}">{{ $u -> username }}</option>
-                            @endforeach
-                        </select>
-
-                        <script>
-                            document.getElementById('user').addEventListener('change', function() {
-                                var selectedOption = this.value;
-                                localStorage.setItem('selectedOption', selectedOption);
-                            });
-                        </script>
+                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->username }}">
                     </div>
                     <div class="form-group">
                         <label for="idSatuan">ID Satuan</label>
                         <select name="idSatuan" class="form-control" id="satuan">
+                            @php
+                            $currentIdSatuan = $barang->idSatuan; 
+                            @endphp
                             @foreach($satuan as $s)
-                            <option value="{{ old('idSatuan', $s -> idSatuan) }}">{{ $s -> namaSatuan }}</option>
+                            <option value="{{ $s->idSatuan }}" {{ (old('idSatuan', $s->idSatuan) == $currentIdSatuan) ? 'selected' : '' }}>
+                                {{ $s->idSatuan }} || {{ $s->namaSatuan }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="idKategori">ID Kategori</label>
                         <select name="idKategori" class="form-control">
+                            @php
+                            $currentIdKategori = $barang->idKategori; 
+                            @endphp
                             @foreach($kategori as $k)
-                            <option value="{{ $k -> idKategori }}">{{ $k -> namaKategori }}</option>
+                            <option value="{{ $k->idKategori }}" {{ (old('idKategori', $k->idKategori) == $currentIdKategori) ? 'selected' : '' }}>
+                                {{ $k->idKategori }} || {{ $k->namaKategori }}
+                            </option>
                             @endforeach
                         </select>
                     </div>

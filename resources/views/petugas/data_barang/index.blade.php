@@ -110,8 +110,9 @@
                     <div class="form-group">
                         <label for="idSupplier">ID Supplier</label>
                         <select name="idSupplier" class="form-control">
+                            <option value="">-- Pilih ID Supplier --</option>
                             @foreach($supplier as $s)
-                            <option value="{{ $s -> idSupplier }}">{{ $s -> nama }}</option>
+                            <option value="{{ old('idSupplier', $s->idSupplier) }}">{{ $s->idSupplier }} || {{ $s->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -122,16 +123,18 @@
                     <div class="form-group">
                         <label for="idSatuan">ID Satuan</label>
                         <select name="idSatuan" class="form-control">
+                            <option value="">-- Pilih ID Satuan Barang --</option>
                             @foreach($satuan as $s)
-                            <option value="{{ $s -> idSatuan }}">{{ $s -> namaSatuan }}</option>
+                            <option value="{{ $s -> idSatuan }}">{{ $s -> idSatuan }} || {{ $s -> namaSatuan }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="idKategori">ID Kategori</label>
                         <select name="idKategori" class="form-control">
+                            <option value="">-- Pilih ID Kategori Barang --</option>
                             @foreach($kategori as $k)
-                            <option value="{{ $k -> idKategori }}">{{ $k -> namaKategori }}</option>
+                            <option value="{{ $k -> idKategori }}">{{ $k -> idKategori }} || {{ $k -> namaKategori }}</option>
                             @endforeach
                         </select>
                     </div>

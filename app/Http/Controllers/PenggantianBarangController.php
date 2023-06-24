@@ -20,7 +20,7 @@ class PenggantianBarangController extends Controller
     public function index()
     {
         $penggantian = PenggantianBarang::with('detailretur')->paginate(3);
-        $detailretur = DetailRetur::with('retur')->get();
+        $detailretur = DetailRetur::with('retur', 'detailbarang')->get();
         return view('admin.penggantian_barang.index', compact('penggantian', 'detailretur'));
     }
 

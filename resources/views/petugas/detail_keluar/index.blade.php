@@ -96,7 +96,7 @@
                         <select name="idTransaksiKeluar" class="form-control">
                             <option value="">-- Pilih ID Transaksi Keluar --</option>
                             @foreach($trkeluar as $tk)
-                            <option value="{{ $tk->idTransaksiKeluar }}">{{ $tk->idTransaksiKeluar }}</option>
+                            <option value="{{ $tk->idTransaksiKeluar }}">{{ $tk->idTransaksiKeluar }} || {{ $tk->toko->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -105,7 +105,7 @@
                         <select name="idDetailBarang" class="form-control" id="idDetailBarang">
                             <option value="">-- Pilih ID Detail Barang --</option>
                             @foreach($detailbarang as $db)
-                            <option value="{{ $db->idDetailBarang }}">{{ $db->barang->namaBarang }}</option>
+                            <option value="{{ $db->idDetailBarang }}">{{ $db->idDetailBarang }} || {{ $db->barang->namaBarang }}</option>
                             @endforeach
                         </select>
                     </div>
