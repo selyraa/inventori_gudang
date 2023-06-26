@@ -34,7 +34,7 @@
                         <label for="idSupplier">ID Supplier</label>
                         <select name="idSupplier" class="form-control" id="supplier">
                             @php
-                            $currentIdSupplier = $barang->idSupplier; 
+                            $currentIdSupplier = $barang->idSupplier;
                             @endphp
                             @foreach($supplier as $s)
                             <option value="{{ $s->idSupplier }}" {{ (old('idSupplier', $s->idSupplier) == $currentIdSupplier) ? 'selected' : '' }}>
@@ -45,13 +45,14 @@
                     </div>
                     <div class="form-group">
                         <label for="idUser">ID User</label>
-                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->username }}">
+                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->idUser }}">
+                        <small>Nama Petugas: {{ Auth::user()->nama }}</small>
                     </div>
                     <div class="form-group">
                         <label for="idSatuan">ID Satuan</label>
                         <select name="idSatuan" class="form-control" id="satuan">
                             @php
-                            $currentIdSatuan = $barang->idSatuan; 
+                            $currentIdSatuan = $barang->idSatuan;
                             @endphp
                             @foreach($satuan as $s)
                             <option value="{{ $s->idSatuan }}" {{ (old('idSatuan', $s->idSatuan) == $currentIdSatuan) ? 'selected' : '' }}>
@@ -64,7 +65,7 @@
                         <label for="idKategori">ID Kategori</label>
                         <select name="idKategori" class="form-control">
                             @php
-                            $currentIdKategori = $barang->idKategori; 
+                            $currentIdKategori = $barang->idKategori;
                             @endphp
                             @foreach($kategori as $k)
                             <option value="{{ $k->idKategori }}" {{ (old('idKategori', $k->idKategori) == $currentIdKategori) ? 'selected' : '' }}>

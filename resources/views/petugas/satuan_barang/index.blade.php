@@ -16,7 +16,7 @@
 </section>
 <section class="content">
     <!-- Default box -->
-    <div class="card" style="background-color: #F1F6F9;">
+    <div class="card">
         <div class="card-header">
             <h3 class="card-title font-weight-bold" style="margin-top: 15px;">Satuan Barang</h3><br>
             <div class="card-tools">

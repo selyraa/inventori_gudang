@@ -1,5 +1,8 @@
 @extends('petugas.app_petugas')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 @if($showModal)
 <script>
     $(document).ready(function() {
@@ -19,17 +22,10 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-<<<<<<< HEAD
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><b>ID Satuan: </b>{{$satuan->idSatuan}}</li>
-                    <li class="list-group-item"><b>Nama Satuan: </b>{{$satuan->namaSatuan}}</li>
+                    <li class="list-group-item"><b>ID Satuan</b>{{$satuan->idSatuan}}</li>
+                    <li class="list-group-item"><b>Nama Satuan</b>{{$satuan->namaSatuan}}</li>
                 </ul>
-=======
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>ID Satuan: </b>{{$satuan->idSatuan}}</li>
-                <li class="list-group-item"><b>Nama Satuan: </b>{{$satuan->namaSatuan}}</li>
-            </ul>
->>>>>>> 30f6f0419290cc205b634e756114667334f7eee7
             </div>
 
             <!-- Modal footer -->

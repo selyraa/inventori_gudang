@@ -58,7 +58,12 @@
                             <td>{{ $db -> tglExp}}</td>
                             <td>Rp. {{ number_format($db -> hargaBeli, 0, ',', '.') }}</td>
                             <td>Rp. {{ number_format($db -> hargaJual, 0, ',', '.') }}</td>
-                            <td>{{ $db -> stok}}</td>
+                            <td>
+                                {{ $db -> stok}}
+                                @if($db->barang)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $db->barang->satuan->namaSatuan }}</p>
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('detailbrg.destroy', $db->idDetailBarang) }}" method="POST">
                                     <a class="btn-action btn-show" href="{{ route('detailbrg.show', $db->idDetailBarang) }}">Show</a>

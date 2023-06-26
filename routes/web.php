@@ -49,6 +49,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/satuan', [SatuanBarangController::class, 'adminSatuan'])->name('satuan');
     Route::get('/barang', [BarangController::class, 'adminBarang'])->name('barang');
     Route::get('/detailbrg', [BarangController::class, 'adminDetailBrg'])->name('detailbrg');
+    Route::resource('supplier', SupplierController::class);
     Route::get('/dashboardadm', [DashboardAdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::match(['get','post'],'/lapmasuk', [TransaksiMasukController::class, 'lapmasuk'])->name('lapmasuk');
     Route::match(['get','post'],'/lapmasuk/export', [TransaksiMasukController::class, 'exportPDF'])->name('export_lapmasuk');
@@ -74,7 +75,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('petug
 Route::resource('petugas', PetugasController::class);
 Route::resource('kategori', KategoriBarangController::class);
 Route::resource('satuan', SatuanBarangController::class);
-Route::resource('supplier', SupplierController::class);
+
 Route::resource('retur', ReturBarangController::class);
 Route::resource('barang', BarangController::class);
 Route::resource('trmasuk', TransaksiMasukController::class);

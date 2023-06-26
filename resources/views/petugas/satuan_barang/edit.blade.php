@@ -1,5 +1,8 @@
 @extends('petugas.app_petugas')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{asset('assets/css/kategori.css')}}">
+</head>
 @if($showModal)
 <script>
     $(document).ready(function() {
@@ -29,7 +32,7 @@
                     <div class="form-group">
                         <label for="namaSatuan">Nama Satuan Barang</label>
                         <input type="text" name="namaSatuan" class="form-control" id="namaSatuan" value="{{ $satuan->namaSatuan }}" aria-describedby="namaSatuan">
-                    </div><button type="submit" class="btn-action btn-submit">Submit</button><button type="submit" class="btn btn-primary">Submit</button>
+                    </div><button type="submit" class="btn-action btn-submit">Submit</button>
                 </form>
             </div>
 

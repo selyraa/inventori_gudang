@@ -23,10 +23,10 @@
             <!-- Modal body -->
             <div class="modal-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>ID Transaksi Masuk: </b>{{$trmasuk->idTransaksiMasuk}}</li>
-                <li class="list-group-item"><b>ID User: </b>{{$trmasuk->idUser}}</li>
-                <li class="list-group-item"><b>ID Supplier: </b>{{$trmasuk->idSupplier}}</li>
-                <li class="list-group-item"><b>Tanggal Transaksi Masuk: </b>{{$trmasuk->tglTransaksiMasuk}}</li>
+                <li class="list-group-item"><b>ID Transaksi Masuk</b>{{$trmasuk->idTransaksiMasuk}}</li>
+                <li class="list-group-item"><b>ID User</b>{{$trmasuk->idUser}}</li>
+                <li class="list-group-item"><b>ID Supplier</b>{{$trmasuk->idSupplier}}</li>
+                <li class="list-group-item"><b>Tanggal Transaksi Masuk</b>{{$trmasuk->tglTransaksiMasuk}}</li>
             </ul>
             </div>
 

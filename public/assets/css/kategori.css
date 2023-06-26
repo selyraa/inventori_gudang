@@ -99,7 +99,7 @@
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -127,4 +127,14 @@
 
 .pagination .active a {
     background-color: #737f8f;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item b {
+    flex-basis: 160px;
+    display: inline-block
 }

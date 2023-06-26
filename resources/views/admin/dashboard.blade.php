@@ -8,26 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PT. Gudang Lancar Jaya</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghdjkPvT3KUIKqUf7xvePIjIwTkK+" crossorigin="anonymous">
-  <style>
-    .card {
-      width: 100%;
-    }
-
-    .info-box {
-      background-color: rgba(255, 255, 255, 0.);
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .info-box:hover {
-      transform: translateY(-3px);
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .border-left-custom {
-      border-left: 8px solid #6c63ff !important;
-    }
-  </style>
+  <link rel="stylesheet" href="{{asset('assets/css/dashboard_admin.css')}}">
+  
 </head>
 
 <body>
@@ -44,7 +26,7 @@
         <div class="row">
           <div class="col-6 pr-3">
             <div class="info-box mt-3">
-              <span class="info-box-icon" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: #fff;"><i class="fas fa-users"></i></span>
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
               <div class="info-box-content">
                 <a href="{{ route('admin.index') }}">
                   <span class="info-box-text font-weight-bold" style="color: #000;">Pengguna</span>
@@ -55,11 +37,11 @@
           </div>
           <div class="col-6 pr-3">
             <div class="info-box mt-3">
-              <span class="info-box-icon" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: #fff;"><i class="fas fa-handshake"></i></span>
+              <span class="info-box-icon"><i class="fas fa-handshake"></i></span>
               <div class="info-box-content">
                 <a href="{{ route('lapSupplier') }}">
-                  <span class="info-box-text font-weight-bold" style="color: #000;">Supplier</span>
-                  <span class="info-box-number font-weight-bold" style="color: #000;">{{ $supplier }}</span>
+                  <span class="info-box-text font-weight-bold">Supplier</span>
+                  <span class="info-box-number font-weight-bold">{{ $supplier }}</span>
                 </a>
               </div>
             </div>
@@ -68,12 +50,12 @@
         <div class="row">
           <div class="col-6 pr-3">
             <div class="info-box mt-3">
-              <span class="info-box-icon" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: #fff;"><i class="fas fa-coins"></i></span>
+              <span class="info-box-icon"><i class="fas fa-coins"></i></span>
 
               <div class="info-box-content">
                 <a href="{{ route('lapkeluar') }}">
-                  <span class="info-box-text font-weight-bold" style="color: #000;">Pemasukan</span>
-                  <span class="info-box-number font-weight-bold mt-0 mb-0" style="color: #000;">Rp. {{ number_format($totalPemasukan, 0, ',', '.') }}</span>
+                  <span class="info-box-text font-weight-bold">Pemasukan</span>
+                  <span class="info-box-number font-weight-bold mt-0 mb-0">Rp. {{ number_format($totalPemasukan, 0, ',', '.') }}</span>
                   <p class="mt-0 mb-0" style="color: #000; font-size: 11px;">Periode {{ $tanggalAwal }} s/d {{ $tanggalAkhir }}</p>
                 </a>
               </div>
@@ -81,11 +63,11 @@
           </div>
           <div class="col-6 pr-3">
             <div class="info-box mt-3">
-              <span class="info-box-icon" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: #fff;"><i class="fas fa-chart-bar"></i></span>
+              <span class="info-box-icon"><i class="fas fa-chart-bar"></i></span>
               <div class="info-box-content">
                 <a href="{{ route('lapmasuk') }}" style="text-decoration: none;">
-                  <span class="info-box-text font-weight-bold" style="color: #000;">Pengeluaran</span>
-                  <span class="info-box-number font-weight-bold" style="color: #000;">Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</span>
+                  <span class="info-box-text font-weight-bold">Pengeluaran</span>
+                  <span class="info-box-number font-weight-bold">Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</span>
                   <p class="mt-0 mb-0" style="color: #000; font-size: 11px;">Periode {{ $tanggalPertama }} s/d {{ $tanggalTerakhir }}</p>
                 </a>
                 </a>
@@ -96,22 +78,22 @@
         <div class="row">
           <div class="col-6 pr-3">
             <div class="info-box mt-3">
-              <span class="info-box-icon" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: #fff;"><i class="fas fa-exchange-alt"></i></span>
+              <span class="info-box-icon"><i class="fas fa-exchange-alt"></i></span>
               <div class="info-box-content">
                 <a href="{{ route('lapretur') }}">
-                  <span class="info-box-text font-weight-bold" style="color: #000;">Retur</span>
-                  <span class="info-box-number font-weight-bold mt-0 mb-0" style="color: #000;">{{ $retur }}</span>
+                  <span class="info-box-text font-weight-bold">Retur</span>
+                  <span class="info-box-number font-weight-bold mt-0 mb-0">{{ $retur }}</span>
                 </a>
               </div>
             </div>
           </div>
           <div class="col-6 pr-3">
             <div class="info-box mt-3">
-              <span class="info-box-icon" style="background: linear-gradient(to right, #6c63ff, #a892ff); color: #fff;"><i class="fas fa-chart-line fa-flip-vertical"></i></span>
+              <span class="info-box-icon"><i class="fas fa-chart-line fa-flip-vertical"></i></span>
               <div class="info-box-content">
                 <a href="{{ route('lappenggantian') }}" style="text-decoration: none;">
-                  <span class="info-box-text font-weight-bold" style="color: #000;">Pengurangan Profit</span>
-                  <span class="info-box-number font-weight-bold" style="color: #000;">Rp. {{ number_format($penurunanProfit, 0, ',', '.') }}</span>
+                  <span class="info-box-text font-weight-bold" id="pengurangan-profit">Pengurangan Profit</span>
+                  <span class="info-box-number font-weight-bold">Rp. {{ number_format($penurunanProfit, 0, ',', '.') }}</span>
                 </a>
                 </a>
               </div>

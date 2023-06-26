@@ -118,7 +118,8 @@
                     </div>
                     <div class="form-group">
                         <label for="idUser">ID User</label>
-                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->username }}">
+                        <input type="text" name="idUser" class="form-control" id="idUser" value="{{ Auth::user()->idUser }}">
+                        <small>Nama Petugas: {{ Auth::user()->nama }}</small>
                     </div>
                     <div class="form-group">
                         <label for="idSatuan">ID Satuan</label>

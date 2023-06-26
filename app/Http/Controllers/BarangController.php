@@ -112,7 +112,7 @@ class BarangController extends Controller
             $file->storeAs('public/fotoProduk', $nama_file);
             // simpan nama file foto ke dalam kolom 'foto' pada tabel 'mahasiswas'
             $barang->fotoProduk = $nama_file;
-        }
+        } 
         $image_name = $request->file('fotoProduk')->store('images', 'public');
         $barang->fotoProduk = $image_name;
         $barang->save();

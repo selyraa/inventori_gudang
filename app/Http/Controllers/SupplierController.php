@@ -12,7 +12,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $supplier = Supplier::paginate(3);
+        $supplier = Supplier::paginate(5);
         return view('admin.data_supplier.index', compact('supplier'));
     }
 

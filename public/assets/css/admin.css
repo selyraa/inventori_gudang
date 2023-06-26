@@ -10,7 +10,7 @@
 .table {
     width: 100%;
     border-collapse: collapse;
-} 
+}
 
 .table thead th {
     background-color: #a892ff;
@@ -127,4 +127,14 @@
 
 .pagination .active a {
     background-color: #737f8f;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item b {
+    flex-basis: 160px;
+    display: inline-block;
 }

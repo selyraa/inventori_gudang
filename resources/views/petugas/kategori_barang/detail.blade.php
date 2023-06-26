@@ -24,8 +24,8 @@
             <!-- Modal body -->
             <div class="modal-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>ID Kategori: </b>{{$kategori->idKategori}}</li>
-                <li class="list-group-item"><b>Nama Kategori: </b>{{$kategori->namaKategori}}</li>
+                <li class="list-group-item"><b>ID Kategori</b>{{$kategori->idKategori}}</li>
+                <li class="list-group-item"><b>Nama Kategori</b>{{$kategori->namaKategori}}</li>
             </ul>
             </div>
 

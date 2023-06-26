@@ -1,5 +1,6 @@
 @extends('admin.app')
 @section('content')
+
 <head>
     <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
 </head>
@@ -17,7 +18,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Data Supplier</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top: 15px;">Data Supplier</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -79,20 +80,20 @@
                 <form method="post" action="{{ route('supplier.store') }}" id="myForm">
                     @csrf
                     <div class="form-group">
-                        <!-- <label for="idSupplier">ID Supplier</label> -->
-                        <input type="text" name="idSupplier" class="form-control" id="idSupplier" aria-describedby="idSupplier" placeholder="ID Supplier">
+                        <label for="idSupplier">ID Supplier</label>
+                        <input type="text" name="idSupplier" class="form-control" id="idSupplier" aria-describedby="idSupplier">
                     </div>
                     <div class="form-group">
-                        <!-- <label for="nama">Nama Supplier</label> -->
-                        <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama" placeholder="Nama Supplier">
+                        <label for="nama">Nama Supplier</label>
+                        <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama">
                     </div>
                     <div class="form-group">
-                        <!-- <label for="alamat">Alamat</label> -->
-                        <input type="text" name="alamat" class="form-control" id="alamat" aria-describedby="alamat" placeholder="Alamat">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat" class="form-control" id="alamat" aria-describedby="alamat">
                     </div>
                     <div class="form-group">
-                        <!-- <label for=" noTelp">No Telepon</label> -->
-                        <input type="text" name="noTelp" class="form-control" id="noTelp" aria-describedby="noTelp" placeholder="No Telepon">
+                        <label for=" noTelp">No Telepon</label>
+                        <input type="text" name="noTelp" class="form-control" id="noTelp" aria-describedby="noTelp">
                     </div>
                     <button type="submit" class="btn rounded" style="background-color: #282A3A; color: white;">Submit</button>
                 </form>

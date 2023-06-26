@@ -11,7 +11,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Detail Barang</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top:15px;">Detail Barang</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -52,7 +52,12 @@
                             <td>{{ $db -> tglExp}}</td>
                             <td>Rp. {{ number_format($db -> hargaBeli, 0, ',', '.') }}</td>
                             <td>Rp. {{ number_format($db -> hargaJual, 0, ',', '.') }}</td>
-                            <td>{{ $db -> stok}}</td>
+                            <td>
+                                {{ $db -> stok}}
+                                @if($db->barang)
+                                <p style="font-weight: bold; font-size: 17px;">{{ $db->barang->satuan->namaSatuan }}</p>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

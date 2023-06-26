@@ -1,5 +1,6 @@
 @extends('admin.app')
 @section('content')
+
 <head>
     <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
 </head>
@@ -11,7 +12,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold" style="margin-top:15px; color:black; font-size: 24px; font-family:'Helvetica Neue', sans-serif;">Laporan Penggantian Barang</h3><br>
+            <h3 class="card-title font-weight-bold" style="margin-top:15px;">Laporan Penggantian Barang</h3><br>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -50,67 +51,66 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                    <tr>
-                        <th>ID Retur</th>
-                        <th>Tgl Penggantian</th>
-                        <th>Jumlah Retur</th>
-                        <th>Jumlah Penggantian</th>
-                        <th>Selisih Retur</th>
-                        <th>Pengurangan Profit</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody style="color:black;">
-                    <?php
-                    if ($mulai = null || $selesai = null) {
-                    ?>
-                        @foreach($laporan as $lm)
                         <tr>
-                            <td>{{ $lm -> idRetur}}</td>
-                            <td>{{ $lm -> tglPenggantian}}</td>
-                            <td>{{ $lm -> jumlahRetur}}</td>
-                            <td>{{ $lm -> jumlahPenggantian}}</td>
-                            <td>{{ $lm -> selisihRetur}}</td>
-                            <td>{{ $lm -> penguranganProfit}}</td>
-                            <td>{{ $lm -> keterangan}}</td>
+                            <th>ID Retur</th>
+                            <th>Tgl Penggantian</th>
+                            <th>Jumlah Retur</th>
+                            <th>Jumlah Penggantian</th>
+                            <th>Selisih Retur</th>
+                            <th>Pengurangan Profit</th>
+                            <th>Keterangan</th>
                         </tr>
-                        @endforeach
-                    <?php
-                    }
-                    if (isset($_POST['filter_tgl'])) {
-                    ?>
-                        @foreach($filter as $lm)
-                        <tr>
-                            <td>{{ $lm -> idRetur}}</td>
-                            <td>{{ $lm -> tglPenggantian}}</td>
-                            <td>{{ $lm -> jumlahRetur}}</td>
-                            <td>{{ $lm -> jumlahPenggantian}}</td>
-                            <td>{{ $lm -> selisihRetur}}</td>
-                            <td>Rp. {{ number_format($lm -> penguranganProfit, 0, ',', '.') }}</td>
-                            <td>{{ $lm -> keterangan}}</td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    } else {
-                    ?>
-                        @foreach($laporan as $lm)
-                        <tr>
-                            <td>{{ $lm -> idRetur}}</td>
-                            <td>{{ $lm -> tglPenggantian}}</td>
-                            <td>{{ $lm -> jumlahRetur}}</td>
-                            <td>{{ $lm -> jumlahPenggantian}}</td>
-                            <td>{{ $lm -> selisihRetur}}</td>
-                            <td>Rp. {{ number_format($lm -> penguranganProfit, 0, ',', '.') }}</td>
-                            <td>{{ $lm -> keterangan}}</td>
-                        </tr>
-                        @endforeach
-                    <?php
-                    }
-                    ?>
-                </tbody>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody style="color:black;">
+                        <?php
+                        if ($mulai = null || $selesai = null) {
+                        ?>
+                            @foreach($laporan as $lm)
+                            <tr>
+                                <td>{{ $lm -> idRetur}}</td>
+                                <td>{{ $lm -> tglPenggantian}}</td>
+                                <td>{{ $lm -> jumlahRetur}}</td>
+                                <td>{{ $lm -> jumlahPenggantian}}</td>
+                                <td>{{ $lm -> selisihRetur}}</td>
+                                <td>{{ $lm -> penguranganProfit}}</td>
+                                <td>{{ $lm -> keterangan}}</td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        if (isset($_POST['filter_tgl'])) {
+                        ?>
+                            @foreach($filter as $lm)
+                            <tr>
+                                <td>{{ $lm -> idRetur}}</td>
+                                <td>{{ $lm -> tglPenggantian}}</td>
+                                <td>{{ $lm -> jumlahRetur}}</td>
+                                <td>{{ $lm -> jumlahPenggantian}}</td>
+                                <td>{{ $lm -> selisihRetur}}</td>
+                                <td>Rp. {{ number_format($lm -> penguranganProfit, 0, ',', '.') }}</td>
+                                <td>{{ $lm -> keterangan}}</td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        } else {
+                        ?>
+                            @foreach($laporan as $lm)
+                            <tr>
+                                <td>{{ $lm -> idRetur}}</td>
+                                <td>{{ $lm -> tglPenggantian}}</td>
+                                <td>{{ $lm -> jumlahRetur}}</td>
+                                <td>{{ $lm -> jumlahPenggantian}}</td>
+                                <td>{{ $lm -> selisihRetur}}</td>
+                                <td>Rp. {{ number_format($lm -> penguranganProfit, 0, ',', '.') }}</td>
+                                <td>{{ $lm -> keterangan}}</td>
+                            </tr>
+                            @endforeach
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 </section>
 @endsection

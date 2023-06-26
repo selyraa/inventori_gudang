@@ -25,6 +25,7 @@
             <div class="modal-body">
                 <form method="post" action="{{ route('supplier.update', $supplier->idSupplier) }}" id="myForm">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="idSupplier">ID Supplier</label>
                         <input type="text" name="idSupplier" class="form-control" id="idSupplier" value="{{ old('idSupplier', $supplier->idSupplier) }}" aria-describedby="idSupplier">

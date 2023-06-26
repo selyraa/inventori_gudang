@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.card-title,
+.info-box-text,
+.col {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card {
+    width: 100%;
+}
+
+.card-body {
+    /* height: calc(114vh - 140px);
+    overflow-y: auto;  */
+}
+
+.info-box {
+    background-color: rgba(255, 255, 255, 0.);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.info-box-icon {
+    background: linear-gradient(to bottom, #6c63ff, #a892ff);
+    color: #fff;
+}
+
+.info-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.border-left-custom {
+    border-left: 8px solid #a892ff !important;
+}
+
+.info-box-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+    color: black;
+}
+
+.info-box-number {
+    color:black;
+}
+
+#pengurangan-profit {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: top;
+    transition: all 0.3s ease;
+  }
+  
+  #pengurangan-profit:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  
